@@ -11,8 +11,8 @@ Make sure you have Laravel 10 installed
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/ahmdims/Eduno-Backend
-cd Eduno-Backend
+git clone https://github.com/ahmdims/Eduno
+cd Eduno
 ```
 
 ### Step 2: Install Dependencies
