@@ -64,7 +64,8 @@ Route::get('/contact', [WebsiteAppController::class, 'index'])->name('app.contac
 Route::post('/mail', [ContactAppController::class, 'store'])->name('app.mail.store');
 
 // Admin
-Route::middleware(['auth', 'index'])->group(function () {
+Route::middleware(['auth'])->group(function () {
+
 
     // Course
     Route::get('/admin/course', [CourseAdminController::class, 'index'])->name('admin.course.index');
