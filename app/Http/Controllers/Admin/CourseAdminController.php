@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Course;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 use Illuminate\Http\Request;
 
 class CourseAdminController extends Controller
@@ -32,13 +33,25 @@ class CourseAdminController extends Controller
             'category_id' => 'required|exists:categories,id',
             'level' => 'required|string',
             'language' => 'required|string',
-            'thumbnail' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'video' => 'required|string',
+            'thumbnail' => 'nullable|image|mimes:jpg,jpeg,png,webp',
+            'video' => 'nullable|string',
         ]);
 
         $thumbnailPath = null;
         if ($request->hasFile('thumbnail')) {
-            $thumbnailPath = $request->file('thumbnail')->store('course', 'public');
+            $image = $request->file('thumbnail');
+            $imageName = time() . '.webp';
+            $imagePath = 'course/' . $imageName;
+
+            $img = Image::make($image->getRealPath())
+                ->resize(800, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->encode('webp', 75);
+
+            Storage::disk('public')->put($imagePath, $img);
+            $thumbnailPath = $imagePath;
         }
 
         Course::create([
@@ -51,7 +64,7 @@ class CourseAdminController extends Controller
             'video' => $request->video,
         ]);
 
-        return redirect()->route('admin.course.index')->with('success', 'Course created successfully!');
+        return redirect()->back()->with('success', 'Course created successfully!');
     }
 
     public function edit($slug)
@@ -74,7 +87,7 @@ class CourseAdminController extends Controller
             'level' => 'required|string',
             'language' => 'required|string',
             'thumbnail' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'video' => 'required|string',
+            'video' => 'nullable|string',
         ]);
 
         $course = Course::findOrFail($id);
@@ -84,7 +97,20 @@ class CourseAdminController extends Controller
             if ($thumbnailPath) {
                 Storage::disk('public')->delete($thumbnailPath);
             }
-            $thumbnailPath = $request->file('thumbnail')->store('course', 'public');
+
+            $image = $request->file('thumbnail');
+            $imageName = time() . '.webp';
+            $imagePath = 'course/' . $imageName;
+
+            $img = Image::make($image->getRealPath())
+                ->resize(800, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->encode('webp', 75);
+
+            Storage::disk('public')->put($imagePath, $img);
+            $thumbnailPath = $imagePath;
         }
 
         $course->update([
@@ -99,7 +125,7 @@ class CourseAdminController extends Controller
             'thumbnail' => $thumbnailPath,
         ]);
 
-        return redirect()->route('admin.course.edit', $course->slug)->with('success', 'Course updated successfully!');
+        return redirect()->back()->with('success', 'Course updated successfully!');
     }
 
     public function destroy($id)
@@ -107,6 +133,6 @@ class CourseAdminController extends Controller
         $course = Course::findOrFail($id);
         $course->delete();
 
-        return redirect()->route('admin.course.index')->with('success', 'Course deleted successfully!');
+        return redirect()->back()->with('success', 'Course deleted successfully!');
     }
 }

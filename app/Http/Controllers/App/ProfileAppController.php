@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
@@ -45,25 +47,54 @@ class ProfileAppController extends Controller
 
         $user->name = $request->name;
         $user->username = $request->username;
+        $user->email = $request->email;
         $user->phone_number = $request->phone_number;
         $user->birth_date = $request->birth_date;
         $user->gender = $request->gender;
         $user->bio = $request->bio;
 
         if ($request->hasFile('profile')) {
-            $path = $request->file('profile')->store('profile', 'public');
-            $user->profile = 'profile/' . basename($path);
+            if ($user->profile) {
+                Storage::disk('public')->delete($user->profile);
+            }
+
+            $image = $request->file('profile');
+            $imageName = 'profile_' . time() . '.webp';
+            $imagePath = 'profile/' . $imageName;
+
+            $img = Image::make($image->getRealPath())
+                ->fit(300, 300)
+                ->encode('webp', 90);
+
+            Storage::disk('public')->put($imagePath, $img);
+            $user->profile = $imagePath;
         }
 
         if ($request->hasFile('banner')) {
-            $path = $request->file('banner')->store('banner', 'public');
-            $user->banner = 'banner/' . basename($path);
+            if ($user->banner) {
+                Storage::disk('public')->delete($user->banner);
+            }
+
+            $image = $request->file('banner');
+            $imageName = 'banner_' . time() . '.webp';
+            $imagePath = 'banner/' . $imageName;
+
+            $img = Image::make($image->getRealPath())
+                ->resize(1200, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->encode('webp', 90);
+
+            Storage::disk('public')->put($imagePath, $img);
+            $user->banner = $imagePath;
         }
 
         $user->save();
 
-        return Redirect::route('profile.edit', [Auth::user()->id])->with('status', 'Profile updated successfully!');
+        return Redirect::route('profile.edit', [$user->id])->with('status', 'Profile updated successfully!');
     }
+
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [
