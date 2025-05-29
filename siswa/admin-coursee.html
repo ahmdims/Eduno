@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Metronic - The World's #1 Selling Tailwind CSS & Bootstrap Admin Template by KeenThemes</title>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="../assets/media/logos/favicon.ico" />
+
+    <!--begin::Fonts(mandatory for all pages)-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
+    <!--end::Fonts-->
+
+    <!--begin::Vendor Stylesheets(used for this page only)-->
+    <link href="../assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+    <!--end::Vendor Stylesheets-->
+
+    <link rel="stylesheet" href="https://cdn.keenthemes.com/icons/ki/ki.css">
+
+    <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
+    <link href="../assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <!--end::Global Stylesheets Bundle-->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-52YZ3XGZJ6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-52YZ3XGZJ6');
+    </script>
+    <script>
+        // Frame-busting to prevent site from being loaded within a frame without permission (click-jacking)
+        if (window.top != window.self) {
+            window.top.location.replace(window.self.location.href);
+        }
+    </script>
+</head>
+<!--end::Head-->
+
+<!--begin::Body-->
+
+<body id="kt_app_body" data-kt-app-header-fixed-mobile="true" data-kt-app-toolbar-enabled="true" class="app-default">
+    <!--begin::Theme mode setup on page load-->
+    <script>
+        var defaultThemeMode = "light";
+        var themeMode;
+
+        if (document.documentElement) {
+            if (document.documentElement.hasAttribute("data-bs-theme-mode")) {
+                themeMode = document.documentElement.getAttribute("data-bs-theme-mode");
+            } else {
+                if (localStorage.getItem("data-bs-theme") !== null) {
+                    themeMode = localStorage.getItem("data-bs-theme");
+                } else {
+                    themeMode = defaultThemeMode;
+                }
+            }
+
+            if (themeMode === "system") {
+                themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+            }
+
+            document.documentElement.setAttribute("data-bs-theme", themeMode);
+        }
+    </script>
+    <!--end::Theme mode setup on page load-->
+
+
+    <!--begin::App-->
+    <div class="d-flex flex-column flex-root app-root" id="kt_app_root">
+        <!--begin::Page-->
+        <div class="app-page  flex-column flex-column-fluid " id="kt_app_page">
+
+            <!--begin::Header-->
+            <div id="kt_app_header" class="app-header " data-kt-sticky="true"
+                data-kt-sticky-activate="{default: false, lg: true}" data-kt-sticky-name="app-header-sticky"
+                data-kt-sticky-offset="{default: false, lg: '300px'}">
+
+                <!--begin::Header container-->
+                <div class="app-container  container-xxl d-flex align-items-stretch justify-content-between "
+                    id="kt_app_header_container">
+                    <!--begin::Header mobile toggle-->
+                    <div class="d-flex align-items-center d-lg-none ms-n2 me-2" title="Show sidebar menu">
+                        <div class="btn btn-icon btn-active-color-primary w-35px h-35px" id="kt_app_header_menu_toggle">
+                            <i class="ki-outline ki-abstract-14 fs-2"></i>
+                        </div>
+                    </div>
+                    <!--end::Header mobile toggle-->
+
+                    <!--begin::Logo-->
+                    <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0 me-lg-18">
+                        <a href="index.html">
+                            <img alt="Logo" src="../assets/media/logos/demo34-small.svg" class="h-25px d-sm-none" />
+                            <img alt="Logo" src="../assets/media/logos/demo34.png" class="h-25px d-none d-sm-block" />
+                        </a>
+                    </div>
+                    <!--end::Logo-->
+
+                    <!--begin::Header wrapper-->
+                    <div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1"
+                        id="kt_app_header_wrapper">
+
+                        <!--begin::Menu wrapper-->
+                        <div class="app-header-menu app-header-mobile-drawer align-items-stretch" data-kt-drawer="true"
+                            data-kt-drawer-name="app-header-menu" data-kt-drawer-activate="{default: true, lg: false}"
+                            data-kt-drawer-overlay="true" data-kt-drawer-width="250px" data-kt-drawer-direction="start"
+                            data-kt-drawer-toggle="#kt_app_header_menu_toggle" data-kt-swapper="true"
+                            data-kt-swapper-mode="{default: 'append', lg: 'prepend'}"
+                            data-kt-swapper-parent="{default: '#kt_app_body', lg: '#kt_app_header_wrapper'}">
+                            <!--begin::Menu-->
+                            <div class=" menu  
+                                menu-rounded menu-active-bg menu-state-primary menu-column menu-lg-row menu-title-gray-700 menu-icon-gray-500 menu-arrow-gray-500 menu-bullet-gray-500 my-5 my-lg-0 align-items-stretch fw-semibold px-2 px-lg-0"
+                                id="kt_app_header_menu" data-kt-menu="true">
+                                <!--begin:Menu item-->
+                                <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
+                                    data-kt-menu-placement="bottom-start"
+                                    class="menu-item menu-lg-down-accordion me-0 me-lg-2">
+                                    <!--begin:Menu link-->
+                                    <a href="index.html" class="menu-link">
+                                        <span class="menu-title">Beranda</span>
+                                        <span class="menu-arrow d-lg-none"></span>
+                                    </a>
+                                    <!--end::Menu link-->
+                                </div>
+                                <!--end::Menu item-->
+
+                                <!--begin:Menu item-->
+                                <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
+                                    data-kt-menu-placement="bottom-start" data-kt-menu-offset="-200,0"
+                                    class="menu-item menu-lg-down-accordion me-0 me-lg-2">
+                                    <!--begin:Menu link-->
+                                    <a href="index.html" class="menu-link">
+                                        <span class="menu-title">Admin Materi</span>
+                                        <span class="menu-arrow d-lg-none"></span>
+                                    </a>
+                                    <!--end::Menu link-->
+                                </div>
+                                <!--end::Menu item-->
+
+                                <!--begin:Menu item-->
+                                <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
+                                    data-kt-menu-placement="bottom-start" data-kt-menu-offset="-200,0"
+                                    class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-">
+                                    <!--begin:Menu link-->
+                                    <a href="admin-mapel.html" class="menu-link">
+                                        <span class="menu-title">Admin Materi</span>
+                                        <span class="menu-arrow d-lg-none"></span>
+                                    </a>
+                                    <!--end::Menu link-->
+                                </div>
+                                <!--end::Menu item-->
+
+                                <!--begin:Menu item-->
+                                <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
+                                    data-kt-menu-placement="bottom-start" data-kt-menu-offset="-200,0"
+                                    class="menu-item menu-lg-down-accordion me-0 me-lg-2">
+                                    <!--begin::Menu link-->
+                                    <a href="index.html" class="menu-link">
+                                        <span class="menu-title">Tentang Kami</span>
+                                        <span class="menu-arrow d-lg-none"></span>
+                                    </a>
+                                    <!--end::Menu link-->
+                                </div>
+                                <!--end::Menu item-->
+
+                            </div>
+                            <!--end::Menu-->
+                        </div>
+                        <!--end::Menu wrapper-->
+
+
+                        <!--begin::Navbar-->
+                        <div class="app-navbar flex-shrink-0">
+                            <!--begin::User menu-->
+                            <div class="app-navbar-item ms-5" id="kt_header_user_menu_toggle">
+                                <!--begin::Menu wrapper-->
+                                <div class="cursor-pointer symbol symbol-35px symbol-md-40px"
+                                    data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent"
+                                    data-kt-menu-placement="bottom-end">
+                                    <img class="symbol symbol-circle symbol-35px symbol-md-40px"
+                                        src="../assets/media/avatars/300-13.jpg" alt="user" />
+                                </div>
+
+                                <!--begin::User account menu-->
+                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px"
+                                    data-kt-menu="true">
+                                    <!--begin::Menu item-->
+                                    <div class="menu-item px-3">
+                                        <div class="menu-content d-flex align-items-center px-3">
+                                            <!--begin::Avatar-->
+                                            <div class="symbol symbol-50px me-5">
+                                                <img alt="Logo" src="../assets/media/avatars/300-13.jpg" />
+                                            </div>
+                                            <!--end::Avatar-->
+
+                                            <!--begin::Username-->
+                                            <div class="d-flex flex-column">
+                                                <div class="fw-bold d-flex align-items-center fs-5">
+                                                    Pengguna LMS
+                                                </div>
+
+                                                <a href="#" class="fw-semibold text-muted text-hover-primary fs-7">
+                                                    12345678910 </a>
+                                            </div>
+                                            <!--end::Username-->
+                                        </div>
+                                    </div>
+                                    <!--end::Menu item-->
+
+                                    <!--begin::Menu separator-->
+                                    <div class="separator my-2"></div>
+                                    <!--end::Menu separator-->
+
+                                    <!--begin::Menu item-->
+                                    <div class="menu-item px-5">
+                                        <a href="profil.html" class="menu-link px-5">
+                                            My Profile
+                                        </a>
+                                    </div>
+                                    <!--end::Menu item-->
+
+                                    <!--begin::Menu item-->
+                                    <div class="menu-item px-5">
+                                        <a href="setting.html" class="menu-link px-5">
+                                            Setting
+                                        </a>
+                                    </div>
+                                    <!--end::Menu item-->
+
+                                    <!--begin::Menu item-->
+                                    <div class="menu-item px-5" data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
+                                        data-kt-menu-placement="left-start" data-kt-menu-offset="-15px, 0">
+                                        <a href="#" class="menu-link px-5">
+                                            <span class="menu-title position-relative">
+                                                Mode
+
+                                                <span class="ms-5 position-absolute translate-middle-y top-50 end-0">
+                                                    <i class="ki-outline ki-night-day theme-light-show fs-2"></i> <i
+                                                        class="ki-outline ki-moon theme-dark-show fs-2"></i> </span>
+                                            </span>
+                                        </a>
+
+                                        <!--begin::Menu-->
+                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-title-gray-700 menu-icon-gray-500 menu-active-bg menu-state-color fw-semibold py-4 fs-base w-150px"
+                                            data-kt-menu="true" data-kt-element="theme-mode-menu">
+                                            <!--begin::Menu item-->
+                                            <div class="menu-item px-3 my-0">
+                                                <a href="#" class="menu-link px-3 py-2" data-kt-element="mode"
+                                                    data-kt-value="light">
+                                                    <span class="menu-icon" data-kt-element="icon">
+                                                        <i class="ki-outline ki-night-day fs-2"></i> </span>
+                                                    <span class="menu-title">
+                                                        Light
+                                                    </span>
+                                                </a>
+                                            </div>
+                                            <!--end::Menu item-->
+
+                                            <!--begin::Menu item-->
+                                            <div class="menu-item px-3 my-0">
+                                                <a href="#" class="menu-link px-3 py-2" data-kt-element="mode"
+                                                    data-kt-value="dark">
+                                                    <span class="menu-icon" data-kt-element="icon">
+                                                        <i class="ki-outline ki-moon fs-2"></i> </span>
+                                                    <span class="menu-title">
+                                                        Dark
+                                                    </span>
+                                                </a>
+                                            </div>
+                                            <!--end::Menu item-->
+
+                                            <!--begin::Menu item-->
+                                            <div class="menu-item px-3 my-0">
+                                                <a href="#" class="menu-link px-3 py-2" data-kt-element="mode"
+                                                    data-kt-value="system">
+                                                    <span class="menu-icon" data-kt-element="icon">
+                                                        <i class="ki-outline ki-screen fs-2"></i> </span>
+                                                    <span class="menu-title">
+                                                        System
+                                                    </span>
+                                                </a>
+                                            </div>
+                                            <!--end::Menu item-->
+                                        </div>
+                                        <!--end::Menu-->
+
+                                    </div>
+                                    <!--end::Menu item-->
+
+                                    <!--begin::Menu item-->
+                                    <div class="menu-item px-5">
+                                        <a href="authentication/layouts/corporate/sign-in.html" class="menu-link px-5">
+                                            Sign Out
+                                        </a>
+                                    </div>
+                                    <!--end::Menu item-->
+                                </div>
+                                <!--end::User account menu-->
+
+                                <!--end::Menu wrapper-->
+                            </div>
+                            <!--end::User menu-->
+                        </div>
+                        <!--end::Navbar-->
+                    </div>
+                    <!--end::Header wrapper-->
+                </div>
+                <!--end::Header container-->
+            </div>
+            <!--end::Header-->
+            <!--begin::Wrapper-->
+            <div class="app-wrapper  flex-column flex-row-fluid " id="kt_app_wrapper">
+                <!--begin::Toolbar-->
+                <div id="kt_app_toolbar" class="app-toolbar  py-6 ">
+                    <!--begin::Toolbar container-->
+                    <div id="kt_app_toolbar_container" class="app-container  container-xxl d-flex align-items-start ">
+                        <!--begin::Toolbar container-->
+                        <div class="d-flex flex-column flex-row-fluid">
+                            <!--begin::Toolbar wrapper-->
+                            <div class="d-flex align-items-center pt-1">
+
+                                <!--begin::Breadcrumb-->
+                                <ul class="breadcrumb breadcrumb-separatorless fw-semibold">
+
+                                    <!--begin::Item-->
+                                    <li class="breadcrumb-item text-white fw-bold lh-1">
+                                        <a href="index.html" class="text-white text-hover-primary">
+                                            <i class="ki-outline ki-home text-gray-700 fs-6"></i> </a>
+                                    </li>
+                                    <!--end::Item-->
+
+                                    <!--begin::Item-->
+                                    <li class="breadcrumb-item">
+                                        <i class="ki-outline ki-right fs-7 text-gray-700 mx-n1"></i>
+                                    </li>
+                                    <!--end::Item-->
+
+
+                                    <!--begin::Item-->
+                                    <li class="breadcrumb-item text-white fw-bold lh-1">
+                                        Mata Pelajaran </li>
+                                    <!--end::Item-->
+
+
+                                </ul>
+                                <!--end::Breadcrumb-->
+
+                            </div>
+                            <!--end::Toolbar wrapper--->
+
+                            <!--begin::Toolbar wrapper--->
+                            <div class="d-flex flex-stack flex-wrap flex-lg-nowrap gap-4 gap-lg-10 pt-13 pb-6">
+
+                                <!--begin::Page title-->
+                                <div class="page-title me-5">
+                                    <!--begin::Title-->
+                                    <h1
+                                        class="page-heading d-flex text-white fw-bold fs-2 flex-column justify-content-center my-0">
+                                        Welcome back, Admin
+                                        <!--begin::Description-->
+                                        <span class="page-desc text-gray-600 fw-semibold fs-6 pt-3">
+                                            Ini adalah halaman form input materi </span>
+                                        <!--end::Description-->
+                                    </h1>
+                                    <!--end::Title-->
+                                </div>
+                                <!--end::Page title-->
+                            </div>
+                            <!--end::Toolbar wrapper--->
+                        </div>
+                        <!--end::Toolbar container--->
+                    </div>
+                    <!--end::Toolbar container-->
+                </div>
+                <!--end::Toolbar-->
+
+                <!--begin::Wrapper container-->
+                <div class="app-container  container-xxl ">
+                    <!--begin::Main-->
+                    <div class="app-main flex-column flex-row-fluid " id="kt_app_main">
+                        <!--begin::Content wrapper-->
+                        <div class="d-flex flex-column flex-column-fluid">
+
+
+                            <!--begin::Content-->
+                            <div id="kt_app_content" class="app-content  flex-column-fluid ">
+
+                                <form id="kt_ecommerce_add_category_form" class="form d-flex flex-column flex-lg-row"
+                                    data-kt-redirect="categories.html">
+
+                                    <!--begin::Main column-->
+                                    <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+                                        <!--begin::Course Information-->
+                                        <div class="card card-flush py-4">
+                                            <!--begin::Card header-->
+                                            <div class="card-header">
+                                                <div class="card-title">
+                                                    <h2>Informasi Course</h2>
+                                                </div>
+                                            </div>
+                                            <!--end::Card header-->
+
+                                            <!--begin::Card body-->
+                                            <div class="card-body pt-0">
+
+                                                <!--begin::Input group: Thumbnail-->
+                                                <div class="mb-10 fv-row">
+                                                    <!--begin::Label-->
+                                                    <label class="required form-label">Thumbnail Course</label>
+                                                    <!--end::Label-->
+
+                                                    <!--begin::Input-->
+                                                    <input type="file" name="course_thumbnail" class="form-control mb-2"
+                                                        accept="image/*" />
+                                                    <!--end::Input-->
+
+                                                    <!--begin::Description-->
+                                                    <div class="text-muted fs-7">Unggah thumbnail untuk course. Format
+                                                        gambar: JPG, PNG, atau WebP.</div>
+                                                    <!--end::Description-->
+                                                </div>
+                                                <!--end::Input group-->
+
+                                                <!--begin::Input group: Judul-->
+                                                <div class="mb-10 fv-row">
+                                                    <label class="required form-label">Judul Course</label>
+                                                    <input type="text" name="course_title" class="form-control mb-2"
+                                                        placeholder="Judul course" value="" />
+                                                    <div class="text-muted fs-7">Masukkan judul course</div>
+                                                </div>
+                                                <!--end::Input group-->
+
+                                                <!--begin::Input group: Judul-->
+                                                <div class="mb-10 fv-row">
+                                                    <label class="required form-label">Link Video</label>
+                                                    <input type="text" name="course_title" class="form-control mb-2"
+                                                        placeholder="Link video" value="" />
+                                                    <div class="text-muted fs-7">Masukkan link video pembelajaran</div>
+                                                </div>
+                                                <!--end::Input group-->
+
+                                                <!--begin::Input group: Status-->
+                                                <div class="mb-10 fv-row">
+                                                    <label class="required form-label">Status</label>
+                                                    <select class="form-select" name="course_status">
+                                                        <option value="published">Published</option>
+                                                        <option value="draft">Draft</option>
+                                                        <option value="archived">Archived</option>
+                                                    </select>
+                                                    <div class="text-muted fs-7">Pilih status course</div>
+                                                </div>
+                                                <!--end::Input group-->
+
+                                                <!--begin::Input group: Kategori-->
+                                                <div class="mb-10 fv-row">
+                                                    <label class="required form-label">Kategori</label>
+                                                    <input type="text" name="course_category" class="form-control mb-2"
+                                                        placeholder="Kategori course" value="" />
+                                                    <div class="text-muted fs-7">Masukkan kategori course</div>
+                                                </div>
+                                                <!--end::Input group-->
+
+                                                <!--begin::Input group: Level-->
+                                                <div class="mb-10 fv-row">
+                                                    <label class="required form-label">Level</label>
+                                                    <select class="form-select" name="course_level">
+                                                        <option value="beginner">Beginner</option>
+                                                        <option value="intermediate">Intermediate</option>
+                                                        <option value="advanced">Advanced</option>
+                                                    </select>
+                                                    <div class="text-muted fs-7">Pilih level kesulitan course</div>
+                                                </div>
+                                                <!--end::Input group-->
+
+                                                <!--begin::Button-->
+                                                <div class="d-flex justify-content-end">
+                                                    <button type="submit" id="kt_ecommerce_add_category_submit"
+                                                        class="btn btn-primary">
+                                                        <span class="indicator-label">
+                                                            Save Changes
+                                                        </span>
+                                                        <span class="indicator-progress">
+                                                            Please wait...
+                                                            <span
+                                                                class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                                <!--end::Button-->
+
+                                            </div>
+                                            <!--end::Card body-->
+                                        </div>
+                                        <!--end::Course Information-->
+
+
+                                        <!--begin::Admin Materi CRUD-->
+                                        <div class="card card-flush py-4">
+                                            <!--begin::Card header-->
+                                            <div class="card-header d-flex justify-content-between align-items-center">
+                                                <!--begin::Card title-->
+                                                <div class="card-title">
+                                                    <h2>Admin Materi</h2>
+                                                </div>
+                                                <!--end::Card title-->
+
+                                                <!--begin::Card toolbar-->
+                                                <div class="card-toolbar">
+                                                    <a href="admin-materi.html" class="btn btn-primary">
+                                                        <i class="ki-outline ki-plus fs-2"></i> Tambah Materi Baru
+                                                    </a>
+                                                </div>
+                                                <!--end::Card toolbar-->
+                                            </div>
+                                            <!--end::Card header-->
+
+
+                                            <!--begin::Card body-->
+                                            <div class="card-body pt-0">
+                                                <!--begin::Table-->
+                                                <div class="table-responsive">
+                                                    <table class="table align-middle table-row-dashed fs-6 gy-5">
+                                                        <thead>
+                                                            <tr
+                                                                class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+                                                                <th class="min-w-125px">Judul Materi</th>
+                                                                <th class="min-w-125px">Link Materi</th>
+                                                                <th class="text-end min-w-70px">Aksi</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="fw-semibold text-gray-600">
+                                                            <tr>
+                                                                <td>Pengenalan HTML</td>
+                                                                <td>https://example.com/html</td>
+                                                                <td class="text-end">
+                                                                    <a href="admin-materi.html"
+                                                                        class="btn btn-sm btn-light btn-active-light-primary">Edit</a>
+                                                                    <button type="button"
+                                                                        class="btn btn-sm btn-light btn-active-light-danger"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#deleteModal">Delete</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Dasar-dasar CSS</td>
+                                                                <td>https://example.com/css</td>
+                                                                <td class="text-end">
+                                                                    <a href="admin-materi.html"
+                                                                        class="btn btn-sm btn-light btn-active-light-primary">Edit</a>
+                                                                    <button type="button"
+                                                                        class="btn btn-sm btn-light btn-active-light-danger"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#deleteModal">Delete</button>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <!--end::Table-->
+
+
+                                            </div>
+                                            <!--end::Card body-->
+                                        </div>
+                                        <!--end::Admin Materi CRUD-->
+
+                                        <!--begin::Admin Soal CRUD-->
+                                        <div class="card card-flush py-4">
+                                            <!--begin::Card header-->
+                                            <div class="card-header d-flex justify-content-between align-items-center">
+                                                <!--begin::Card title-->
+                                                <div class="card-title">
+                                                    <h2>Admin Soal</h2>
+                                                </div>
+                                                <!--end::Card title-->
+
+                                                <!--begin::Card toolbar-->
+                                                <div class="card-toolbar">
+                                                    <a href="admin-materi.html" class="btn btn-primary">
+                                                        <i class="ki-outline ki-plus fs-2"></i> Tambah Materi Baru
+                                                    </a>
+                                                </div>
+                                                <!--end::Card toolbar-->
+                                            </div>
+                                            <!--end::Card header-->
+
+                                            <!--begin::Card body-->
+                                            <div class="card-body pt-0">
+                                                <!--begin::Table-->
+                                                <div class="table-responsive">
+                                                    <table class="table align-middle table-row-dashed fs-6 gy-5">
+                                                        <thead>
+                                                            <tr
+                                                                class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+                                                                <th class="min-w-125px">Quiz Name</th>
+                                                                <th class="text-end min-w-70px">Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="fw-semibold text-gray-600">
+                                                            <tr>
+                                                                <td>Apa itu HTML?</td>
+                                                                <td class="text-end">
+                                                                    <a href="admin-soal.html"
+                                                                        class="btn btn-sm btn-light btn-active-light-primary">Edit</a>
+                                                                    <button type="button"
+                                                                        class="btn btn-sm btn-light btn-active-light-danger"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#deleteModal">Delete</button>
+                                                                </td>
+                                                            <tr>
+                                                                <td>Sebutkan 3 contoh selector CSS</td>
+                                                                <td class="text-end">
+                                                                    <a href="admin-soal.html"
+                                                                        class="btn btn-sm btn-light btn-active-light-primary">Edit</a>
+                                                                    <button type="button"
+                                                                        class="btn btn-sm btn-light btn-active-light-danger"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#deleteModal">Delete</button>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <!--end::Table-->
+
+                                            </div>
+                                            <!--end::Card body-->
+                                        </div>
+                                        <!--end::Admin Soal CRUD-->
+
+
+                                    </div>
+                                    <!--end::Main column-->
+                                </form>
+                            </div>
+                            <!--end::Content-->
+
+                        </div>
+                        <!--end::Content wrapper-->
+
+
+                        <!--begin::Footer-->
+                        <div id="kt_app_footer"
+                            class="app-footer  d-flex flex-column flex-md-row align-items-center flex-center flex-md-stack py-2 py-lg-4 ">
+                        </div>
+
+
+                        <div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
+                            <i class="ki-outline ki-arrow-up"></i>
+                        </div>
+
+                        <!-- Delete Confirmation Modal -->
+                        <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Confirm Delete</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Are you sure you want to delete this item? This action cannot be undone.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-light"
+                                            data-bs-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-danger">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!--begin::Javascript-->
+                        <script>
+                            var hostUrl = "../assets/index.html";
+                        </script>
+
+                        <!--begin::Global Javascript Bundle(mandatory for all pages)-->
+                        <script src="../assets/plugins/global/plugins.bundle.js"></script>
+                        <script src="../assets/js/scripts.bundle.js"></script>
+                        <!--end::Global Javascript Bundle-->
+
+                        <!--begin::Vendors Javascript(used for this page only)-->
+                        <script src="../assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+                        <script src="../../../cdn.amcharts.com/lib/5/index.js"></script>
+                        <script src="../../../cdn.amcharts.com/lib/5/xy.js"></script>
+                        <script src="../../../cdn.amcharts.com/lib/5/percent.js"></script>
+                        <script src="../../../cdn.amcharts.com/lib/5/radar.js"></script>
+                        <script src="../../../cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+                        <script src="../../../cdn.amcharts.com/lib/5/map.js"></script>
+                        <script src="../../../cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
+                        <script src="../../../cdn.amcharts.com/lib/5/geodata/continentsLow.js"></script>
+                        <script src="../../../cdn.amcharts.com/lib/5/geodata/usaLow.js"></script>
+                        <script src="../../../cdn.amcharts.com/lib/5/geodata/worldTimeZonesLow.js"></script>
+                        <script src="../../../cdn.amcharts.com/lib/5/geodata/worldTimeZoneAreasLow.js"></script>
+                        <script src="../assets/plugins/custom/datatables/datatables.bundle.js"></script>
+                        <!--end::Vendors Javascript-->
+
+                        <!--begin::Custom Javascript(used for this page only)-->
+                        <script src="../assets/js/widgets.bundle.js"></script>
+                        <script src="../assets/js/custom/widgets.js"></script>
+                        <script src="../assets/js/custom/apps/chat/chat.js"></script>
+                        <script src="../assets/js/custom/utilities/modals/upgrade-plan.js"></script>
+                        <script src="../assets/js/custom/utilities/modals/new-target.js"></script>
+                        <script src="../assets/js/custom/utilities/modals/create-app.js"></script>
+                        <script src="../assets/js/custom/utilities/modals/users-search.js"></script>
+                        <!--end::Custom Javascript-->
+                        <!--end::Javascript-->
+</body>
+<!--end::Body-->
+
+</html>

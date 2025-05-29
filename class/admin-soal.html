@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Metronic - The World's #1 Selling Tailwind CSS & Bootstrap Admin Template by KeenThemes</title>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="../assets/media/logos/favicon.ico" />
+
+    <!--begin::Fonts(mandatory for all pages)-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
+    <!--end::Fonts-->
+
+    <!--begin::Vendor Stylesheets(used for this page only)-->
+    <link href="../assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+    <!--end::Vendor Stylesheets-->
+
+    <link rel="stylesheet" href="https://cdn.keenthemes.com/icons/ki/ki.css">
+
+
+
+    <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
+    <link href="../assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <!--end::Global Stylesheets Bundle-->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-52YZ3XGZJ6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-52YZ3XGZJ6');
+    </script>
+    <script>
+        // Frame-busting to prevent site from being loaded within a frame without permission (click-jacking)
+        if (window.top != window.self) {
+            window.top.location.replace(window.self.location.href);
+        }
+    </script>
+</head>
+<!--end::Head-->
+
+<!--begin::Body-->
+
+<body id="kt_app_body" data-kt-app-header-fixed-mobile="true" data-kt-app-toolbar-enabled="true" class="app-default">
+    <!--begin::Theme mode setup on page load-->
+    <script>
+        var defaultThemeMode = "light";
+        var themeMode;
+
+        if (document.documentElement) {
+            if (document.documentElement.hasAttribute("data-bs-theme-mode")) {
+                themeMode = document.documentElement.getAttribute("data-bs-theme-mode");
+            } else {
+                if (localStorage.getItem("data-bs-theme") !== null) {
+                    themeMode = localStorage.getItem("data-bs-theme");
+                } else {
+                    themeMode = defaultThemeMode;
+                }
+            }
+
+            if (themeMode === "system") {
+                themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+            }
+
+            document.documentElement.setAttribute("data-bs-theme", themeMode);
+        }
+    </script>
+    <!--end::Theme mode setup on page load-->
+
+
+    <!--begin::App-->
+    <div class="d-flex flex-column flex-root app-root" id="kt_app_root">
+        <!--begin::Page-->
+        <div class="app-page  flex-column flex-column-fluid " id="kt_app_page">
+
+            <!--begin::Header-->
+            <div id="kt_app_header" class="app-header " data-kt-sticky="true"
+                data-kt-sticky-activate="{default: false, lg: true}" data-kt-sticky-name="app-header-sticky"
+                data-kt-sticky-offset="{default: false, lg: '300px'}">
+
+                <!--begin::Header container-->
+                <div class="app-container  container-xxl d-flex align-items-stretch justify-content-between "
+                    id="kt_app_header_container">
+                    <!--begin::Header mobile toggle-->
+                    <div class="d-flex align-items-center d-lg-none ms-n2 me-2" title="Show sidebar menu">
+                        <div class="btn btn-icon btn-active-color-primary w-35px h-35px" id="kt_app_header_menu_toggle">
+                            <i class="ki-outline ki-abstract-14 fs-2"></i>
+                        </div>
+                    </div>
+                    <!--end::Header mobile toggle-->
+
+                    <!--begin::Logo-->
+                    <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0 me-lg-18">
+                        <a href="index.html">
+                            <img alt="Logo" src="../assets/media/logos/demo34-small.svg" class="h-25px d-sm-none" />
+                            <img alt="Logo" src="../assets/media/logos/demo34.png" class="h-25px d-none d-sm-block" />
+                        </a>
+                    </div>
+                    <!--end::Logo-->
+
+                    <!--begin::Header wrapper-->
+                    <div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1"
+                        id="kt_app_header_wrapper">
+
+                        <!--begin::Menu wrapper-->
+                        <div class="app-header-menu app-header-mobile-drawer align-items-stretch" data-kt-drawer="true"
+                            data-kt-drawer-name="app-header-menu" data-kt-drawer-activate="{default: true, lg: false}"
+                            data-kt-drawer-overlay="true" data-kt-drawer-width="250px" data-kt-drawer-direction="start"
+                            data-kt-drawer-toggle="#kt_app_header_menu_toggle" data-kt-swapper="true"
+                            data-kt-swapper-mode="{default: 'append', lg: 'prepend'}"
+                            data-kt-swapper-parent="{default: '#kt_app_body', lg: '#kt_app_header_wrapper'}">
+                            <!--begin::Menu-->
+                            <div class=" menu  
+                                menu-rounded menu-active-bg menu-state-primary menu-column menu-lg-row menu-title-gray-700 menu-icon-gray-500 menu-arrow-gray-500 menu-bullet-gray-500 my-5 my-lg-0 align-items-stretch fw-semibold px-2 px-lg-0"
+                                id="kt_app_header_menu" data-kt-menu="true">
+                                <!--begin:Menu item-->
+                                <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
+                                    data-kt-menu-placement="bottom-start"
+                                    class="menu-item menu-lg-down-accordion me-0 me-lg-2">
+                                    <!--begin:Menu link-->
+                                    <a href="index.html" class="menu-link">
+                                        <span class="menu-title">Beranda</span>
+                                        <span class="menu-arrow d-lg-none"></span>
+                                    </a>
+                                    <!--end:Menu link-->
+                                </div>
+                                <!--end:Menu item-->
+
+                                <!--begin:Menu item-->
+                                <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
+                                    data-kt-menu-placement="bottom-start" data-kt-menu-offset="-200,0"
+                                    class="menu-item menu-lg-down-accordion me-0 me-lg-2">
+                                    <!--begin:Menu link-->
+                                    <a href="mapel.html" class="menu-link">
+                                        <span class="menu-title">Mata Pelajaran</span>
+                                        <span class="menu-arrow d-lg-none"></span>
+                                    </a>
+                                    <!--end:Menu link-->
+                                </div>
+                                <!--end:Menu item-->
+
+                                <!--begin:Menu item-->
+                                <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
+                                    data-kt-menu-placement="bottom-start" data-kt-menu-offset="-200,0"
+                                    class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-">
+                                    <!--begin:Menu link-->
+                                    <a href="admin.html" class="menu-link">
+                                        <span class="menu-title">Admin</span>
+                                        <span class="menu-arrow d-lg-none"></span>
+                                    </a>
+                                    <!--end:Menu link-->
+                                </div>
+                                <!--end:Menu item-->
+
+                                <!--begin:Menu item-->
+                                <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
+                                    data-kt-menu-placement="bottom-start" data-kt-menu-offset="-200,0"
+                                    class="menu-item menu-lg-down-accordion me-0 me-lg-2">
+                                    <!--begin:Menu link-->
+                                    <a href="index.html" class="menu-link">
+                                        <span class="menu-title">Tentang Kami</span>
+                                        <span class="menu-arrow d-lg-none"></span>
+                                    </a>
+                                    <!--end:Menu link-->
+                                </div>
+                                <!--end:Menu item-->
+
+                            </div>
+                            <!--end::Menu-->
+                        </div>
+                        <!--end::Menu wrapper-->
+
+
+                        <!--begin::Navbar-->
+                        <div class="app-navbar flex-shrink-0">
+                            <!--begin::User menu-->
+                            <div class="app-navbar-item ms-5" id="kt_header_user_menu_toggle">
+                                <!--begin::Menu wrapper-->
+                                <div class="cursor-pointer symbol symbol-35px symbol-md-40px"
+                                    data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent"
+                                    data-kt-menu-placement="bottom-end">
+                                    <img class="symbol symbol-circle symbol-35px symbol-md-40px"
+                                        src="../assets/media/avatars/300-13.jpg" alt="user" />
+                                </div>
+
+                                <!--begin::User account menu-->
+                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px"
+                                    data-kt-menu="true">
+                                    <!--begin::Menu item-->
+                                    <div class="menu-item px-3">
+                                        <div class="menu-content d-flex align-items-center px-3">
+                                            <!--begin::Avatar-->
+                                            <div class="symbol symbol-50px me-5">
+                                                <img alt="Logo" src="../assets/media/avatars/300-13.jpg" />
+                                            </div>
+                                            <!--end::Avatar-->
+
+                                            <!--begin::Username-->
+                                            <div class="d-flex flex-column">
+                                                <div class="fw-bold d-flex align-items-center fs-5">
+                                                    Pengguna LMS
+                                                </div>
+
+                                                <a href="#" class="fw-semibold text-muted text-hover-primary fs-7">
+                                                    12345678910 </a>
+                                            </div>
+                                            <!--end::Username-->
+                                        </div>
+                                    </div>
+                                    <!--end::Menu item-->
+
+                                    <!--begin::Menu separator-->
+                                    <div class="separator my-2"></div>
+                                    <!--end::Menu separator-->
+
+                                    <!--begin::Menu item-->
+                                    <div class="menu-item px-5">
+                                        <a href="profil.html" class="menu-link px-5">
+                                            My Profile
+                                        </a>
+                                    </div>
+                                    <!--end::Menu item-->
+
+                                    <!--begin::Menu item-->
+                                    <div class="menu-item px-5">
+                                        <a href="setting.html" class="menu-link px-5">
+                                            Setting
+                                        </a>
+                                    </div>
+                                    <!--end::Menu item-->
+
+                                    <!--begin::Menu item-->
+                                    <div class="menu-item px-5" data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
+                                        data-kt-menu-placement="left-start" data-kt-menu-offset="-15px, 0">
+                                        <a href="#" class="menu-link px-5">
+                                            <span class="menu-title position-relative">
+                                                Mode
+
+                                                <span class="ms-5 position-absolute translate-middle-y top-50 end-0">
+                                                    <i class="ki-outline ki-night-day theme-light-show fs-2"></i> <i
+                                                        class="ki-outline ki-moon theme-dark-show fs-2"></i> </span>
+                                            </span>
+                                        </a>
+
+                                        <!--begin::Menu-->
+                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-title-gray-700 menu-icon-gray-500 menu-active-bg menu-state-color fw-semibold py-4 fs-base w-150px"
+                                            data-kt-menu="true" data-kt-element="theme-mode-menu">
+                                            <!--begin::Menu item-->
+                                            <div class="menu-item px-3 my-0">
+                                                <a href="#" class="menu-link px-3 py-2" data-kt-element="mode"
+                                                    data-kt-value="light">
+                                                    <span class="menu-icon" data-kt-element="icon">
+                                                        <i class="ki-outline ki-night-day fs-2"></i> </span>
+                                                    <span class="menu-title">
+                                                        Light
+                                                    </span>
+                                                </a>
+                                            </div>
+                                            <!--end::Menu item-->
+
+                                            <!--begin::Menu item-->
+                                            <div class="menu-item px-3 my-0">
+                                                <a href="#" class="menu-link px-3 py-2" data-kt-element="mode"
+                                                    data-kt-value="dark">
+                                                    <span class="menu-icon" data-kt-element="icon">
+                                                        <i class="ki-outline ki-moon fs-2"></i> </span>
+                                                    <span class="menu-title">
+                                                        Dark
+                                                    </span>
+                                                </a>
+                                            </div>
+                                            <!--end::Menu item-->
+
+                                            <!--begin::Menu item-->
+                                            <div class="menu-item px-3 my-0">
+                                                <a href="#" class="menu-link px-3 py-2" data-kt-element="mode"
+                                                    data-kt-value="system">
+                                                    <span class="menu-icon" data-kt-element="icon">
+                                                        <i class="ki-outline ki-screen fs-2"></i> </span>
+                                                    <span class="menu-title">
+                                                        System
+                                                    </span>
+                                                </a>
+                                            </div>
+                                            <!--end::Menu item-->
+                                        </div>
+                                        <!--end::Menu-->
+
+                                    </div>
+                                    <!--end::Menu item-->
+
+                                    <!--begin::Menu item-->
+                                    <div class="menu-item px-5">
+                                        <a href="authentication/layouts/corporate/sign-in.html" class="menu-link px-5">
+                                            Sign Out
+                                        </a>
+                                    </div>
+                                    <!--end::Menu item-->
+                                </div>
+                                <!--end::User account menu-->
+
+                                <!--end::Menu wrapper-->
+                            </div>
+                            <!--end::User menu-->
+                        </div>
+                        <!--end::Navbar-->
+                    </div>
+                    <!--end::Header wrapper-->
+                </div>
+                <!--end::Header container-->
+            </div>
+            <!--end::Header-->
+            <!--begin::Wrapper-->
+            <div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
+                <!--begin::Toolbar-->
+                <div id="kt_app_toolbar" class="app-toolbar py-6">
+                    <!--begin::Toolbar container-->
+                    <div id="kt_app_toolbar_container" class="app-container container-xxl d-flex align-items-start">
+                        <!--begin::Toolbar container-->
+                        <div class="d-flex flex-column flex-row-fluid">
+                            <!--begin::Toolbar wrapper-->
+                            <div class="d-flex align-items-center pt-1">
+                                <!--begin::Breadcrumb-->
+                                <ul class="breadcrumb breadcrumb-separatorless fw-semibold">
+                                    <!--begin::Item-->
+                                    <li class="breadcrumb-item text-white fw-bold lh-1">
+                                        <a href="index.html" class="text-white text-hover-primary">
+                                            <i class="ki-outline ki-home text-gray-700 fs-6"></i>
+                                        </a>
+                                    </li>
+                                    <!--end::Item-->
+                                    <!--begin::Item-->
+                                    <li class="breadcrumb-item">
+                                        <i class="ki-outline ki-right fs-7 text-gray-700 mx-n1"></i>
+                                    </li>
+                                    <!--end::Item-->
+                                    <!--begin::Item-->
+                                    <li class="breadcrumb-item text-white fw-bold lh-1">
+                                        Mata Pelajaran
+                                    </li>
+                                    <!--end::Item-->
+                                </ul>
+                                <!--end::Breadcrumb-->
+                            </div>
+                            <!--end::Toolbar wrapper--->
+
+                            <!--begin::Toolbar wrapper--->
+                            <div class="d-flex flex-stack flex-wrap flex-lg-nowrap gap-4 gap-lg-10 pt-13 pb-6">
+                                <!--begin::Page title-->
+                                <div class="page-title me-5">
+                                    <!--begin::Title-->
+                                    <h1
+                                        class="page-heading d-flex text-white fw-bold fs-2 flex-column justify-content-center my-0">
+                                        Welcome back, Admin
+                                        <!--begin::Description-->
+                                        <span class="page-desc text-gray-600 fw-semibold fs-6 pt-3">
+                                            Ini adalah halaman form input soal
+                                        </span>
+                                        <!--end::Description-->
+                                    </h1>
+                                    <!--end::Title-->
+                                </div>
+                                <!--end::Page title-->
+                            </div>
+                            <!--end::Toolbar wrapper--->
+                        </div>
+                        <!--end::Toolbar container--->
+                    </div>
+                    <!--end::Toolbar container-->
+                </div>
+                <!--end::Toolbar-->
+
+                <!--begin::Wrapper container-->
+                <div class="app-container container-xxl">
+                    <!--begin::Main-->
+                    <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+                        <!--begin::Content wrapper-->
+                        <div class="d-flex flex-column flex-column-fluid">
+                            <!--begin::Content-->
+                            <div id="kt_app_content" class="app-content flex-column-fluid">
+                                <form id="kt_ecommerce_add_question_form" class="form"
+                                    data-kt-redirect="categories.html">
+                                    <!--begin::Main column-->
+                                    <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+                                        <!--begin::General options-->
+                                        <div class="card card-flush py-4">
+                                            <!--begin::Card header-->
+                                            <div class="card-header">
+                                                <div class="card-title">
+                                                    <h2>Upload Soal</h2>
+                                                </div>
+                                            </div>
+                                            <!--end::Card header-->
+
+                                            <!--begin::Card body-->
+                                            <div class="card-body pt-0">
+                                                <!--begin::Input group-->
+                                                <div class="mb-10 fv-row">
+                                                    <!--begin::Label-->
+                                                    <label class="required form-label">Judul Kumpulan Soal</label>
+                                                    <!--end::Label-->
+
+                                                    <!--begin::Input-->
+                                                    <input type="text" name="question_set_title"
+                                                        class="form-control mb-2" placeholder="Judul kumpulan soal"
+                                                        value="" />
+                                                    <!--end::Input-->
+                                                    <!--begin::Description-->
+                                                    <div class="text-muted fs-7">Berikan judul untuk kumpulan soal ini
+                                                        (contoh: "Ulangan Harian Matematika Kelas 10")</div>
+                                                    <!--end::Description-->
+                                                </div>
+                                                <!--end::Input group-->
+
+                                                <!--begin::Input group-->
+                                                <div class="mb-10 fv-row">
+                                                    <!--begin::Label-->
+                                                    <label class="required form-label">Mata Pelajaran</label>
+                                                    <!--end::Label-->
+
+                                                    <!--begin::Select-->
+                                                    <select class="form-select" name="subject">
+                                                        <option value="">Pilih Mata Pelajaran</option>
+                                                        <option value="matematika">Matematika</option>
+                                                        <option value="fisika">Fisika</option>
+                                                        <option value="kimia">Kimia</option>
+                                                        <option value="biologi">Biologi</option>
+                                                        <option value="bahasa_indonesia">Bahasa Indonesia</option>
+                                                        <option value="bahasa_inggris">Bahasa Inggris</option>
+                                                    </select>
+                                                    <!--end::Select-->
+                                                    <!--begin::Description-->
+                                                    <div class="text-muted fs-7">Pilih mata pelajaran untuk soal ini
+                                                    </div>
+                                                    <!--end::Description-->
+                                                </div>
+                                                <!--end::Input group-->
+
+
+
+                                                <!-- Questions container -->
+                                                <div id="questions-container">
+                                                    <!-- Question template (will be cloned for new questions) -->
+                                                    <div class="question-card card mb-7" data-question-id="1">
+                                                        <div class="card-header">
+                                                            <div class="card-title">
+                                                                <h3>Soal 1</h3>
+                                                            </div>
+                                                            <div class="card-toolbar">
+                                                                <button type="button"
+                                                                    class="btn btn-sm btn-icon btn-danger remove-question"
+                                                                    data-bs-toggle="tooltip" title="Hapus Soal">
+                                                                    <i class="ki-outline ki-trash fs-2"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <!--begin::Input group-->
+                                                            <div class="mb-5 fv-row">
+                                                                <!--begin::Label-->
+                                                                <label class="required form-label">Pertanyaan</label>
+                                                                <!--end::Label-->
+
+                                                                <!--begin::Input-->
+                                                                <textarea class="form-control" name="questions[1][text]"
+                                                                    rows="3"
+                                                                    placeholder="Tulis pertanyaan di sini"></textarea>
+                                                                <!--end::Input-->
+                                                            </div>
+                                                            <!--end::Input group-->
+
+                                                            <!--begin::Input group-->
+                                                            <div class="mb-5 fv-row">
+                                                                <!--begin::Label-->
+                                                                <label class="form-label">Gambar Soal (Opsional)</label>
+                                                                <!--end::Label-->
+
+                                                                <!--begin::Input-->
+                                                                <input type="file" class="form-control"
+                                                                    name="questions[1][image]" accept="image/*" />
+                                                                <!--end::Input-->
+                                                            </div>
+                                                            <!--end::Input group-->
+
+                                                            <!--begin::Label-->
+                                                            <label class="form-label mb-4">Pilihan Jawaban</label>
+                                                            <!--end::Label-->
+
+                                                            <!-- Options -->
+                                                            <div class="options-container">
+                                                                <div class="option-item mb-3">
+                                                                    <div class="d-flex align-items-center">
+                                                                        <div
+                                                                            class="form-check form-check-custom form-check-solid me-5">
+                                                                            <input
+                                                                                class="form-check-input correct-answer-radio"
+                                                                                type="radio"
+                                                                                name="questions[1][correct_answer]"
+                                                                                value="1" checked />
+                                                                        </div>
+                                                                        <input type="text" class="form-control"
+                                                                            name="questions[1][options][1]"
+                                                                            placeholder="Pilihan A" />
+                                                                        <span
+                                                                            class="badge badge-success ms-2 correct-answer-badge"
+                                                                            style="display: none;">Jawaban Benar</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="option-item mb-3">
+                                                                    <div class="d-flex align-items-center">
+                                                                        <div
+                                                                            class="form-check form-check-custom form-check-solid me-5">
+                                                                            <input
+                                                                                class="form-check-input correct-answer-radio"
+                                                                                type="radio"
+                                                                                name="questions[1][correct_answer]"
+                                                                                value="2" />
+                                                                        </div>
+                                                                        <input type="text" class="form-control"
+                                                                            name="questions[1][options][2]"
+                                                                            placeholder="Pilihan B" />
+                                                                        <span
+                                                                            class="badge badge-success ms-2 correct-answer-badge"
+                                                                            style="display: none;">Jawaban Benar</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="option-item mb-3">
+                                                                    <div class="d-flex align-items-center">
+                                                                        <div
+                                                                            class="form-check form-check-custom form-check-solid me-5">
+                                                                            <input
+                                                                                class="form-check-input correct-answer-radio"
+                                                                                type="radio"
+                                                                                name="questions[1][correct_answer]"
+                                                                                value="3" />
+                                                                        </div>
+                                                                        <input type="text" class="form-control"
+                                                                            name="questions[1][options][3]"
+                                                                            placeholder="Pilihan C" />
+                                                                        <span
+                                                                            class="badge badge-success ms-2 correct-answer-badge"
+                                                                            style="display: none;">Jawaban Benar</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="option-item mb-3">
+                                                                    <div class="d-flex align-items-center">
+                                                                        <div
+                                                                            class="form-check form-check-custom form-check-solid me-5">
+                                                                            <input
+                                                                                class="form-check-input correct-answer-radio"
+                                                                                type="radio"
+                                                                                name="questions[1][correct_answer]"
+                                                                                value="4" />
+                                                                        </div>
+                                                                        <input type="text" class="form-control"
+                                                                            name="questions[1][options][4]"
+                                                                            placeholder="Pilihan D" />
+                                                                        <span
+                                                                            class="badge badge-success ms-2 correct-answer-badge"
+                                                                            style="display: none;">Jawaban Benar</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- Add option button -->
+                                                            <button type="button"
+                                                                class="btn btn-sm btn-light-primary add-option mt-2">
+                                                                <i class="ki-outline ki-plus fs-3"></i> Tambah Pilihan
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End question template -->
+                                                </div>
+
+                                                <!-- Add question button -->
+                                                <button type="button" id="add-question" class="btn btn-primary">
+                                                    <i class="ki-outline ki-plus fs-2"></i> Tambah Soal
+                                                </button>
+                                            </div>
+                                            <!--end::Card header-->
+                                        </div>
+                                        <!--end::General options-->
+
+                                        <div class="d-flex justify-content-end">
+                                            <!--begin::Button-->
+                                            <a href="products.html" id="kt_ecommerce_add_product_cancel"
+                                                class="btn btn-light me-5">
+                                                Batal
+                                            </a>
+                                            <!--end::Button-->
+
+                                            <!--begin::Button-->
+                                            <button type="submit" id="kt_ecommerce_add_category_submit"
+                                                class="btn btn-primary">
+                                                <span class="indicator-label">
+                                                    Simpan Soal
+                                                </span>
+                                                <span class="indicator-progress">
+                                                    Harap tunggu... <span
+                                                        class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                                </span>
+                                            </button>
+                                            <!--end::Button-->
+                                        </div>
+                                    </div>
+                                    <!--end::Main column-->
+                                </form>
+                            </div>
+                            <!--end::Content-->
+                        </div>
+                        <!--end::Content wrapper-->
+
+                        <!--begin::Footer-->
+                        <div id="kt_app_footer"
+                            class="app-footer  d-flex flex-column flex-md-row align-items-center flex-center flex-md-stack py-2 py-lg-4 ">
+                            <!--begin::Copyright-->
+                            <div class="text-gray-900 order-2 order-md-1">
+                                <span class="text-muted fw-semibold me-1">2025&copy;</span>
+                                <a href="https://keenthemes.com/" target="_blank"
+                                    class="text-gray-800 text-hover-primary">DigitalDream</a>
+                            </div>
+                            <!--end::Copyright-->
+
+                            <!--begin::Menu-->
+                            <ul class="menu menu-gray-600 menu-hover-primary fw-semibold order-1">
+                                <li class="menu-item"><a href="https://keenthemes.com/" target="_blank"
+                                class="menu-link px-2">About</a></li>
+                            </ul>
+                            <!--end::Menu-->
+                        </div>
+                        <!--end::Footer-->
+                    </div>
+                    <!--end:::Main-->
+                </div>
+                <!--end::Wrapper container-->
+            </div>
+            <!--end::Wrapper-->
+
+
+        </div>
+        <!--end::Page-->
+    </div>
+    <!--end::App-->
+
+
+    <div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
+        <i class="ki-outline ki-arrow-up"></i>
+    </div>
+
+
+    <!--begin::Javascript-->
+    <script>
+        var hostUrl = "../assets/index.html";
+    </script>
+
+    <!--begin::Global Javascript Bundle(mandatory for all pages)-->
+    <script src="../assets/plugins/global/plugins.bundle.js"></script>
+    <script src="../assets/js/scripts.bundle.js"></script>
+    <!--end::Global Javascript Bundle-->
+
+    <!--begin::Vendors Javascript(used for this page only)-->
+    <script src="../assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+    <script src="../../../cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="../../../cdn.amcharts.com/lib/5/xy.js"></script>
+    <script src="../../../cdn.amcharts.com/lib/5/percent.js"></script>
+    <script src="../../../cdn.amcharts.com/lib/5/radar.js"></script>
+    <script src="../../../cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+    <script src="../../../cdn.amcharts.com/lib/5/map.js"></script>
+    <script src="../../../cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
+    <script src="../../../cdn.amcharts.com/lib/5/geodata/continentsLow.js"></script>
+    <script src="../../../cdn.amcharts.com/lib/5/geodata/usaLow.js"></script>
+    <script src="../../../cdn.amcharts.com/lib/5/geodata/worldTimeZonesLow.js"></script>
+    <script src="../../../cdn.amcharts.com/lib/5/geodata/worldTimeZoneAreasLow.js"></script>
+    <script src="../assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    <!--end::Vendors Javascript-->
+
+    <!--begin::Custom Javascript(used for this page only)-->
+    <script src="../assets/js/widgets.bundle.js"></script>
+    <script src="../assets/js/custom/widgets.js"></script>
+    <script src="../assets/js/custom/apps/chat/chat.js"></script>
+    <script src="../assets/js/custom/utilities/modals/upgrade-plan.js"></script>
+    <script src="../assets/js/custom/utilities/modals/new-target.js"></script>
+    <script src="../assets/js/custom/utilities/modals/create-app.js"></script>
+    <script src="../assets/js/custom/utilities/modals/users-search.js"></script>
+    <!--end::Custom Javascript-->
+
+    <!-- JavaScript untuk menangani tambah/hapus soal dan opsi -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let questionCounter = 1;
+
+            // Tambah soal baru
+            document.getElementById('add-question').addEventListener('click', function () {
+                questionCounter++;
+                const questionTemplate = document.querySelector('.question-card').cloneNode(true);
+                questionTemplate.dataset.questionId = questionCounter;
+
+                // Update semua elemen dalam soal baru
+                const questionTitle = questionTemplate.querySelector('h3');
+                questionTitle.textContent = `Soal #${questionCounter}`;
+
+                // Update nama atribut untuk semua input
+                const textarea = questionTemplate.querySelector('textarea');
+                textarea.name = `questions[${questionCounter}][text]`;
+                textarea.value = '';
+
+                const fileInput = questionTemplate.querySelector('input[type="file"]');
+                fileInput.name = `questions[${questionCounter}][image]`;
+                fileInput.value = '';
+
+                // Update radio buttons dan opsi
+                const radioButtons = questionTemplate.querySelectorAll('input[type="radio"]');
+                const optionInputs = questionTemplate.querySelectorAll(
+                    '.option-item input[type="text"]');
+
+                radioButtons.forEach((radio, index) => {
+                    radio.name = `questions[${questionCounter}][correct_answer]`;
+                    radio.checked = index ===
+                        0; // Set opsi pertama sebagai benar secara default
+                });
+
+                optionInputs.forEach((input, index) => {
+                    input.name = `questions[${questionCounter}][options][${index + 1}]`;
+                    input.value = '';
+                    input.placeholder = `Pilihan ${String.fromCharCode(65 + index)}`;
+                });
+
+                // Tambahkan ke container
+                document.getElementById('questions-container').appendChild(questionTemplate);
+
+                // Inisialisasi tooltip untuk tombol hapus
+                const tooltipTriggerList = [].slice.call(questionTemplate.querySelectorAll(
+                    '[data-bs-toggle="tooltip"]'));
+                tooltipTriggerList.map(function (tooltipTriggerEl) {
+                    return new bootstrap.Tooltip(tooltipTriggerEl);
+                });
+            });
+
+            // Hapus soal
+            document.addEventListener('click', function (e) {
+                if (e.target.classList.contains('remove-question') {
+                    const questionCard = e.target.closest('.question-card');
+                    if (document.querySelectorAll('.question-card').length > 1) {
+                        questionCard.remove();
+
+                        // Update nomor soal setelah penghapusan
+                        const allQuestions = document.querySelectorAll('.question-card');
+                        allQuestions.forEach((card, index) => {
+                            const questionId = index + 1;
+                            card.dataset.questionId = questionId;
+                            card.querySelector('h3').textContent = `Soal #${questionId}`;
+
+                            // Update nama atribut
+                            card.querySelector('textarea').name =
+                                `questions[${questionId}][text]`;
+                            card.querySelector('input[type="file"]').name =
+                                `questions[${questionId}][image]`;
+
+                            // Update radio buttons
+                            const radioButtons = card.querySelectorAll(
+                                'input[type="radio"]');
+                            radioButtons.forEach(radio => {
+                                radio.name =
+                                    `questions[${questionId}][correct_answer]`;
+                            });
+
+                            // Update opsi
+                            const optionInputs = card.querySelectorAll(
+                                '.option-item input[type="text"]');
+                            optionInputs.forEach((input, optIndex) => {
+                                input.name =
+                                    `questions[${questionId}][options][${optIndex + 1}]`;
+                                input.placeholder =
+                                    `Pilihan ${String.fromCharCode(65 + optIndex)}`;
+                            });
+                        });
+
+                        questionCounter = allQuestions.length;
+                    } else {
+                        Swal.fire({
+                            text: "Setidaknya harus ada satu soal",
+                            icon: "warning",
+                            buttonsStyling: false,
+                            confirmButtonText: "Mengerti",
+                            customClass: {
+                                confirmButton: "btn btn-primary"
+                            }
+                        });
+                    }
+                }
+
+                // Tambah opsi baru
+                if (e.target.classList.contains('add-option')) {
+                    const optionsContainer = e.target.closest('.card-body').querySelector(
+                        '.options-container');
+                    const questionId = e.target.closest('.question-card').dataset.questionId;
+                    const optionCount = optionsContainer.querySelectorAll('.option-item').length;
+
+                    if (optionCount >= 10) {
+                        Swal.fire({
+                            text: "Maksimal 10 pilihan untuk setiap soal",
+                            icon: "warning",
+                            buttonsStyling: false,
+                            confirmButtonText: "Mengerti",
+                            customClass: {
+                                confirmButton: "btn btn-primary"
+                            }
+                        });
+                        return;
+                    }
+
+                    const optionLetter = String.fromCharCode(65 + optionCount);
+                    const optionNumber = optionCount + 1;
+
+                    const optionHtml = `
+                    <div class="option-item mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="form-check form-check-custom form-check-solid me-5">
+                                <input class="form-check-input" type="radio" name="questions[${questionId}][correct_answer]" value="${optionNumber}" />
+                            </div>
+                            <input type="text" class="form-control" name="questions[${questionId}][options][${optionNumber}]" placeholder="Pilihan ${optionLetter}" />
+                        </div>
+                    </div>
+                `;
+
+                    optionsContainer.insertAdjacentHTML('beforeend', optionHtml);
+                }
+            });
+        });
+    </script>
+
+    <script>
+        // Function to update correct answer badges
+        function updateCorrectAnswerBadges(questionId) {
+            const questionContainer = document.querySelector(`.question-card[data-question-id="${questionId}"]`);
+            const correctAnswerRadio = questionContainer.querySelector('input[type="radio"]:checked');
+
+            // Hide all badges first
+            questionContainer.querySelectorAll('.correct-answer-badge').forEach(badge => {
+                badge.style.display = 'none';
+            });
+
+            // Show badge for selected correct answer
+            if (correctAnswerRadio) {
+                const selectedBadge = correctAnswerRadio.closest('.option-item').querySelector('.correct-answer-badge');
+                selectedBadge.style.display = 'inline-block';
+            }
+        }
+
+        // Initialize for first question
+        document.addEventListener('DOMContentLoaded', function () {
+            updateCorrectAnswerBadges(1);
+
+            // Add event listeners for radio buttons
+            document.querySelectorAll('.correct-answer-radio').forEach(radio => {
+                radio.addEventListener('change', function () {
+                    const questionId = this.closest('.question-card').dataset.questionId;
+                    updateCorrectAnswerBadges(questionId);
+                });
+            });
+        });
+
+        // For dynamically added questions (if you have that functionality)
+        document.addEventListener('click', function (e) {
+            if (e.target && e.target.classList.contains('correct-answer-radio')) {
+                const questionId = e.target.closest('.question-card').dataset.questionId;
+                updateCorrectAnswerBadges(questionId);
+            }
+        });
+    </script>
+    <!--end::Javascript-->
+
+</body>
+<!--end::Body-->
+
+</html>
