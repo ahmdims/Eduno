@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\CourseAdminController;
 use App\Http\Controllers\Admin\FaqAdminController;
 use App\Http\Controllers\Admin\MailAdminController;
 use App\Http\Controllers\Admin\MaterialAdminController;
-use App\Http\Controllers\Admin\QuizzesAdminController;
+use App\Http\Controllers\Admin\QuizAdminController;
 use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\Admin\WebsiteAdminController;
 use App\Http\Controllers\App\ArticleAppController;
@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
 //Home
 Route::get('/', [HomeAppController::class, 'index'])->name('home');
 
-// Course Routes
+// Course
 Route::get('/course', [CourseAppController::class, 'index'])->name('courses.index');
 Route::middleware('auth')->group(function () {
     Route::post('/course/{slug}/review', [CourseAppController::class, 'storeReview'])->name('course.storeReview');
@@ -63,32 +63,32 @@ Route::get('/faq', [FaqAppController::class, 'index'])->name('app.faq.index');
 Route::get('/contact', [WebsiteAppController::class, 'index'])->name('app.contact.index');
 Route::post('/mail', [ContactAppController::class, 'store'])->name('app.mail.store');
 
-// Course
-Route::get('/admin/course', [CourseAdminController::class, 'index'])->name('admin.course.index');
-Route::post('/admin/course', [CourseAdminController::class, 'store'])->name('admin.course.store');
-Route::get('/admin/course/create', [CourseAdminController::class, 'create'])->name('admin.course.create');
-Route::get('/admin/course/{slug}/edit', [CourseAdminController::class, 'edit'])->name('admin.course.edit');
-Route::put('/admin/course/{slug}', [CourseAdminController::class, 'update'])->name('admin.course.update');
-Route::delete('/admin/course/{id}', [CourseAdminController::class, 'destroy'])->name('admin.course.destroy');
-
 // Admin
 Route::middleware(['auth'])->group(function () {
 
+    // Course
+    Route::get('/admin/course', [CourseAdminController::class, 'index'])->name('admin.course.index');
+    Route::post('/admin/course', [CourseAdminController::class, 'store'])->name('admin.course.store');
+    Route::get('/admin/course/create', [CourseAdminController::class, 'create'])->name('admin.course.create');
+    Route::get('/admin/course/{slug}/edit', [CourseAdminController::class, 'edit'])->name('admin.course.edit');
+    Route::put('/admin/course/{slug}', [CourseAdminController::class, 'update'])->name('admin.course.update');
+    Route::delete('/admin/course/{id}', [CourseAdminController::class, 'destroy'])->name('admin.course.destroy');
 
+    // Material
+    Route::post('/admin/material', [MaterialAdminController::class, 'store'])->name('admin.material.store');
+    Route::get('/admin/material/{slug}/edit', [MaterialAdminController::class, 'edit'])->name('admin.material.edit');
+    Route::put('/admin/material/{id}', [MaterialAdminController::class, 'update'])->name('admin.material.update');
+    Route::delete('/admin/material/{id}', [MaterialAdminController::class, 'destroy'])->name('admin.material.destroy');
 
-    Route::post('/admin/material', [MaterialAdminController::class, 'store'])->name('material.store');
-    Route::get('/admin/material/{slug}/get', [MaterialAdminController::class, 'edit'])->name('material.edit');
-    Route::put('/admin/material/{id}', [MaterialAdminController::class, 'update'])->name('material.update');
-    Route::delete('/admin/material/{id}', [MaterialAdminController::class, 'destroy'])->name('material.destroy');
-
-    Route::post('/admin/quiz', [QuizzesAdminController::class, 'store'])->name('quiz.store');
-    Route::get('/admin/quiz/{slug}/get', [QuizzesAdminController::class, 'edit'])->name('quiz.edit');
-    Route::put('/admin/quiz/{id}', [QuizzesAdminController::class, 'update'])->name('quiz.update');
+    // Quiz
+    Route::post('/admin/quiz', [QuizAdminController::class, 'store'])->name('admin.quiz.store');
+    Route::get('/admin/quiz/{slug}/edit', [QuizAdminController::class, 'edit'])->name('admin.quiz.edit');
+    Route::put('/admin/quiz/{id}', [QuizAdminController::class, 'update'])->name('admin.quiz.update');
 
     // Article
     Route::get('/admin/article', [ArticleAdminController::class, 'index'])->name('admin.article.index');
     Route::post('/admin/article', [ArticleAdminController::class, 'store'])->name('article.store');
-    Route::get('/admin/article/{slug}/get', [ArticleAdminController::class, 'edit'])->name('article.edit');
+    Route::get('/admin/article/{slug}/edit', [ArticleAdminController::class, 'edit'])->name('article.edit');
     Route::get('/admin/article/create', [ArticleAdminController::class, 'create'])->name('admin.article.create');
     Route::put('/admin/article/{id}', [ArticleAdminController::class, 'update'])->name('article.update');
     Route::delete('/admin/article/{id}', [ArticleAdminController::class, 'destroy'])->name('article.destroy');
@@ -96,7 +96,7 @@ Route::middleware(['auth'])->group(function () {
     // Faq
     Route::get('/admin/faq', [FaqAdminController::class, 'index'])->name('admin.faq.index');
     Route::post('/admin/faq', [FaqAdminController::class, 'store'])->name('faq.store');
-    Route::get('/admin/faq/{id}/get', [FaqAdminController::class, 'edit'])->name('faq.edit');
+    Route::get('/admin/faq/{id}/edit', [FaqAdminController::class, 'edit'])->name('faq.edit');
     Route::put('/admin/faq/{id}', [FaqAdminController::class, 'update'])->name('faq.update');
     Route::delete('/admin/faq/{id}', [FaqAdminController::class, 'destroy'])->name('faq.destroy');
 

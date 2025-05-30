@@ -60,7 +60,7 @@
 
                                         <div class="col-md-6">
                                             <div class="mb-10 fv-row">
-                                                <label class="required fs-5 fw-semibold mb-2">Link Video</label>
+                                                <label class="required fs-5 fw-semibold mb-2">Video (URL)</label>
                                                 <input type="text" name="video"
                                                     value="{{ old('video', $course->video) }}"
                                                     class="form-control form-control-solid" required />
@@ -135,6 +135,7 @@
                                                 <th class="min-w-150px">Title</th>
                                                 <th class="min-w-100px">Video Link</th>
                                                 <th class="min-w-100px">Content</th>
+                                                <th class="min-w-100px">Status</th>
                                                 <th class="min-w-100px">Created At</th>
                                                 <th class="min-w-100px">Update At</th>
                                                 <th class="text-end min-w-100px">Actions</th>
@@ -156,7 +157,15 @@
                                                                 No Video</button>
                                                         @endif
                                                     </td>
-                                                    <td>{{ Str::limit(strip_tags($material->content), 50) }}</td>
+                                                    <td>
+                                                        {{ Str::limit(strip_tags($material->content), 50) }}
+                                                    </td>
+                                                    <td>
+                                                        <span
+                                                            class="badge {{ $material->status == 1 ? 'badge-light-success' : 'badge-light-danger' }}">
+                                                            {{ $material->status == 1 ? 'Published' : 'Draft' }}
+                                                        </span>
+                                                    </td>
                                                     <td>{{ $material->created_at->format('d F Y') }}</td>
                                                     <td>{{ $material->updated_at->format('d F Y') }}</td>
                                                     <td class="text-end">
@@ -170,7 +179,8 @@
                                                         <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
                                                             data-kt-menu="true">
                                                             <div class="menu-item px-3">
-                                                                <a href="#" class="menu-link px-3">
+                                                                <a href="{{ route('admin.material.edit', $material->id) }}"
+                                                                    class="menu-link px-3">
                                                                     Edit
                                                                 </a>
                                                             </div>
@@ -197,7 +207,7 @@
                                     <h2>{{ $course->title }} Quiz</h2>
                                 </div>
                                 <div class="card-toolbar">
-                                    <a href="admin-materi.html" class="btn btn-primary">
+                                    <a href="#" class="btn btn-primary">
                                         <i class="ki-outline ki-plus fs-2"></i> Add Quiz
                                     </a>
                                 </div>
@@ -210,21 +220,18 @@
                                             <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                                                 <th class="min-w-50px text-center">No</th>
                                                 <th class="min-w-100px">Title</th>
-                                                <th class="min-w-100px">Total Quiz</th>
+                                                <th class="min-w-100px">Total Questions</th>
                                                 <th class="min-w-100px">Created At</th>
-                                                <th class="min-w-100px">Update At</th>
+                                                <th class="min-w-100px">Updated At</th>
                                                 <th class="text-end min-w-100px">Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody class="fw-semibold text-gray-600">
-                                            @foreach ($quizzes as $quiz)
+                                            @forelse ($quizzes as $quiz)
                                                 <tr>
                                                     <td class="text-center">{{ $loop->iteration }}</td>
                                                     <td>{{ $quiz->title }}</td>
-                                                    <td>
-                                                        {{ is_array(json_decode($quiz->question)) ? count(json_decode($quiz->question)) : 0 }}
-                                                        Question
-                                                    </td>
+                                                    <td>{{ $quiz->questions->count() }} Questions</td>
                                                     <td>{{ $quiz->created_at->format('d F Y') }}</td>
                                                     <td>{{ $quiz->updated_at->format('d F Y') }}</td>
                                                     <td class="text-end">
@@ -238,7 +245,8 @@
                                                         <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
                                                             data-kt-menu="true">
                                                             <div class="menu-item px-3">
-                                                                <a href="#" class="menu-link px-3">
+                                                                <a href="{{ route('admin.quiz.edit', $quiz->id) }}"
+                                                                    class="menu-link px-3">
                                                                     Edit
                                                                 </a>
                                                             </div>
@@ -252,7 +260,12 @@
                                                         </div>
                                                     </td>
                                                 </tr>
-                                            @endforeach
+                                            @empty
+                                                <tr>
+                                                    <td colspan="6" class="text-center text-muted">No quizzes found.
+                                                    </td>
+                                                </tr>
+                                            @endforelse
                                         </tbody>
                                     </table>
                                 </div>

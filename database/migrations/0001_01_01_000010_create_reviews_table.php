@@ -9,12 +9,15 @@ return new class extends Migration {
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
+
             $table->uuid('user_id');
-            $table->foreignId('course_id')->constrained()->onDelete('cascade');
+            $table->uuid('course_id');
+
             $table->text('review');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
 
             $table->unique(['user_id', 'course_id']);
         });

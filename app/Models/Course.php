@@ -4,11 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Support\Str;
 
 class Course extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
+
+    protected $table = 'courses';
+
+    public $incrementing = false;
+    protected $keyType = 'string';
 
     protected $fillable = ['user_id', 'title', 'slug', 'status', 'description', 'category_id', 'level', 'language', 'thumbnail', 'video'];
 

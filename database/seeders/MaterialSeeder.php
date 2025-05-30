@@ -3,33 +3,25 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Material;
 use Illuminate\Support\Facades\DB;
 
 class MaterialSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
-        $materials = [];
         $courses = DB::table('courses')->pluck('id');
 
         foreach ($courses as $courseId) {
             for ($i = 1; $i <= 5; $i++) {
-                $materials[] = [
+                Material::create([
                     'course_id' => $courseId,
                     'title' => "Material $i for Course $courseId",
                     'video' => "https://www.youtube.com/watch?v=T1TR-RGf2Pw",
                     'content' => "This is the content of Material $i for Course $courseId",
-                    'created_at' => now(),
-                    'updated_at' => now()
-                ];
+                    'status' => 1,
+                ]);
             }
         }
-
-        DB::table('materials')->insert($materials);
     }
 }

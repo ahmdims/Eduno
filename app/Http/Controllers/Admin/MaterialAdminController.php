@@ -34,7 +34,9 @@ class MaterialAdminController extends Controller
     public function edit($id)
     {
         $material = Material::findOrFail($id);
-        return response()->json($material);
+        $courses = Course::all();
+
+        return view('admin.material.edit', compact('material', 'courses'));
     }
 
     public function update(Request $request, $id)
@@ -44,6 +46,7 @@ class MaterialAdminController extends Controller
             'title' => 'required|string|max:255',
             'video' => 'nullable|string|max:255',
             'content' => 'required|string',
+            'status' => 'required|in:0,1',
         ]);
 
         $material = Material::findOrFail($id);
@@ -52,10 +55,11 @@ class MaterialAdminController extends Controller
         $material->title = $validated['title'];
         $material->video = $validated['video'];
         $material->content = $validated['content'];
+        $material->status = $validated['status'];
         $material->save();
 
-        return redirect()->route('admin.course.edit', $material->course->slug)
-            ->with('success', 'Material successfully updated.');
+        return redirect()->route('admin.material.edit', $material->id)
+            ->with('success', 'Material updated successfully!');
     }
 
     public function destroy($id)
