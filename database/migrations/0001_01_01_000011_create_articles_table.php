@@ -12,13 +12,17 @@ return new class extends Migration {
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
+
             $table->string('title');
             $table->string('slug')->unique();
             $table->enum('status', ['draft', 'published'])->default('draft');
-            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
+            $table->uuid('category_id');
             $table->string('thumbnail')->nullable();
             $table->longText('content');
+
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 

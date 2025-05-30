@@ -8,6 +8,7 @@ use App\Models\Course;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CourseAdminController extends Controller
 {
@@ -55,6 +56,7 @@ class CourseAdminController extends Controller
         }
 
         Course::create([
+            'user_id' => Auth::id(),
             'title' => $request->title,
             'description' => $request->description,
             'category_id' => $request->category_id,
@@ -77,20 +79,20 @@ class CourseAdminController extends Controller
         return view('admin.course.edit', compact('course', 'categories', 'materials', 'quizzes'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'category_id' => 'required|exists:categories,id',
-            'status' => 'required|in:draft,published',
+            'status' => 'required',
             'level' => 'required|string',
             'language' => 'required|string',
             'thumbnail' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'video' => 'nullable|string',
         ]);
 
-        $course = Course::findOrFail($id);
+        $course = Course::where('slug', $slug)->firstOrFail();
 
         $thumbnailPath = $course->thumbnail;
         if ($request->hasFile('thumbnail')) {
@@ -125,7 +127,8 @@ class CourseAdminController extends Controller
             'thumbnail' => $thumbnailPath,
         ]);
 
-        return redirect()->back()->with('success', 'Course updated successfully!');
+        return redirect()->route('admin.course.edit', $course->slug)
+            ->with('success', 'Course updated successfully!');
     }
 
     public function destroy($id)

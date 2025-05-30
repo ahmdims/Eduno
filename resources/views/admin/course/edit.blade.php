@@ -1,233 +1,270 @@
-@extends('layouts.main')
+@extends('layouts.admin')
 
-@section('title', 'Edit ' . $course->title)
+@section('title', 'Course')
 
 @section('content')
-    <link href="{{ asset('assets/css/vendor/trix.min.css') }}" rel="stylesheet">
-    <script src="{{ asset('assets/js/vendor/trix.min.js') }}" defer></script>
+    <div class="app-container  container-xxl ">
+        <div class="app-main flex-column flex-row-fluid " id="kt_app_main">
+            <div class="d-flex flex-column flex-column-fluid">
 
-    <main>
-        <div class="rbt-page-banner-wrapper">
-            <div class="rbt-banner-image"></div>
-        </div>
+                <div id="kt_app_content" class="app-content flex-column-fluid">
+                    <div class="app-container container-xxl">
 
-        <div class="rbt-dashboard-area rbt-section-overlayping-top rbt-section-gapBottom">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
+                        <div class="card mb-10">
+                            <div
+                                class="card-header border-0 pt-6 pb-4 d-flex flex-wrap justify-content-between align-items-center gap-4">
+                                <div class="card-title">
+                                    <h2 class="fw-bold mb-0">{{ $course->title }} Edit</h2>
+                                </div>
+                            </div>
 
-                        <div>
-                            <div class="rbt-dashboard-content bg-color-white rbt-shadow-box">
-                                <div class="content">
+                            <form action="{{ route('admin.course.update', $course->slug) }}" method="POST"
+                                enctype="multipart/form-data">
+                                @csrf
+                                @method('PUT')
 
-                                    <form action="{{ route('course.update', $course->id) }}" method="POST"
-                                        enctype="multipart/form-data">
-                                        @csrf
-                                        @method('PUT')
-
-                                        <div class="course-field mb--20">
-                                            <label for="thumbnail" class="form-label">Thumbnail</label>
-                                            <div class="rbt-create-course-thumbnail upload-area">
-                                                <div class="upload-area">
-                                                    <div class="brows-file-wrapper" data-black-overlay="9">
-                                                        <input name="thumbnail" id="createinputfile" type="file"
-                                                            class="inputfile" accept="image/*" />
-                                                        <img id="createfileImage"
-                                                            src="{{ $course->thumbnail ? asset('storage/' . $course->thumbnail) : asset('assets/images/thumbnail/thumbnail.svg') }}"
-                                                            alt="Current Thumbnail" />
-                                                        <label class="d-flex" for="createinputfile" title="No File Chosen">
-                                                            <i class="feather-upload"></i>
-                                                            <span class="text-center">Choose a File</span>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <small><i class="feather-info"></i> <b>File Support:</b> JPG, JPEG, PNG,
-                                                WEBP</small>
-                                        </div>
-
-                                        <div class="row mb-4">
-                                            <div class="col-md-6">
-                                                <label for="title" class="form-label">Title <small
-                                                        class="text-danger">*</small></label>
-                                                <input type="text" name="title" id="title" class="form-control"
-                                                    value="{{ $course->title }}" required>
+                                <div class="card-body pt-0">
+                                    <div class="row g-10">
+                                        <div class="col-md-6">
+                                            <div class="mb-10 fv-row">
+                                                <label class="required fs-5 fw-semibold mb-2">Title</label>
+                                                <input type="text" name="title"
+                                                    value="{{ old('title', $course->title) }}"
+                                                    class="form-control form-control-solid" required />
                                             </div>
 
-                                            <div class="col-md-6">
-                                                <label for="slug" class="form-label">Slug <small
-                                                        class="text-danger">*</small></label>
-                                                <input type="text" name="slug" id="slug" class="form-control"
-                                                    value="{{ $course->slug }}" readonly required>
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-4">
-                                            <div class="col-md-6">
-                                                <div class="rbt-form-group">
-                                                    <label for="category_id" class="form-label">Category <small
-                                                            class="text-danger">*</small></label>
-                                                    <div class="rbt-modern-select bg-transparent height-45">
-                                                        <select name="category_id" id="category_id" class="form-control"
-                                                            required>
-                                                            <option value="" selected disabled>Select Category
-                                                            </option>
-                                                            @foreach ($categories as $category)
-                                                                <option value="{{ $category->id }}"
-                                                                    {{ $course->category_id == $category->id ? 'selected' : '' }}>
-                                                                    {{ $category->name }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
+                                            <div class="mb-10 fv-row">
+                                                <label class="fs-5 fw-semibold mb-2">Thumbnail</label>
+                                                <input type="file" name="thumbnail"
+                                                    class="form-control form-select-solid mb-2" accept="image/*" />
+                                                @if ($course->thumbnail)
+                                                    <img src="{{ asset('storage/' . $course->thumbnail) }}" alt="Thumbnail"
+                                                        class="mt-2 rounded" width="120">
+                                                @endif
                                             </div>
 
-                                            <div class="col-md-6">
-                                                <label for="level" class="form-label">Level <small
-                                                        class="text-danger">*</small></label>
-                                                <div class="rbt-modern-select bg-transparent height-45">
-                                                    <select name="level" id="level" class="form-control" required>
-                                                        <option value="" disabled>Select Level</option>
-                                                        <option value="Beginner"
-                                                            {{ $course->level == 'Beginner' ? 'selected' : '' }}>Beginner
+                                            <div class="mb-10 fv-row">
+                                                <label class="required fs-5 fw-semibold mb-2">Kategori</label>
+                                                <select name="category_id" class="form-select form-select-solid"
+                                                    data-control="select2" data-placeholder="Select Category" required>
+                                                    <option value="" disabled selected>Select Category</option>
+                                                    @foreach ($categories as $category)
+                                                        <option value="{{ $category->id }}"
+                                                            {{ $course->category_id == $category->id ? 'selected' : '' }}>
+                                                            {{ $category->name }}
                                                         </option>
-                                                        <option value="Intermediate"
-                                                            {{ $course->level == 'Intermediate' ? 'selected' : '' }}>
-                                                            Intermediate</option>
-                                                        <option value="Advanced"
-                                                            {{ $course->level == 'Advanced' ? 'selected' : '' }}>Advanced
-                                                        </option>
-                                                    </select>
-                                                </div>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
 
-                                        <div class="row mb-4">
-                                            <div class="col-md-6">
-                                                <label for="language" class="form-label">Language <small
-                                                        class="text-danger">*</small></label>
-                                                <input type="text" name="language" id="language" class="form-control"
-                                                    value="{{ $course->language }}" required>
+                                        <div class="col-md-6">
+                                            <div class="mb-10 fv-row">
+                                                <label class="required fs-5 fw-semibold mb-2">Link Video</label>
+                                                <input type="text" name="video"
+                                                    value="{{ old('video', $course->video) }}"
+                                                    class="form-control form-control-solid" required />
                                             </div>
 
-                                            <div class="col-md-6">
-                                                <div class="rbt-form-group">
-                                                    <label for="status" class="form-label">Status <small
-                                                            class="text-danger">*</small></label>
-                                                    <div class="rbt-modern-select bg-transparent height-45">
-                                                        <select name="status" id="status" class="form-control">
-                                                            <option value="draft"
-                                                                {{ $course->status == 'draft' ? 'selected' : '' }}>Draft
-                                                            </option>
-                                                            <option value="published"
-                                                                {{ $course->status == 'published' ? 'selected' : '' }}>
-                                                                Published</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
+                                            <div class="mb-10 fv-row">
+                                                <label class="required form-label">Level</label>
+                                                <select class="form-select" name="level">
+                                                    <option value="beginner"
+                                                        {{ $course->level == 'beginner' ? 'selected' : '' }}>Beginner
+                                                    </option>
+                                                    <option value="intermediate"
+                                                        {{ $course->level == 'intermediate' ? 'selected' : '' }}>
+                                                        Intermediate</option>
+                                                    <option value="advanced"
+                                                        {{ $course->level == 'advanced' ? 'selected' : '' }}>Advanced
+                                                    </option>
+                                                </select>
                                             </div>
-                                        </div>
 
-                                        <div class="mb-4">
-                                            <label for="video" class="form-label">Video <small
-                                                    class="text-danger">*</small></label>
-                                            <input type="text" class="form-control" id="video" name="video"
-                                                value="{{ $course->video }}" required>
-                                        </div>
-
-                                        <div class="mb-4">
-                                            <div class="rbt-form-group">
-                                                <label for="description" class="form-label">Description <small
-                                                        class="text-danger">*</small></label>
-                                                <input type="hidden" class="form-control" id="description"
-                                                    name="description"
-                                                    value="{{ old('description', $course->description) }}" required>
-                                                <trix-editor input="description">{{ $course->description }}</trix-editor>
+                                            <div class="mb-10 fv-row">
+                                                <label class="required fs-5 fw-semibold mb-2">Language</label>
+                                                <input type="text" name="language"
+                                                    value="{{ old('language', $course->language) }}"
+                                                    class="form-control form-control-solid" required />
                                             </div>
-                                        </div>
 
-                                        <div class="text-center">
-                                            <button class="rbt-btn btn-gradient btn-gradient-3 btn-sm w-100"
-                                                type="submit">Update {{ $course->title }}</button>
-                                        </div>
-                                    </form>
-
-                                    <hr class="mt--30">
-
-                                    <div class="container-fluid mt-2">
-                                        <div class="row">
-                                            <div class="col-md-12 mt-4 mb-4">
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <h4 class="text-primary mb-0">Material</h4>
-                                                    <a class="rbt-btn btn-sm ms-auto" data-bs-toggle="modal"
-                                                        data-bs-target="#materialModal">
-                                                        <span>Create Material</span>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-12 mb-4">
-                                                <div class="rbt-dashboard-table table-responsive mobile-table-750 mt--30">
-                                                    <table class="rbt-table table table-borderless">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Material Title</th>
-                                                                <th></th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            @foreach ($materials as $material)
-                                                                <tr>
-                                                                    <th>
-                                                                        <span
-                                                                            class="h6 mb--5">{{ $material->title }}</span>
-                                                                    </th>
-                                                                    <td>
-                                                                        <div class="rbt-button-group justify-content-end">
-                                                                            <a data-bs-toggle="modal"
-                                                                                data-bs-target="#materialModal"
-                                                                                type="button"
-                                                                                data-id="{{ $material->id }}"
-                                                                                class="btn-edit rbt-btn-link left-icon text-primary">
-                                                                                <i class="feather-edit"></i> Edit
-                                                                            </a>
-
-                                                                            <a data-bs-toggle="modal"
-                                                                                data-bs-target="#deleteMaterial-{{ $material->id }}"
-                                                                                type="button"
-                                                                                class="rbt-btn-link left-icon text-danger">
-                                                                                <i class="feather-trash-2"></i> Delete
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                            @endforeach
-                                                        </tbody>
-                                                    </table>
-                                                </div>
+                                            <div class="mb-10 fv-row">
+                                                <label class="required form-label">Status</label>
+                                                <select class="form-select" name="status">
+                                                    <option value="1" {{ $course->status == '1' ? 'selected' : '' }}>
+                                                        Published</option>
+                                                    <option value="0" {{ $course->status == '0' ? 'selected' : '' }}>
+                                                        Draft</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
 
+                                    <div class="mb-10 fv-row">
+                                        <label class="required form-label">Deskripsi</label>
+                                        <textarea name="description" class="form-control mb-2" rows="4">{{ old('description', $course->description) }}</textarea>
+                                    </div>
+
+                                    <div class="d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary">
+                                            <span class="indicator-label">Save Changes</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="card card-flush py-4 mb-10">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <div class="card-title">
+                                    <h2>{{ $course->title }} Material</h2>
+                                </div>
+                                <div class="card-toolbar">
+                                    <a href="admin-materi.html" class="btn btn-primary">
+                                        <i class="ki-outline ki-plus fs-2"></i> Add Material
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="card-body pt-0">
+                                <div class="table-responsive">
+                                    <table class="table align-middle table-row-dashed fs-6 gy-5">
+                                        <thead>
+                                            <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+                                                <th class="min-w-50px text-center">No</th>
+                                                <th class="min-w-150px">Title</th>
+                                                <th class="min-w-100px">Video Link</th>
+                                                <th class="min-w-100px">Content</th>
+                                                <th class="min-w-100px">Created At</th>
+                                                <th class="min-w-100px">Update At</th>
+                                                <th class="text-end min-w-100px">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="fw-semibold text-gray-600">
+                                            @foreach ($materials as $index => $material)
+                                                <tr>
+                                                    <td class="text-center">{{ $loop->iteration }}</td>
+                                                    <td>{{ $material->title }}</td>
+                                                    <td>
+                                                        @if ($material->video)
+                                                            <a href="{{ $material->video }}" target="_blank"
+                                                                class="btn btn-sm btn-light-primary">
+                                                                View Video
+                                                            </a>
+                                                        @else
+                                                            <button class="btn btn-sm btn-light-secondary" disabled>
+                                                                No Video</button>
+                                                        @endif
+                                                    </td>
+                                                    <td>{{ Str::limit(strip_tags($material->content), 50) }}</td>
+                                                    <td>{{ $material->created_at->format('d F Y') }}</td>
+                                                    <td>{{ $material->updated_at->format('d F Y') }}</td>
+                                                    <td class="text-end">
+                                                        <a href="#"
+                                                            class="btn btn-light btn-active-light-primary btn-sm"
+                                                            data-kt-menu-trigger="click"
+                                                            data-kt-menu-placement="bottom-end">
+                                                            Actions
+                                                            <i class="ki-outline ki-down fs-5 ms-1"></i>
+                                                        </a>
+                                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
+                                                            data-kt-menu="true">
+                                                            <div class="menu-item px-3">
+                                                                <a href="#" class="menu-link px-3">
+                                                                    Edit
+                                                                </a>
+                                                            </div>
+
+                                                            <div class="menu-item px-3">
+                                                                <a href="#" class="menu-link px-3"
+                                                                    data-laporgraf-filter="delete_row">
+                                                                    Delete
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
+                        <div class="card card-flush py-4">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <div class="card-title">
+                                    <h2>{{ $course->title }} Quiz</h2>
+                                </div>
+                                <div class="card-toolbar">
+                                    <a href="admin-materi.html" class="btn btn-primary">
+                                        <i class="ki-outline ki-plus fs-2"></i> Add Quiz
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="card-body pt-0">
+                                <div class="table-responsive">
+                                    <table class="table align-middle table-row-dashed fs-6 gy-5">
+                                        <thead>
+                                            <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+                                                <th class="min-w-50px text-center">No</th>
+                                                <th class="min-w-100px">Title</th>
+                                                <th class="min-w-100px">Total Quiz</th>
+                                                <th class="min-w-100px">Created At</th>
+                                                <th class="min-w-100px">Update At</th>
+                                                <th class="text-end min-w-100px">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="fw-semibold text-gray-600">
+                                            @foreach ($quizzes as $quiz)
+                                                <tr>
+                                                    <td class="text-center">{{ $loop->iteration }}</td>
+                                                    <td>{{ $quiz->title }}</td>
+                                                    <td>
+                                                        {{ is_array(json_decode($quiz->question)) ? count(json_decode($quiz->question)) : 0 }}
+                                                        Question
+                                                    </td>
+                                                    <td>{{ $quiz->created_at->format('d F Y') }}</td>
+                                                    <td>{{ $quiz->updated_at->format('d F Y') }}</td>
+                                                    <td class="text-end">
+                                                        <a href="#"
+                                                            class="btn btn-light btn-active-light-primary btn-sm"
+                                                            data-kt-menu-trigger="click"
+                                                            data-kt-menu-placement="bottom-end">
+                                                            Actions
+                                                            <i class="ki-outline ki-down fs-5 ms-1"></i>
+                                                        </a>
+                                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
+                                                            data-kt-menu="true">
+                                                            <div class="menu-item px-3">
+                                                                <a href="#" class="menu-link px-3">
+                                                                    Edit
+                                                                </a>
+                                                            </div>
+
+                                                            <div class="menu-item px-3">
+                                                                <a href="#" class="menu-link px-3"
+                                                                    data-laporgraf-filter="delete_row">
+                                                                    Delete
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
+
+                @include('template.admin-footer')
+
             </div>
         </div>
-
-        @foreach ($materials as $material)
-            @include('admin.course.material', ['material' => $material])
-            @include('admin.course.deleteMaterial', ['material' => $material])
-        @endforeach
-
-    </main>
-
-    <script src="{{ asset('assets/js/admin/material.js') }}"></script>
-
+    </div>
 @endsection

@@ -10,11 +10,11 @@ class Course extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'slug', 'status', 'description', 'category_id', 'level', 'language', 'thumbnail', 'video'];
+    protected $fillable = ['user_id', 'title', 'slug', 'status', 'description', 'category_id', 'level', 'language', 'thumbnail', 'video'];
 
     public function scopePublished($query)
     {
-        return $query->where('status', 'published');
+        return $query->where('status', '1');
     }
 
     public function category()
@@ -71,6 +71,11 @@ class Course extends Model
             ->latest()
             ->take($limit)
             ->get();
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function reviews()

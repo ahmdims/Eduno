@@ -63,17 +63,18 @@ Route::get('/faq', [FaqAppController::class, 'index'])->name('app.faq.index');
 Route::get('/contact', [WebsiteAppController::class, 'index'])->name('app.contact.index');
 Route::post('/mail', [ContactAppController::class, 'store'])->name('app.mail.store');
 
+// Course
+Route::get('/admin/course', [CourseAdminController::class, 'index'])->name('admin.course.index');
+Route::post('/admin/course', [CourseAdminController::class, 'store'])->name('admin.course.store');
+Route::get('/admin/course/create', [CourseAdminController::class, 'create'])->name('admin.course.create');
+Route::get('/admin/course/{slug}/edit', [CourseAdminController::class, 'edit'])->name('admin.course.edit');
+Route::put('/admin/course/{slug}', [CourseAdminController::class, 'update'])->name('admin.course.update');
+Route::delete('/admin/course/{id}', [CourseAdminController::class, 'destroy'])->name('admin.course.destroy');
+
 // Admin
 Route::middleware(['auth'])->group(function () {
 
 
-    // Course
-    Route::get('/admin/course', [CourseAdminController::class, 'index'])->name('admin.course.index');
-    Route::post('/admin/course', [CourseAdminController::class, 'store'])->name('course.store');
-    Route::get('/admin/course/create', [CourseAdminController::class, 'create'])->name('admin.course.create');
-    Route::get('/admin/course/edit/{slug}', [CourseAdminController::class, 'edit'])->name('admin.course.edit');
-    Route::put('/admin/course/{id}', [CourseAdminController::class, 'update'])->name('course.update');
-    Route::delete('/admin/course/{id}', [CourseAdminController::class, 'destroy'])->name('course.destroy');
 
     Route::post('/admin/material', [MaterialAdminController::class, 'store'])->name('material.store');
     Route::get('/admin/material/{slug}/get', [MaterialAdminController::class, 'edit'])->name('material.edit');

@@ -79,7 +79,6 @@ class CourseAppController extends Controller
             'quizzes'
         ));
     }
-
     public function showMaterial($slug, $materialId)
     {
         $material = Material::whereHas('course', function ($query) use ($slug) {

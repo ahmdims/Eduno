@@ -5,30 +5,38 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use App\Models\User;
 
 class CourseSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
         $courses = [];
         $levels = ['Beginner', 'Intermediate', 'Advanced'];
         $languages = ['PHP', 'JavaScript', 'Python', 'Java', 'C++'];
 
+        $adminIds = User::where('utype', 'admin')->pluck('id')->toArray();
+        $categoryIds = DB::table('categories')->pluck('id')->toArray();
+
+        if (empty($adminIds)) {
+            throw new \Exception('No admin users found. Please seed admin users first.');
+        }
+
+        if (empty($categoryIds)) {
+            throw new \Exception('No categories found. Please seed categories first.');
+        }
+
         for ($i = 1; $i <= 21; $i++) {
             $title = "Course Title $i";
             $slug = Str::slug($title);
 
             $courses[] = [
+                'user_id' => $adminIds[array_rand($adminIds)],
+                'category_id' => $categoryIds[array_rand($categoryIds)],
                 'title' => $title,
                 'slug' => $slug,
-                'status' => "published",
-                'description' => "This is a detailed description for Course $i. In this course, you will learn the essential concepts and techniques to master the subject. Throughout the lessons, you will dive deep into key topics, gain hands-on experience, and apply what you've learned through practical exercises. Whether you're a beginner or have some prior knowledge, this course will provide valuable insights and skills to enhance your expertise. By the end of this course, you will be equipped with the knowledge necessary to excel in the field and tackle real-world challenges with confidence.",
-                'category_id' => rand(1, 5),
+                'status' => 1,
+                'description' => "This is a detailed description for Course $i. In this course, you will learn essential concepts and techniques...",
                 'level' => $levels[array_rand($levels)],
                 'language' => $languages[array_rand($languages)],
                 'video' => "https://www.youtube.com/watch?v=T1TR-RGf2Pw",
