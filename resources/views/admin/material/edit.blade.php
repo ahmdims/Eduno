@@ -60,6 +60,7 @@
                                                 <label class="required fs-5 fw-semibold mb-2">Status</label>
                                                 <select name="status" class="form-select form-select-solid"
                                                     data-control="select2" data-hide-search="true" required>
+                                                    <option value="" disabled selected>Select Status</option>
                                                     <option value="0" {{ $material->status == 0 ? 'selected' : '' }}>
                                                         Draft</option>
                                                     <option value="1" {{ $material->status == 1 ? 'selected' : '' }}>

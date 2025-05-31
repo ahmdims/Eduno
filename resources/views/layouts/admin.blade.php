@@ -4,6 +4,7 @@
 <head>
     <title>@yield('title') - ClassXpert</title>
     <meta charset="utf-8" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="admin/media/logos/default.svg" />
 
@@ -86,7 +87,16 @@
                                     data-kt-menu-placement="bottom-start" data-kt-menu-offset="-200,0"
                                     class="menu-item menu-lg-down-accordion me-0 me-lg-2">
                                     <a href="index.html" class="menu-link">
-                                        <span class="menu-title">Beranda</span>
+                                        <span class="menu-title">Dashboard</span>
+                                        <span class="menu-arrow d-lg-none"></span>
+                                    </a>
+                                </div>
+
+                                <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
+                                    data-kt-menu-placement="bottom-start" data-kt-menu-offset="-200,0"
+                                    class="menu-item menu-lg-down-accordion me-0 me-lg-2">
+                                    <a href="index.html" class="menu-link">
+                                        <span class="menu-title">Category</span>
                                         <span class="menu-arrow d-lg-none"></span>
                                     </a>
                                 </div>
@@ -315,7 +325,8 @@
         <script src="{{ asset('admin/js/custom/utilities/modals/create-app.js') }}"></script>
         <script src="{{ asset('admin/js/custom/utilities/modals/users-search.js') }}"></script>
 
-        <script src="{{ asset('assets/js/custom/course.js') }}"></script>
+        <script src="{{ asset('admin/js/custom/apps/admin/course/course.js') }}"></script>
+        <script src="{{ asset('admin/js/custom/apps/admin/course/edit-course.js') }}"></script>
 </body>
 
 </html>

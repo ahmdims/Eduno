@@ -66,7 +66,8 @@ class CourseAdminController extends Controller
             'video' => $request->video,
         ]);
 
-        return redirect()->back()->with('success', 'Course created successfully!');
+        return redirect()->route('admin.course.index')
+            ->with('success', 'Course created successfully!');
     }
 
     public function edit($slug)
@@ -93,6 +94,13 @@ class CourseAdminController extends Controller
         ]);
 
         $course = Course::where('slug', $slug)->firstOrFail();
+
+        if ($request->has('thumbnail_remove') && $request->thumbnail_remove == 1) {
+            if ($course->thumbnail && Storage::disk('public')->exists($course->thumbnail)) {
+                Storage::disk('public')->delete($course->thumbnail);
+            }
+            $course->thumbnail = null;
+        }
 
         $thumbnailPath = $course->thumbnail;
         if ($request->hasFile('thumbnail')) {
@@ -127,7 +135,15 @@ class CourseAdminController extends Controller
             'thumbnail' => $thumbnailPath,
         ]);
 
-        return redirect()->route('admin.course.edit', $course->slug)
+        if ($request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Course updated successfully!',
+                'redirect_url' => route('admin.course.index'),
+            ]);
+        }
+
+        return redirect()->route('admin.course.index')
             ->with('success', 'Course updated successfully!');
     }
 
@@ -136,6 +152,6 @@ class CourseAdminController extends Controller
         $course = Course::findOrFail($id);
         $course->delete();
 
-        return redirect()->back()->with('success', 'Course deleted successfully!');
+        return response()->json(['success' => true, 'message' => 'Course deleted successfully!']);
     }
 }
