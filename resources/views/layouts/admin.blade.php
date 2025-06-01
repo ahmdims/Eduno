@@ -112,8 +112,8 @@
 
                                 <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
                                     data-kt-menu-placement="bottom-start" data-kt-menu-offset="-200,0"
-                                    class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
-                                    <a href="admin.html" class="menu-link">
+                                    class="menu-item menu-lg-down-accordion me-0 me-lg-2 {{ request()->routeIs('admin.article.*') ? 'here show menu-here-bg' : '' }}">
+                                    <a href="{{ route('admin.article.index') }}" class="menu-link">
                                         <span class="menu-title">Article</span>
                                         <span class="menu-arrow d-lg-none"></span>
                                     </a>

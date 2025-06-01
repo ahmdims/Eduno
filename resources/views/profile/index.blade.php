@@ -20,8 +20,7 @@
                         <div class="rbt-title-style-3 d-flex justify-content-between align-items-center">
                             <h4 class="mb-0">About Me</h4>
                             @if (Auth::check() && Auth::user()->username === $user->username)
-                                <a class="rbt-btn btn-border btn-sm radius-round-6"
-                                    href="{{ route('profile.edit', $user->id) }}">
+                                <a class="rbt-btn btn-border btn-sm radius-round-6" href="{{ route('profile.edit') }}">
                                     <i class="feather-edit"></i> Edit
                                 </a>
                             @endif

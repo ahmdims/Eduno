@@ -9,12 +9,17 @@
                     </div>
                     <nav class="mainmenu-nav">
                         <ul class="dashboard-mainmenu rbt-default-sidebar-list">
-                            <li><a href="{{ route('profile.index', Auth::user()->username) }}">
-                                    <i class="feather-user"></i><span>My
-                                        Profile</span></a></li>
-                            <li><a href="{{ route('profile.edit', Auth::user()->id) }}"
-                                    class="{{ Request::is('*edit*') ? 'active' : '' }}"><i
-                                        class="feather-settings"></i><span>Settings</span></a></li>
+                            <li>
+                                <a href="{{ route('profile.index', Auth::user()->username) }}">
+                                    <i class="feather-user"></i><span>My Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('profile.edit') }}"
+                                    class="{{ Request::is('setting') ? 'active' : '' }}">
+                                    <i class="feather-settings"></i><span>Settings</span>
+                                </a>
+                            </li>
                             <li>
                                 <form method="POST" action="{{ route('logout') }}" id="logout-form">
                                     @csrf

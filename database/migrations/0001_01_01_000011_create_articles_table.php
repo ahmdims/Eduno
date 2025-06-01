@@ -11,17 +11,21 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('articles', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+
+            $table->uuid('user_id');
+            $table->uuid('category_id');
 
             $table->string('title');
             $table->string('slug')->unique();
-            $table->enum('status', ['draft', 'published'])->default('draft');
-            $table->uuid('category_id');
             $table->string('thumbnail')->nullable();
             $table->longText('content');
 
+            $table->tinyInteger('status')->default(0);
+
             $table->timestamps();
 
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }

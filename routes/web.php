@@ -31,11 +31,13 @@ use App\Http\Controllers\App\WebsiteAppController;
 
 //Profile
 Route::middleware('auth')->group(function () {
-    Route::get('/profile/{username}', [ProfileAppController::class, 'index'])->name('profile.index');
-    Route::get('/profile/edit/{id}', [ProfileAppController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile/setting', [ProfileAppController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile/update', [ProfileAppController::class, 'update'])->name('profile.update');
-    Route::delete('/profile/{id}', [ProfileAppController::class, 'destroy'])->name('profile.destroy');
+    Route::delete('/profile/delete', [ProfileAppController::class, 'destroy'])->name('profile.destroy');
 });
+
+//Dashboard
+Route::get('/profile/{username}', [ProfileAppController::class, 'index'])->name('profile.index');
 
 //Home
 Route::get('/', [HomeAppController::class, 'index'])->name('home');
@@ -87,11 +89,11 @@ Route::middleware(['auth'])->group(function () {
 
     // Article
     Route::get('/admin/article', [ArticleAdminController::class, 'index'])->name('admin.article.index');
-    Route::post('/admin/article', [ArticleAdminController::class, 'store'])->name('article.store');
-    Route::get('/admin/article/{slug}/edit', [ArticleAdminController::class, 'edit'])->name('article.edit');
+    Route::post('/admin/article', [ArticleAdminController::class, 'store'])->name('admin.article.store');
+    Route::get('/admin/article/{slug}/edit', [ArticleAdminController::class, 'edit'])->name('admin.article.edit');
     Route::get('/admin/article/create', [ArticleAdminController::class, 'create'])->name('admin.article.create');
-    Route::put('/admin/article/{id}', [ArticleAdminController::class, 'update'])->name('article.update');
-    Route::delete('/admin/article/{id}', [ArticleAdminController::class, 'destroy'])->name('article.destroy');
+    Route::put('/admin/article/{id}', [ArticleAdminController::class, 'update'])->name('admin.article.update');
+    Route::delete('/admin/article/{id}', [ArticleAdminController::class, 'destroy'])->name('admin.article.destroy');
 
     // Faq
     Route::get('/admin/faq', [FaqAdminController::class, 'index'])->name('admin.faq.index');

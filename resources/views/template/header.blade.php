@@ -117,7 +117,7 @@
                                         <hr class="mt--10 mb--10">
                                         <ul class="user-list-wrapper">
                                             <li>
-                                                <a href="{{ route('profile.edit', Auth::user()->id) }}">
+                                                <a href="{{ route('profile.edit') }}">
                                                     <i class="feather-settings"></i>
                                                     <span>Settings</span>
                                                 </a>
@@ -181,16 +181,19 @@
                     <a href="{{ route('home') }}" class="{{ Request::is('/') ? 'active' : '' }}">Home</a>
                 </li>
                 <li class="position-static">
-                    <a href="{{ route('courses.index') }}" class="{{ Request::is('course*') ? 'active' : '' }}">Course</a>
+                    <a href="{{ route('courses.index') }}"
+                        class="{{ Request::is('course*') ? 'active' : '' }}">Course</a>
                 </li>
                 <li class="position-static">
-                    <a href="{{ route('article.index') }}" class="{{ Request::is('article*') ? 'active' : '' }}">Article</a>
+                    <a href="{{ route('article.index') }}"
+                        class="{{ Request::is('article*') ? 'active' : '' }}">Article</a>
                 </li>
                 <li class="position-static">
                     <a href="{{ route('app.faq.index') }}" class="{{ Request::is('faq') ? 'active' : '' }}">Faq</a>
                 </li>
                 <li class="position-static">
-                    <a href="{{ route('app.contact.index') }}" class="{{ Request::is('contact') ? 'active' : '' }}">Contact</a>
+                    <a href="{{ route('app.contact.index') }}"
+                        class="{{ Request::is('contact') ? 'active' : '' }}">Contact</a>
                 </li>
 
                 @auth

@@ -23,15 +23,15 @@ class ProfileAppController extends Controller
         ]);
     }
 
-    public function edit($id)
+    public function edit(): View
     {
-        $user = User::where('id', $id)->firstOrFail();
+        $user = Auth::user();
         return view('profile.edit', compact('user'));
     }
 
-    public function update(Request $request)
+    public function update(Request $request): RedirectResponse
     {
-        $user = auth()->user();
+        $user = Auth::user();
 
         $request->validate([
             'name' => 'required|string|max:255',
@@ -92,7 +92,7 @@ class ProfileAppController extends Controller
 
         $user->save();
 
-        return Redirect::route('profile.edit', [$user->id])->with('status', 'Profile updated successfully!');
+        return Redirect::route('profile.edit')->with('status', 'Profile updated successfully!');
     }
 
     public function destroy(Request $request): RedirectResponse
