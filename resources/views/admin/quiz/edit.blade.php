@@ -3,266 +3,314 @@
 @section('title', 'Edit Quiz')
 
 @section('content')
-<div class="app-container container-xxl">
-    <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
-        <div class="d-flex flex-column flex-column-fluid">
-            <div id="kt_app_content" class="app-content flex-column-fluid">
-                <div class="app-container container-xxl">
-
-                    <div class="card mb-10">
-                        <div class="card-header border-0 pt-6 pb-4 d-flex flex-wrap justify-content-between align-items-center gap-4">
-                            <div class="card-title">
-                                <h2 class="fw-bold mb-0">Edit Quiz - {{ $quiz->title }}</h2>
-                            </div>
-                        </div>
-
-                        <form action="{{ route('admin.quiz.update', $quiz->id) }}" method="POST">
-                            @csrf
-                            @method('PUT')
-
-                            <div class="card-body pt-0">
-                                <div class="row g-10">
-                                    <div class="col-md-6">
-                                        <div class="mb-10 fv-row">
-                                            <label class="required fs-5 fw-semibold mb-2">Title</label>
-                                            <input type="text" name="title"
-                                                value="{{ old('title', $quiz->title) }}"
-                                                class="form-control form-control-solid" required />
-                                        </div>
-
-                                        <div class="mb-10 fv-row">
-                                            <label class="required fs-5 fw-semibold mb-2">Course</label>
-                                            <select name="course_id" class="form-select form-select-solid"
-                                                data-control="select2" data-placeholder="Select Course" required>
-                                                <option value="" disabled>Select Course</option>
-                                                @foreach ($courses as $course)
-                                                    <option value="{{ $course->id }}"
-                                                        {{ $quiz->course_id == $course->id ? 'selected' : '' }}>
-                                                        {{ $course->title }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="mb-10 fv-row">
-                                            <label class="fs-5 fw-semibold mb-2">Created At</label>
-                                            <input type="text"
-                                                class="form-control form-control-solid"
-                                                value="{{ $quiz->created_at->format('d F Y H:i') }}"
-                                                disabled />
-                                        </div>
-
-                                        <div class="mb-10 fv-row">
-                                            <label class="fs-5 fw-semibold mb-2">Updated At</label>
-                                            <input type="text"
-                                                class="form-control form-control-solid"
-                                                value="{{ $quiz->updated_at->format('d F Y H:i') }}"
-                                                disabled />
-                                        </div>
+    <div class="app-container container-xxl">
+        <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+            <div class="d-flex flex-column flex-column-fluid">
+                <div id="kt_app_content" class="app-content flex-column-fluid">
+                    <form id="kt_ecommerce_add_question_form" class="form" data-kt-redirect="categories.html">
+                        <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+                            <div class="card card-flush py-4">
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <h2>Upload Soal</h2>
                                     </div>
                                 </div>
 
-                                @php
-                                    $questions = json_decode(old('questions', $quiz->question), true) ?? [];
-                                @endphp
+                                <div class="card-body pt-0">
+                                    <div class="mb-10 fv-row">
+                                        <label class="required form-label">Quiz Title</label>
 
-                                <h3 class="mt-8 mb-4">Questions</h3>
+                                        <input type="text" name="question_set_title" class="form-control mb-2"
+                                            placeholder="Judul soal" value="{{ old('title', $quiz->title) }}" />
+                                        <div class="text-muted fs-7">Berikan judul untuk kumpulan soal ini
+                                            (contoh: "Ulangan Harian Matematika Kelas 10")</div>
+                                    </div>
 
-                                <div id="questions-container">
-                                    @foreach ($questions as $index => $question)
-                                    <div class="card mb-5 p-4 question-item" data-index="{{ $index }}">
-                                        <div class="mb-3">
-                                            <label class="required fs-6 fw-semibold mb-1">Question {{ $index + 1 }}</label>
-                                            <input type="text"
-                                                name="questions[{{ $index }}][question]"
-                                                class="form-control form-control-solid"
-                                                value="{{ $question['question'] ?? '' }}" required>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label class="required fs-6 fw-semibold mb-1">Options</label>
-                                            <div class="options-container">
-                                                @foreach ($question['options'] as $optIndex => $option)
-                                                    <div class="input-group mb-2 option-item">
-                                                        <input type="text"
-                                                            name="questions[{{ $index }}][options][{{ $optIndex }}]"
-                                                            class="form-control form-control-solid"
-                                                            value="{{ $option }}" required>
-                                                        <button type="button" class="btn btn-danger btn-sm btn-remove-option" title="Remove option">&times;</button>
-                                                    </div>
-                                                @endforeach
+                                    <div id="questions-container">
+                                        <div class="question-card card mb-7" data-question-id="1">
+                                            <div class="card-header">
+                                                <div class="card-title">
+                                                    <h3>Soal 1</h3>
+                                                </div>
+                                                <div class="card-toolbar">
+                                                    <button type="button"
+                                                        class="btn btn-sm btn-icon btn-danger remove-question"
+                                                        data-bs-toggle="tooltip" title="Hapus Soal">
+                                                        <i class="ki-outline ki-trash fs-2"></i>
+                                                    </button>
+                                                </div>
                                             </div>
-                                            <button type="button" class="btn btn-secondary btn-sm btn-add-option">Add Option</button>
-                                        </div>
+                                            <div class="card-body">
 
-                                        <div class="mb-3">
-                                            <label class="required fs-6 fw-semibold mb-1">Answer</label>
-                                            <input type="text"
-                                                name="questions[{{ $index }}][answer]"
-                                                class="form-control form-control-solid"
-                                                value="{{ $question['answer'] ?? '' }}" required>
-                                        </div>
+                                                <div class="mb-5 fv-row">
+                                                    <label class="required form-label">Question</label>
 
-                                        <button type="button" class="btn btn-danger btn-sm btn-remove-question">Remove Question</button>
+                                                    <textarea class="form-control" name="question" rows="3" placeholder="Tulis pertanyaan di sini"></textarea>
+                                                </div>
+
+                                                <div class="mb-5 fv-row">
+                                                    <label class="form-label">Image</label>
+
+                                                    <input type="file" class="form-control" name="image"
+                                                        accept="image/*" />
+                                                </div>
+
+                                                <label class="form-label mb-4">Answer Option</label>
+
+                                                <div class="options-container">
+                                                    <div class="option-item mb-3">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="form-check form-check-custom form-check-solid me-5">
+                                                                <input class="form-check-input correct-answer-radio"
+                                                                    type="radio" name="option" value="1" checked />
+                                                            </div>
+                                                            <input type="text" class="form-control" name="option"
+                                                                placeholder="Option A" />
+                                                            <span class="badge badge-success ms-2 correct-answer-badge"
+                                                                style="display: none;">Jawaban Benar</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="option-item mb-3">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="form-check form-check-custom form-check-solid me-5">
+                                                                <input class="form-check-input correct-answer-radio"
+                                                                    type="radio" name="option" value="2" />
+                                                            </div>
+                                                            <input type="text" class="form-control" name="option"
+                                                                placeholder="Option B" />
+                                                            <span class="badge badge-success ms-2 correct-answer-badge"
+                                                                style="display: none;">Jawaban Benar</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="option-item mb-3">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="form-check form-check-custom form-check-solid me-5">
+                                                                <input class="form-check-input correct-answer-radio"
+                                                                    type="radio" name="option" value="3" />
+                                                            </div>
+                                                            <input type="text" class="form-control" name="option"
+                                                                placeholder="Option C" />
+                                                            <span class="badge badge-success ms-2 correct-answer-badge"
+                                                                style="display: none;">Jawaban Benar</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="option-item mb-3">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="form-check form-check-custom form-check-solid me-5">
+                                                                <input class="form-check-input correct-answer-radio"
+                                                                    type="radio" name="option" value="4" />
+                                                            </div>
+                                                            <input type="text" class="form-control" name="option"
+                                                                placeholder="Option D" />
+                                                            <span class="badge badge-success ms-2 correct-answer-badge"
+                                                                style="display: none;">Jawaban Benar</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <button type="button"
+                                                    class="btn btn-sm btn-light-primary add-option mt-2">
+                                                    <i class="ki-outline ki-plus fs-3"></i> Tambah Pilihan
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
-                                    @endforeach
-                                </div>
 
-                                <button type="button" class="btn btn-primary mb-5" id="btn-add-question">Add New Question</button>
-
-                                <div class="d-flex justify-content-end">
-                                    <button type="submit" class="btn btn-primary">
-                                        <span class="indicator-label">Save Changes</span>
+                                    <button type="button" id="add-question" class="btn btn-primary">
+                                        <i class="ki-outline ki-plus fs-2"></i> Tambah Soal
                                     </button>
                                 </div>
                             </div>
-                        </form>
-                    </div>
 
+                            <div class="d-flex justify-content-end">
+                                <a href="products.html" id="kt_ecommerce_add_product_cancel" class="btn btn-light me-5">
+                                    Batal
+                                </a>
+
+                                <button type="submit" id="kt_ecommerce_add_category_submit" class="btn btn-primary">
+                                    <span class="indicator-label">
+                                        Simpan Soal
+                                    </span>
+                                    <span class="indicator-progress">
+                                        Harap tunggu... <span
+                                            class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
 
             @include('template.admin-footer')
+
         </div>
     </div>
-</div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        let questionsContainer = document.getElementById('questions-container');
-        let addQuestionBtn = document.getElementById('btn-add-question');
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+                    let questionCounter = 1;
 
-        function createOptionInput(questionIndex, optionIndex, value = '') {
-            const div = document.createElement('div');
-            div.classList.add('input-group', 'mb-2', 'option-item');
+                    document.getElementById('add-question').addEventListener('click', function() {
+                        questionCounter++;
+                        const questionTemplate = document.querySelector('.question-card').cloneNode(true);
+                        questionTemplate.dataset.questionId = questionCounter;
 
-            const input = document.createElement('input');
-            input.type = 'text';
-            input.name = `questions[${questionIndex}][options][${optionIndex}]`;
-            input.className = 'form-control form-control-solid';
-            input.value = value;
-            input.required = true;
+                        const questionTitle = questionTemplate.querySelector('h3');
+                        questionTitle.textContent = `Soal #${questionCounter}`;
 
-            const btnRemove = document.createElement('button');
-            btnRemove.type = 'button';
-            btnRemove.className = 'btn btn-danger btn-sm btn-remove-option';
-            btnRemove.title = 'Remove option';
-            btnRemove.innerHTML = '&times;';
-            btnRemove.addEventListener('click', () => div.remove());
+                        const textarea = questionTemplate.querySelector('textarea');
+                        textarea.name = `questions[${questionCounter}][text]`;
+                        textarea.value = '';
 
-            div.appendChild(input);
-            div.appendChild(btnRemove);
+                        const fileInput = questionTemplate.querySelector('input[type="file"]');
+                        fileInput.name = `questions[${questionCounter}][image]`;
+                        fileInput.value = '';
 
-            return div;
+                        const radioButtons = questionTemplate.querySelectorAll('input[type="radio"]');
+                        const optionInputs = questionTemplate.querySelectorAll(
+                            '.option-item input[type="text"]');
+
+                        radioButtons.forEach((radio, index) => {
+                            radio.name = `questions[${questionCounter}][correct_answer]`;
+                            radio.checked = index ===
+                                0;
+                        });
+
+                        optionInputs.forEach((input, index) => {
+                            input.name = `questions[${questionCounter}][options][${index + 1}]`;
+                            input.value = '';
+                            input.placeholder = `Pilihan ${String.fromCharCode(65 + index)}`;
+                        });
+
+                        document.getElementById('questions-container').appendChild(questionTemplate);
+
+                        const tooltipTriggerList = [].slice.call(questionTemplate.querySelectorAll(
+                            '[data-bs-toggle="tooltip"]'));
+                        tooltipTriggerList.map(function(tooltipTriggerEl) {
+                            return new bootstrap.Tooltip(tooltipTriggerEl);
+                        });
+                    });
+
+                    document.addEventListener('click', function(e) {
+                            if (e.target.classList.contains('remove-question') {
+                                    const questionCard = e.target.closest('.question-card');
+                                    if (document.querySelectorAll('.question-card').length > 1) {
+                                        questionCard.remove();
+
+                                        const allQuestions = document.querySelectorAll('.question-card');
+                                        allQuestions.forEach((card, index) => {
+                                            const questionId = index + 1;
+                                            card.dataset.questionId = questionId;
+                                            card.querySelector('h3').textContent = `Soal #${questionId}`;
+
+                                            card.querySelector('textarea').name =
+                                                `questions[${questionId}][text]`;
+                                            card.querySelector('input[type="file"]').name =
+                                                `questions[${questionId}][image]`;
+
+                                            const radioButtons = card.querySelectorAll(
+                                                'input[type="radio"]');
+                                            radioButtons.forEach(radio => {
+                                                radio.name =
+                                                    `questions[${questionId}][correct_answer]`;
+                                            });
+
+                                            const optionInputs = card.querySelectorAll(
+                                                '.option-item input[type="text"]');
+                                            optionInputs.forEach((input, optIndex) => {
+                                                input.name =
+                                                    `questions[${questionId}][options][${optIndex + 1}]`;
+                                                input.placeholder =
+                                                    `Pilihan ${String.fromCharCode(65 + optIndex)}`;
+                                            });
+                                        });
+
+                                        questionCounter = allQuestions.length;
+                                    } else {
+                                        Swal.fire({
+                                            text: "Setidaknya harus ada satu soal",
+                                            icon: "warning",
+                                            buttonsStyling: false,
+                                            confirmButtonText: "Mengerti",
+                                            customClass: {
+                                                confirmButton: "btn btn-primary"
+                                            }
+                                        });
+                                    }
+                                }
+
+                                if (e.target.classList.contains('add-option')) {
+                                    const optionsContainer = e.target.closest('.card-body').querySelector(
+                                        '.options-container');
+                                    const questionId = e.target.closest('.question-card').dataset.questionId;
+                                    const optionCount = optionsContainer.querySelectorAll('.option-item').length;
+
+                                    if (optionCount >= 10) {
+                                        Swal.fire({
+                                            text: "Maksimal 10 pilihan untuk setiap soal",
+                                            icon: "warning",
+                                            buttonsStyling: false,
+                                            confirmButtonText: "Mengerti",
+                                            customClass: {
+                                                confirmButton: "btn btn-primary"
+                                            }
+                                        });
+                                        return;
+                                    }
+
+                                    const optionLetter = String.fromCharCode(65 + optionCount);
+                                    const optionNumber = optionCount + 1;
+
+                                    const optionHtml = `
+                                                        <div class="option-item mb-3">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="form-check form-check-custom form-check-solid me-5">
+                                                                    <input class="form-check-input" type="radio" name="questions[${questionId}][correct_answer]" value="${optionNumber}" />
+                                                                </div>
+                                                                <input type="text" class="form-control" name="questions[${questionId}][options][${optionNumber}]" placeholder="Pilihan ${optionLetter}" />
+                                                            </div>
+                                                        </div>
+                                                    `;
+
+                                    optionsContainer.insertAdjacentHTML('beforeend', optionHtml);
+                                }
+                            });
+                    });
+    </script>
+
+    <script>
+        function updateCorrectAnswerBadges(questionId) {
+            const questionContainer = document.querySelector(`.question-card[data-question-id="${questionId}"]`);
+            const correctAnswerRadio = questionContainer.querySelector('input[type="radio"]:checked');
+
+            questionContainer.querySelectorAll('.correct-answer-badge').forEach(badge => {
+                badge.style.display = 'none';
+            });
+
+            if (correctAnswerRadio) {
+                const selectedBadge = correctAnswerRadio.closest('.option-item').querySelector('.correct-answer-badge');
+                selectedBadge.style.display = 'inline-block';
+            }
         }
 
-        function createQuestionItem(index) {
-            const card = document.createElement('div');
-            card.className = 'card mb-5 p-4 question-item';
-            card.dataset.index = index;
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCorrectAnswerBadges(1);
 
-            card.innerHTML = `
-                <div class="mb-3">
-                    <label class="required fs-6 fw-semibold mb-1">Question ${index + 1}</label>
-                    <input type="text" name="questions[${index}][question]" class="form-control form-control-solid" required>
-                </div>
-                <div class="mb-3">
-                    <label class="required fs-6 fw-semibold mb-1">Options</label>
-                    <div class="options-container"></div>
-                    <button type="button" class="btn btn-secondary btn-sm btn-add-option">Add Option</button>
-                </div>
-                <div class="mb-3">
-                    <label class="required fs-6 fw-semibold mb-1">Answer</label>
-                    <input type="text" name="questions[${index}][answer]" class="form-control form-control-solid" required>
-                </div>
-                <button type="button" class="btn btn-danger btn-sm btn-remove-question">Remove Question</button>
-            `;
-
-            // Add initial 2 option inputs
-            const optionsContainer = card.querySelector('.options-container');
-            optionsContainer.appendChild(createOptionInput(index, 0));
-            optionsContainer.appendChild(createOptionInput(index, 1));
-
-            // Event add option
-            card.querySelector('.btn-add-option').addEventListener('click', () => {
-                const currentOptions = optionsContainer.querySelectorAll('input').length;
-                if(currentOptions < 6) {
-                    optionsContainer.appendChild(createOptionInput(index, currentOptions));
-                } else {
-                    alert('Maximum 6 options allowed');
-                }
-            });
-
-            // Remove question
-            card.querySelector('.btn-remove-question').addEventListener('click', () => {
-                card.remove();
-                updateQuestionLabels();
-            });
-
-            // Remove option buttons
-            optionsContainer.addEventListener('click', e => {
-                if (e.target.classList.contains('btn-remove-option')) {
-                    e.target.closest('.option-item').remove();
-                }
-            });
-
-            return card;
-        }
-
-        function updateQuestionLabels() {
-            const questionItems = questionsContainer.querySelectorAll('.question-item');
-            questionItems.forEach((item, i) => {
-                item.dataset.index = i;
-                item.querySelector('label').textContent = `Question ${i + 1}`;
-                item.querySelector('input[name^="questions"][name$="[question]"]').name = `questions[${i}][question]`;
-                item.querySelector('input[name^="questions"][name$="[answer]"]').name = `questions[${i}][answer]`;
-
-                // Update options names
-                const options = item.querySelectorAll('.options-container input');
-                options.forEach((opt, j) => {
-                    opt.name = `questions[${i}][options][${j}]`;
+            document.querySelectorAll('.correct-answer-radio').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const questionId = this.closest('.question-card').dataset.questionId;
+                    updateCorrectAnswerBadges(questionId);
                 });
             });
-        }
+        });
 
-        addQuestionBtn.addEventListener('click', () => {
-            const newIndex = questionsContainer.querySelectorAll('.question-item').length;
-            if(newIndex < 5) {
-                const newQuestion = createQuestionItem(newIndex);
-                questionsContainer.appendChild(newQuestion);
-            } else {
-                alert('Maximum 5 questions allowed');
+        document.addEventListener('click', function(e) {
+            if (e.target && e.target.classList.contains('correct-answer-radio')) {
+                const questionId = e.target.closest('.question-card').dataset.questionId;
+                updateCorrectAnswerBadges(questionId);
             }
         });
+    </script>
 
-        // Attach event listeners to existing option remove buttons
-        questionsContainer.querySelectorAll('.btn-remove-option').forEach(btn => {
-            btn.addEventListener('click', e => {
-                e.target.closest('.option-item').remove();
-            });
-        });
-
-        // Attach event listeners to add option buttons and remove question buttons on existing questions
-        questionsContainer.querySelectorAll('.question-item').forEach(card => {
-            const optionsContainer = card.querySelector('.options-container');
-
-            card.querySelector('.btn-add-option').addEventListener('click', () => {
-                const currentOptions = optionsContainer.querySelectorAll('input').length;
-                if(currentOptions < 6) {
-                    const questionIndex = parseInt(card.dataset.index);
-                    optionsContainer.appendChild(createOptionInput(questionIndex, currentOptions));
-                } else {
-                    alert('Maximum 6 options allowed');
-                }
-            });
-
-            card.querySelector('.btn-remove-question').addEventListener('click', () => {
-                card.remove();
-                updateQuestionLabels();
-            });
-        });
-    });
-</script>
 @endsection
