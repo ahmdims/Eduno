@@ -387,8 +387,8 @@
                                         <!--begin::Card body-->
                                         <div class="card-body pt-0">
                                             <!--begin::Question-->
-                                            <div class="mb-10">
-                                                <div class=" mb-5">
+                                            <div class="mb-5">
+                                                <div class="mb-5 text-center">
                                                     <img src="../assets/media/stock/food/img-9.jpg"
                                                         alt="Operating System Illustration" class="img-fluid rounded-3"
                                                         style="max-height: 200px;">
@@ -397,118 +397,136 @@
                                                 <h3 class="fw-bold mb-10">Apa fungsi dari sistem operasi pada komputer?
                                                 </h3>
 
-                                                <!--begin::Options-->
+                                                <!-- Answer textarea -->
                                                 <div class="mb-5">
+                                                    <div class="form-floating">
+                                                        <textarea class="form-control"
+                                                            placeholder="Tulis jawaban Anda disini" id="answerTextarea"
+                                                            style="height: 120px"></textarea>
+                                                        <label for="answerTextarea">Jawaban</label>
+                                                    </div>
                                                 </div>
-                                                <div class="form-floating">
-                                                    <textarea class="form-control" placeholder="Leave a comment here"
-                                                        id="floatingTextarea2" style="height: 100px"></textarea>
-                                                    <label for="floatingTextarea2">Answer</label>
+
+                                                <!-- Character counter -->
+                                                <div class="text-muted fs-7 text-end mb-5">
+                                                    <span id="charCount">0</span>/500 karakter
+                                                </div>
+
+                                                <!-- Navigation buttons -->
+                                                <div
+                                                    class="d-flex justify-content-between align-items-center flex-wrap pt-5">
+                                                    <!-- Tombol Soal Sebelumnya -->
+                                                    <button type="button"
+                                                        class="btn btn-md btn-light-primary mb-3 mb-md-0">
+                                                        <i class="ki-duotone ki-left fs-3 me-2"></i>Previous
+                                                    </button>
+
+                                                    <!-- Pagination di tengah -->
+                                                    <div
+                                                        class="d-flex flex-wrap justify-content-center gap-2 mb-3 mb-md-0">
+                                                        <a href="#"
+                                                            class="btn btn-icon btn-active-primary btn-custom w-40px h-40px">1</a>
+                                                        <a href="#" class="btn btn-icon btn-light w-40px h-40px">2</a>
+                                                        <a href="#" class="btn btn-icon btn-light w-40px h-40px">3</a>
+                                                        <a href="#" class="btn btn-icon btn-light w-40px h-40px">4</a>
+                                                        <a href="#" class="btn btn-icon btn-light w-40px h-40px">5</a>
+                                                        <a href="#" class="btn btn-icon btn-light w-40px h-40px">6</a>
+                                                        <a href="#" class="btn btn-icon btn-light w-40px h-40px">7</a>
+                                                        <a href="#" class="btn btn-icon btn-light w-40px h-40px">8</a>
+                                                        <a href="#" class="btn btn-icon btn-light w-40px h-40px">9</a>
+                                                        <a href="#" class="btn btn-icon btn-light w-40px h-40px">10</a>
+                                                    </div>
+
+                                                    <!-- Tombol Soal Berikutnya -->
+                                                    <button type="button"
+                                                        class="btn btn-md btn-light-primary mb-3 mb-md-0">
+                                                        Next<i class="ki-duotone ki-right fs-3 ms-2"></i>
+                                                    </button>
                                                 </div>
 
                                             </div>
-
-                                            <!-- Character counter -->
-                                            <div class="text-muted fs-7 text-end">
-                                                <span id="charCount">0</span>/500 characters
-                                            </div>
-                                            <!--end::Options-->
+                                            <!--end::Question-->
                                         </div>
-                                        <!--end::Question-->
+                                        <!--end::Card body-->
 
-                                        <!--begin::Fill in the blank question (hidden by default, shown when navigating to this type)-->
-                                        <div class="mb-10 d-none">
-                                            <h3 class="fw-bold mb-5">Soal 7</h3>
-                                            <div class="text-gray-700 fs-5 fw-semibold mb-5">
-                                                Hasil dari 3² + 4² adalah <input type="text"
-                                                    class="form-control form-control-solid w-100px d-inline-block mx-2"
-                                                    placeholder="...">.
-                                            </div>
-                                        </div>
-                                        <!--end::Fill in the blank question-->
-                                    </div>
-                                    <!--end::Card body-->
-
-                                    <!--begin::Card footer-->
-                                    <div class="card-footer py-4">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="d-flex align-items-center">
-                                                <button type="button" class="btn btn-icon btn-light me-2">
-                                                    <i class="ki-duotone ki-left fs-2">
-                                                        <span class="path1"></span>
-                                                        <span class="path2"></span>
-                                                    </i>
+                                        <!--begin::Card footer-->
+                                        <div class="card-footer py-4">
+                                            <div class="d-flex justify-content-end align-items-center">
+                                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#kt_modal_submit_quiz">
+                                                    Submit
                                                 </button>
-
-                                                <div class="d-flex">
-                                                    <a href="#"
-                                                        class="btn btn-icon btn-custom btn-active-light-primary btn-active-primary mx-1 w-40px h-40px">1</a>
-                                                    <a href="#" class="btn btn-icon btn-light mx-1 w-40px h-40px">2</a>
-                                                    <a href="#" class="btn btn-icon btn-light mx-1 w-40px h-40px">3</a>
-                                                </div>
-
-                                                <button type="button" class="btn btn-icon btn-light ms-2">
-                                                    <i class="ki-duotone ki-right fs-2">
-                                                        <span class="path1"></span>
-                                                        <span class="path2"></span>
-                                                    </i>
-                                                </button>
                                             </div>
-
-                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#kt_modal_submit_quiz">
-                                                Submit
-                                            </button>
                                         </div>
+                                        <!--end::Card footer-->
                                     </div>
-                                    <!--end::Card footer-->
+                                    <!--end::Card-->
                                 </div>
-                                <!--end::Card-->
+                                <!--end::Content container-->
                             </div>
-                            <!--end::Content container-->
-                        </div>
-                        <!--end::Content-->
+                            <!--end::Content-->
 
-                        <!--begin::Modal - Submit Quiz-->
-                        <div class="modal fade" id="kt_modal_submit_quiz" tabindex="-1" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered mw-650px">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h2 class="fw-bold">Quiz Submitted</h2>
-                                        <div class="btn btn-icon btn-sm btn-active-icon-primary"
-                                            data-bs-dismiss="modal">
-                                            <i class="ki-outline ki-cross fs-1"></i>
+                            <!--begin::Modal - Submit Quiz-->
+                            <div class="modal fade" id="kt_modal_submit_quiz" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered mw-650px">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h2 class="fw-bold">Quiz Submitted</h2>
+                                            <div class="btn btn-icon btn-sm btn-active-icon-primary"
+                                                data-bs-dismiss="modal">
+                                                <i class="ki-outline ki-cross fs-1"></i>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
-                                        <div class="text-center">
-                                            <!--begin::Message-->
-                                            <h3 class="fw-bold mb-2">Thank You for Completing the Quiz!</h3>
-                                            <div class="text-muted mb-7">
-                                                Your answers have been successfully submitted.
-                                            </div>
-                                            <!--end::Message-->
-
-                                            <!--begin::Important Note-->
-                                            <div
-                                                class="alert alert-dismissible bg-light-warning border border-warning border-dashed d-flex flex-column flex-sm-row p-5 mb-10">
-                                                <div class="d-flex flex-column pe-0 pe-sm-10">
-                                                    <h4 class="fw-bold text-warning">Important Note</h4>
-                                                    <span class="text-gray-700">
-                                                        This quiz can only be completed once. You cannot retake or
-                                                        modify your answers after submission.
-                                                    </span>
+                                        <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                                            <div class="text-center">
+                                                <!--begin::Message-->
+                                                <h3 class="fw-bold mb-2">Thank You for Completing the Quiz!</h3>
+                                                <div class="text-muted mb-7">
+                                                    Your answers have been successfully submitted.
                                                 </div>
+                                                <!--end::Message-->
+
+                                                <!--begin::Important Note-->
+                                                <div
+                                                    class="alert alert-dismissible bg-light-warning border border-warning border-dashed d-flex flex-column flex-sm-row p-5 mb-10">
+                                                    <div class="d-flex flex-column pe-0 pe-sm-10">
+                                                        <h4 class="fw-bold text-warning">Important Note</h4>
+                                                        <span class="text-gray-700">
+                                                            This quiz can only be completed once. You cannot retake or
+                                                            modify your answers after submission.
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <!--end::Important Note-->
                                             </div>
-                                            <!--end::Important Note-->
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <!--end::Modal - Submit Quiz-->
                         </div>
-                        <!--end::Modal - Submit Quiz-->
+                        <!--end::Content wrapper-->
+
+                        <!--begin::Footer-->
+                        <div id="kt_app_footer"
+                            class="app-footer d-flex flex-column flex-md-row align-items-center flex-center flex-md-stack py-2 py-lg-4">
+                            <!--begin::Copyright-->
+                            <div class="text-gray-900 order-2 order-md-1">
+                                <span class="text-muted fw-semibold me-1">2025&copy;</span>
+                                <a href="mailto:digitaldream@gmail.com" target="_blank"
+                                    class="text-gray-800 text-hover-primary">DigitalDream</a>
+                            </div>
+                            <!--end::Copyright-->
+
+                            <!--begin::Menu-->
+                            <ul class="menu menu-gray-600 menu-hover-primary fw-semibold order-1">
+                                <li class="menu-item"><a href="" target="_blank" class="menu-link px-2">About</a></li>
+                            </ul>
+                            <!--end::Menu-->
+                        </div>
+                        <!--end::Footer-->
                     </div>
-                    <!--end::Content wrapper-->
+                    <!--end:::Main-->
 
                     <!--begin::Footer-->
                     <div id="kt_app_footer"
