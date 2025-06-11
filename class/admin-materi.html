@@ -395,8 +395,8 @@
                 </div>
                 <!--end::Toolbar-->
 
-            <!--begin::Wrapper container-->
-            <div class="app-container  container-xxl ">
+                <!--begin::Wrapper container-->
+                <div class="app-container  container-xxl ">
                     <!--begin::Main-->
                     <div class="app-main flex-column flex-row-fluid " id="kt_app_main">
                         <!--begin::Content wrapper-->
@@ -551,16 +551,16 @@
                                                     <!--begin::Label-->
                                                     <label class="required form-label">Judul Materi</label>
                                                     <!--end::Label-->
-
                                                     <!--begin::Input-->
                                                     <input type="text" name="category_name" class="form-control mb-2"
                                                         placeholder="Judul materi" value="" />
                                                     <!--end::Input-->
                                                     <!--begin::Description-->
-                                                    <div class="text-muted fs-7">Tulis judul dari materi yang akan diupload</div>
+                                                    <div class="text-muted fs-7">Tulis judul dari materi yang akan
+                                                        diupload</div>
                                                     <!--end::Description-->
 
-                                                   
+
                                                 </div>
                                                 <!--end::Input group-->
 
@@ -569,34 +569,50 @@
                                                     <!--begin::Label-->
                                                     <label class="required form-label">Link Materi</label>
                                                     <!--end::Label-->
-
                                                     <!--begin::Input-->
                                                     <input type="text" name="category_name" class="form-control mb-2"
                                                         placeholder="Link materi" value="" />
                                                     <!--end::Input-->
                                                     <!--begin::Description-->
-                                                    <div class="text-muted fs-7">Ketik link tautan dari materi yang akan diupload</div>
+                                                    <div class="text-muted fs-7">Ketik link tautan dari materi yang akan
+                                                        diupload</div>
                                                     <!--end::Description-->
-
-                                                   
                                                 </div>
                                                 <!--end::Input group-->
 
                                                 <!--begin::Input group-->
-                                                <div>
+                                                <div class="mb-10 fv-row">
                                                     <!--begin::Label-->
                                                     <label class="form-label">Detail Materi</label>
                                                     <!--end::Label-->
-
-                                                    <!--begin::Editor-->
-                                                    <div id="kt_ecommerce_add_category_description"
-                                                        name="kt_ecommerce_add_category_description"
-                                                        class="min-h-200px mb-2"></div>
-                                                    <!--end::Editor-->
-
+                                                    <textarea class="form-control mb-2"
+                                                        placeholder="Tulis detail materi disini"
+                                                        data-kt-autosize="true"></textarea>
                                                     <!--begin::Description-->
-                                                    <div class="text-muted fs-7">Tulis detail dari materi yang akan diupload</div>
+                                                    <div class="text-muted fs-7">Tulis detail dari materi yang akan
+                                                        diupload</div>
                                                     <!--end::Description-->
+                                                </div>
+                                                <!--end::Input group-->
+
+                                                <!--begin::Input group-->
+                                                <div class="mb-10 fv-row">
+                                                    <label class="form-label">File Materi</label>
+                                                    <form class="form" action="#" method="post">
+                                                    <div class="fv-row">
+                                                        <div class="dropzone" id="kt_dropzonejs_example_1">
+                                                            <div class="dz-message needsclick">
+                                                                <i class="ki-duotone ki-file-up fs-3x text-primary"><span class="path1"></span><span class="path2"></span></i>
+
+                                                                <div class="ms-4">
+                                                                    <h3 class="fs-5 fw-bold text-gray-900 mb-1">Drop files here or click to upload.</h3>
+                                                                    <span class="fs-7 fw-semibold text-gray-500">Upload up to 10 files</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    </form>
+                                                    <div class="text-muted mt-2 fs-7">Upload file materi yang dibutuhkan</div>
                                                 </div>
                                                 <!--end::Input group-->
                                             </div>
@@ -648,7 +664,7 @@
                             <!--begin::Menu-->
                             <ul class="menu menu-gray-600 menu-hover-primary fw-semibold order-1">
                                 <li class="menu-item"><a href="https://keenthemes.com/" target="_blank"
-                                class="menu-link px-2">About</a></li>
+                                        class="menu-link px-2">About</a></li>
                             </ul>
                             <!--end::Menu-->
                         </div>
@@ -657,8 +673,8 @@
                     <!--end:::Main-->
 
 
-            </div>
-            <!--end::Wrapper container-->
+                </div>
+                <!--end::Wrapper container-->
             </div>
             <!--end::Wrapper-->
         </div>
@@ -666,7 +682,7 @@
     </div>
     <!--end::App-->
 
-    
+
     <div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
         <i class="ki-outline ki-arrow-up"></i>
     </div>
@@ -676,6 +692,22 @@
     <script>
         var hostUrl = "../assets/index.html";
     </script>
+
+    <script>
+        var myDropzone = new Dropzone("#kt_dropzonejs_example_1", {
+    url: "https://keenthemes.com/scripts/void.php", // Set the url for your upload script location
+    paramName: "file", // The name that will be used to transfer the file
+    maxFiles: 10,
+    maxFilesize: 10, // MB
+    addRemoveLinks: true,
+    accept: function(file, done) {
+        if (file.name == "wow.jpg") {
+            done("Naha, you don't.");
+        } else {
+            done();
+        }
+    }
+});</script
 
     <!--begin::Global Javascript Bundle(mandatory for all pages)-->
     <script src="../assets/plugins/global/plugins.bundle.js"></script>
@@ -707,6 +739,8 @@
     <script src="../assets/js/custom/utilities/modals/create-app.js"></script>
     <script src="../assets/js/custom/utilities/modals/users-search.js"></script>
     <!--end::Custom Javascript-->
+
+    
     <!--end::Javascript-->
 </body>
 <!--end::Body-->
