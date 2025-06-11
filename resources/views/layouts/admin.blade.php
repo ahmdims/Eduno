@@ -6,17 +6,17 @@
     <meta charset="utf-8" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="admin/media/logos/default.svg" />
+    <link rel="icon" href="assets/media/logos/default.svg" />
 
-    <link rel="shortcut icon" href="{{ asset('admin/media/logos/default.svg') }}" />
+    <link rel="shortcut icon" href="{{ asset('assets/media/logos/default.svg') }}" />
 
-    <link href="{{ asset('admin/plugins/custom/fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet"
+    <link href="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet"
         type="text/css" />
-    <link href="{{ asset('admin/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet"
+    <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet"
         type="text/css" />
 
-    <link href="{{ asset('admin/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('admin/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
 </head>
 
 @include('template.flasher')
@@ -64,8 +64,8 @@
                     <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0 me-lg-18">
                         <a href="index.html">
                             <img alt="Logo"
-                                src="{{ asset('admin/media/logos/demo34-small.svg" class="h-25px d-sm-none') }}" />
-                            <img alt="Logo" src="{{ asset('admin/media/logos/demo34.png') }}"
+                                src="{{ asset('assets/media/logos/demo34-small.svg" class="h-25px d-sm-none') }}" />
+                            <img alt="Logo" src="{{ asset('assets/media/logos/demo34.png') }}"
                                 class="h-25px d-none d-sm-block" />
                         </a>
                     </div>
@@ -163,7 +163,7 @@
                                     data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
                                     data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
                                     <img class="symbol symbol-circle symbol-35px symbol-md-40px"
-                                        src="admin/media/avatars/300-13.jpg" alt="user" />
+                                        src="assets/media/avatars/300-13.jpg" alt="user" />
                                 </div>
 
                                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px"
@@ -172,7 +172,7 @@
                                         <div class="menu-content d-flex align-items-center px-3">
                                             <div class="symbol symbol-50px me-5">
                                                 <img alt="Logo"
-                                                    src="{{ asset('admin/media/avatars/300-13.jpg') }}" />
+                                                    src="{{ asset('assets/media/avatars/300-13.jpg') }}" />
                                             </div>
 
                                             <div class="d-flex flex-column">
@@ -251,8 +251,11 @@
                                     </div>
 
                                     <div class="menu-item px-5">
-                                        <a href="authentication/layouts/corporate/sign-in.html"
-                                            class="menu-link px-5">
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                            @csrf
+                                        </form>
+                                        <a href="#" class="menu-link px-5"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             Sign Out
                                         </a>
                                     </div>
@@ -308,25 +311,25 @@
         </div>
 
         <script>
-            var hostUrl = "admin/index.html";
+            var hostUrl = "assets/index.html";
         </script>
 
-        <script src="{{ asset('admin/plugins/global/plugins.bundle.js') }}"></script>
-        <script src="{{ asset('admin/js/scripts.bundle.js') }}"></script>
+        <script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
+        <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
 
-        <script src="{{ asset('admin/plugins/custom/fullcalendar/fullcalendar.bundle.js') }}"></script>
-        <script src="{{ asset('admin/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+        <script src="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.js') }}"></script>
+        <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
 
-        <script src="{{ asset('admin/js/widgets.bundle.js') }}"></script>
-        <script src="{{ asset('admin/js/custom/widgets.js') }}"></script>
-        <script src="{{ asset('admin/js/custom/apps/chat/chat.js') }}"></script>
-        <script src="{{ asset('admin/js/custom/utilities/modals/upgrade-plan.js') }}"></script>
-        <script src="{{ asset('admin/js/custom/utilities/modals/new-target.js') }}"></script>
-        <script src="{{ asset('admin/js/custom/utilities/modals/create-app.js') }}"></script>
-        <script src="{{ asset('admin/js/custom/utilities/modals/users-search.js') }}"></script>
+        <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
+        <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
+        <script src="{{ asset('assets/js/custom/apps/chat/chat.js') }}"></script>
+        <script src="{{ asset('assets/js/custom/utilities/modals/upgrade-plan.js') }}"></script>
+        <script src="{{ asset('assets/js/custom/utilities/modals/new-target.js') }}"></script>
+        <script src="{{ asset('assets/js/custom/utilities/modals/create-app.js') }}"></script>
+        <script src="{{ asset('assets/js/custom/utilities/modals/users-search.js') }}"></script>
 
-        <script src="{{ asset('admin/js/custom/apps/admin/course/course.js') }}"></script>
-        <script src="{{ asset('admin/js/custom/apps/admin/course/edit-course.js') }}"></script>
+        <script src="{{ asset('assets/js/custom/apps/assets/course/course.js') }}"></script>
+        <script src="{{ asset('assets/js/custom/apps/assets/course/edit-course.js') }}"></script>
 </body>
 
 </html>

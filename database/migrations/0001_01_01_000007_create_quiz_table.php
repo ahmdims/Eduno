@@ -27,7 +27,7 @@ class CreateQuizTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('quiz_id');
             $table->text('question');
-            $table->string('answer');
+            $table->string('answer')->nullable();
             $table->timestamps();
 
             $table->foreign('quiz_id')->references('id')->on('quiz')->onDelete('cascade');

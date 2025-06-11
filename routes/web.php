@@ -29,41 +29,41 @@ use App\Http\Controllers\App\WebsiteAppController;
 |
 */
 
-//Profile
 Route::middleware('auth')->group(function () {
+    //Dashboard
+    Route::get('/profile/{username}', [ProfileAppController::class, 'index'])->name('profile.index');
+
+    //Home
+    Route::get('/', [CourseAppController::class, 'index'])->name('home');
+
+    // Course
+    Route::get('/course', [CourseAppController::class, 'index'])->name('courses.index');
+    Route::middleware('auth')->group(function () {
+        Route::post('/course/{slug}/review', [CourseAppController::class, 'storeReview'])->name('course.storeReview');
+        Route::get('/course/{slug}', [CourseAppController::class, 'show'])->name('course.show');
+        Route::get('/course/{slug}/material/{material}', [CourseAppController::class, 'showMaterial'])->name('materials.show');
+
+        Route::get('/course/{slug}/quiz/{quiz}', [CourseAppController::class, 'showQuiz'])->name('quiz.show');
+        Route::post('/course/{slug}/quiz/submit/{quiz}', [QuizzesAppController::class, 'submitQuiz'])->name('quiz.submit');
+        Route::get('/course/{slug}/quiz/result/{quiz}', [QuizzesAppController::class, 'result'])->name('quiz.result');
+    });
+
+    //Article
+    Route::get('/article', [ArticleAppController::class, 'index'])->name('article.index');
+    Route::get('/article/{slug}', [ArticleAppController::class, 'show'])->name('article.show');
+
+    //Faq
+    Route::get('/faq', [FaqAppController::class, 'index'])->name('app.faq.index');
+
+    //Contact
+    Route::get('/contact', [WebsiteAppController::class, 'index'])->name('app.contact.index');
+    Route::post('/mail', [ContactAppController::class, 'store'])->name('app.mail.store');
+
+    //Profile
     Route::get('/profile/setting', [ProfileAppController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile/update', [ProfileAppController::class, 'update'])->name('profile.update');
     Route::delete('/profile/delete', [ProfileAppController::class, 'destroy'])->name('profile.destroy');
 });
-
-//Dashboard
-Route::get('/profile/{username}', [ProfileAppController::class, 'index'])->name('profile.index');
-
-//Home
-Route::get('/', [HomeAppController::class, 'index'])->name('home');
-
-// Course
-Route::get('/course', [CourseAppController::class, 'index'])->name('courses.index');
-Route::middleware('auth')->group(function () {
-    Route::post('/course/{slug}/review', [CourseAppController::class, 'storeReview'])->name('course.storeReview');
-    Route::get('/course/{slug}', [CourseAppController::class, 'show'])->name('course.show');
-    Route::get('/course/{slug}/material/{material}', [CourseAppController::class, 'showMaterial'])->name('materials.show');
-
-    Route::get('/course/{slug}/quiz/{quiz}', [CourseAppController::class, 'showQuiz'])->name('quiz.show');
-    Route::post('/course/{slug}/quiz/submit/{quiz}', [QuizzesAppController::class, 'submitQuiz'])->name('quiz.submit');
-    Route::get('/course/{slug}/quiz/result/{quiz}', [QuizzesAppController::class, 'result'])->name('quiz.result');
-});
-
-//Article
-Route::get('/article', [ArticleAppController::class, 'index'])->name('article.index');
-Route::get('/article/{slug}', [ArticleAppController::class, 'show'])->name('article.show');
-
-//Faq
-Route::get('/faq', [FaqAppController::class, 'index'])->name('app.faq.index');
-
-//Contact
-Route::get('/contact', [WebsiteAppController::class, 'index'])->name('app.contact.index');
-Route::post('/mail', [ContactAppController::class, 'store'])->name('app.mail.store');
 
 // Admin
 Route::middleware(['auth'])->group(function () {

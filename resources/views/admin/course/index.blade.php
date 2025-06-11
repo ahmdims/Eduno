@@ -107,7 +107,7 @@
 
             </div>
 
-            @include('template.admin-footer')
+            @include('template.footer')
 
         </div>
     </div>

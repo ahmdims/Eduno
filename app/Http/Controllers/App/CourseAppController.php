@@ -66,8 +66,29 @@ class CourseAppController extends Controller
         $userReview = $course->reviews()->where('user_id', auth()->id())->first();
         $relatedCourses = Course::getRelatedCourses($slug, $course->category_id);
 
-        $materials = $course->materials;
-        $quizzes = $course->quizzes;
+        $timeline = collect();
+
+        foreach ($course->materials as $material) {
+            $timeline->push([
+                'type' => 'material',
+                'title' => $material->title,
+                'created_at' => $material->created_at,
+                'id' => $material->id,
+                'slug' => $course->slug,
+            ]);
+        }
+
+        foreach ($course->quizzes as $quiz) {
+            $timeline->push([
+                'type' => 'quiz',
+                'title' => $quiz->title,
+                'created_at' => $quiz->created_at,
+                'id' => $quiz->id,
+                'slug' => $course->slug,
+            ]);
+        }
+
+        $timeline = $timeline->sortBy('created_at');
 
         return view('app.course.show', compact(
             'course',
@@ -75,10 +96,10 @@ class CourseAppController extends Controller
             'userReview',
             'totalReviews',
             'studentCountText',
-            'materials',
-            'quizzes'
+            'timeline'
         ));
     }
+
     public function showMaterial($slug, $materialId)
     {
         $material = Material::whereHas('course', function ($query) use ($slug) {
