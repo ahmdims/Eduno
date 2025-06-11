@@ -14,7 +14,7 @@ class QuizAdminController extends Controller
     public function index()
     {
         $quizzes = Quiz::with('course')->latest()->get();
-        return view('admin.quiz.index', compact('quizzes'));
+        return view('admin.course.edit', compact('quizzes'));
     }
 
     public function create()
@@ -26,14 +26,15 @@ class QuizAdminController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
-            'course_id' => 'required|exists:courses,id',
-            'questions' => 'required|array|min:1|max:5',
-            'questions.*.question' => 'required|string|max:255',
-            'questions.*.options' => 'required|array|min:2|max:6',
-            'questions.*.options.*' => 'required|string|max:255',
-            'questions.*.answer' => 'required|string|max:255',
-        ]);
+        'title' => ['required', 'string', 'max:255'],
+        'course_id' => ['required', 'exists:courses,id'],
+        'questions' => ['required', 'array', 'min:1', 'max:5'],
+        'questions.*.question' => ['required', 'string', 'max:255'],
+        'questions.*.options' => ['required', 'array', 'min:2', 'max:6'],
+        'questions.*.options.*' => ['required', 'string', 'max:255'],
+        'questions.*.answer' => ['required', 'string', 'max:255'],
+    ]);
+
 
         $quiz = new Quiz();
         $quiz->title = $request->title;

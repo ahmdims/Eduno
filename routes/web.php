@@ -82,10 +82,13 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/admin/material/{id}', [MaterialAdminController::class, 'update'])->name('admin.material.update');
     Route::delete('/admin/material/{id}', [MaterialAdminController::class, 'destroy'])->name('admin.material.destroy');
 
-    // Quiz
+    // Quiz Routes
+    Route::get('/admin/quiz', [QuizAdminController::class, 'index'])->name('admin.quiz.index');
     Route::post('/admin/quiz', [QuizAdminController::class, 'store'])->name('admin.quiz.store');
-    Route::get('/admin/quiz/{slug}/edit', [QuizAdminController::class, 'edit'])->name('admin.quiz.edit');
+    Route::get('/admin/quiz/create', [QuizAdminController::class, 'create'])->name('admin.quiz.create');
+    Route::get('/admin/quiz/{id}/edit', [QuizAdminController::class, 'edit'])->name('admin.quiz.edit');
     Route::put('/admin/quiz/{id}', [QuizAdminController::class, 'update'])->name('admin.quiz.update');
+    Route::delete('/admin/quiz/{id}', [QuizAdminController::class, 'destroy'])->name('admin.quiz.destroy');
 
     // Article
     Route::get('/admin/article', [ArticleAdminController::class, 'index'])->name('admin.article.index');

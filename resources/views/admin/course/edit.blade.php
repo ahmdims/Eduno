@@ -331,7 +331,7 @@
                             <h2>{{ $course->title }} Quiz</h2>
                         </div>
                         <div class="card-toolbar">
-                            <a href="#" class="btn btn-primary">
+                            <a href="{{ route('admin.quiz.store') }}" class="btn btn-primary">
                                 <i class="ki-outline ki-plus fs-2"></i> Add Quiz
                             </a>
                         </div>
