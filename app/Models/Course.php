@@ -16,7 +16,7 @@ class Course extends Model
     public $incrementing = false;
     protected $keyType = 'string';
 
-    protected $fillable = ['user_id', 'title', 'slug', 'status', 'description', 'category_id', 'level', 'language', 'thumbnail', 'video'];
+    protected $fillable = ['user_id', 'title', 'slug', 'status', 'description', 'category_id', 'level', 'language', 'thumbnail'];
 
     public function scopePublished($query)
     {

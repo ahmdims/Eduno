@@ -25,7 +25,6 @@ class CreateCoursesTable extends Migration
             $table->string('level');
             $table->string('language');
             $table->string('thumbnail')->nullable();
-            $table->string('video');
 
             $table->tinyInteger('status')->default(0);
 

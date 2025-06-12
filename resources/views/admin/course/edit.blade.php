@@ -170,16 +170,6 @@
                                                 </div>
 
                                                 <div class="mb-10 fv-row">
-                                                    <label class="required form-label">Intro Video (URL)</label>
-                                                    <input type="text" name="video" class="form-control mb-2"
-                                                        placeholder="https://example.com/intro-video"
-                                                        value="{{ old('video', $course->video) }}" />
-                                                    <div class="text-muted fs-7">
-                                                        Add a link to an introduction or preview video for the course.
-                                                    </div>
-                                                </div>
-
-                                                <div class="mb-10 fv-row">
                                                     <label class="required form-label">Course Level</label>
                                                     <select name="level" class="form-select" data-control="select2"
                                                         data-hide-search="true">
@@ -396,7 +386,7 @@
 
             </div>
 
-            @include('template.admin-footer')
+            @include('template.footer')
 
         </div>
     </div>

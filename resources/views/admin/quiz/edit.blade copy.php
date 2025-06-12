@@ -10,7 +10,8 @@
                 <div class="app-container container-xxl">
 
                     <div class="card mb-10">
-                        <div class="card-header border-0 pt-6 pb-4 d-flex flex-wrap justify-content-between align-items-center gap-4">
+                        <div
+                            class="card-header border-0 pt-6 pb-4 d-flex flex-wrap justify-content-between align-items-center gap-4">
                             <div class="card-title">
                                 <h2 class="fw-bold mb-0">Edit Quiz - {{ $quiz->title }}</h2>
                             </div>
@@ -25,8 +26,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-10 fv-row">
                                             <label class="required fs-5 fw-semibold mb-2">Title</label>
-                                            <input type="text" name="title"
-                                                value="{{ old('title', $quiz->title) }}"
+                                            <input type="text" name="title" value="{{ old('title', $quiz->title) }}"
                                                 class="form-control form-control-solid" required />
                                         </div>
 
@@ -36,10 +36,10 @@
                                                 data-control="select2" data-placeholder="Select Course" required>
                                                 <option value="" disabled>Select Course</option>
                                                 @foreach ($courses as $course)
-                                                    <option value="{{ $course->id }}"
-                                                        {{ $quiz->course_id == $course->id ? 'selected' : '' }}>
-                                                        {{ $course->title }}
-                                                    </option>
+                                                <option value="{{ $course->id }}" {{ $quiz->course_id == $course->id ?
+                                                    'selected' : '' }}>
+                                                    {{ $course->title }}
+                                                </option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -48,24 +48,20 @@
                                     <div class="col-md-6">
                                         <div class="mb-10 fv-row">
                                             <label class="fs-5 fw-semibold mb-2">Created At</label>
-                                            <input type="text"
-                                                class="form-control form-control-solid"
-                                                value="{{ $quiz->created_at->format('d F Y H:i') }}"
-                                                disabled />
+                                            <input type="text" class="form-control form-control-solid"
+                                                value="{{ $quiz->created_at->format('d F Y H:i') }}" disabled />
                                         </div>
 
                                         <div class="mb-10 fv-row">
                                             <label class="fs-5 fw-semibold mb-2">Updated At</label>
-                                            <input type="text"
-                                                class="form-control form-control-solid"
-                                                value="{{ $quiz->updated_at->format('d F Y H:i') }}"
-                                                disabled />
+                                            <input type="text" class="form-control form-control-solid"
+                                                value="{{ $quiz->updated_at->format('d F Y H:i') }}" disabled />
                                         </div>
                                     </div>
                                 </div>
 
                                 @php
-                                    $questions = json_decode(old('questions', $quiz->question), true) ?? [];
+                                $questions = json_decode(old('questions', $quiz->question), true) ?? [];
                                 @endphp
 
                                 <h3 class="mt-8 mb-4">Questions</h3>
@@ -74,9 +70,9 @@
                                     @foreach ($questions as $index => $question)
                                     <div class="card mb-5 p-4 question-item" data-index="{{ $index }}">
                                         <div class="mb-3">
-                                            <label class="required fs-6 fw-semibold mb-1">Question {{ $index + 1 }}</label>
-                                            <input type="text"
-                                                name="questions[{{ $index }}][question]"
+                                            <label class="required fs-6 fw-semibold mb-1">Question {{ $index + 1
+                                                }}</label>
+                                            <input type="text" name="questions[{{ $index }}][question]"
                                                 class="form-control form-control-solid"
                                                 value="{{ $question['question'] ?? '' }}" required>
                                         </div>
@@ -85,32 +81,36 @@
                                             <label class="required fs-6 fw-semibold mb-1">Options</label>
                                             <div class="options-container">
                                                 @foreach ($question['options'] as $optIndex => $option)
-                                                    <div class="input-group mb-2 option-item">
-                                                        <input type="text"
-                                                            name="questions[{{ $index }}][options][{{ $optIndex }}]"
-                                                            class="form-control form-control-solid"
-                                                            value="{{ $option }}" required>
-                                                        <button type="button" class="btn btn-danger btn-sm btn-remove-option" title="Remove option">&times;</button>
-                                                    </div>
+                                                <div class="input-group mb-2 option-item">
+                                                    <input type="text"
+                                                        name="questions[{{ $index }}][options][{{ $optIndex }}]"
+                                                        class="form-control form-control-solid" value="{{ $option }}"
+                                                        required>
+                                                    <button type="button"
+                                                        class="btn btn-danger btn-sm btn-remove-option"
+                                                        title="Remove option">&times;</button>
+                                                </div>
                                                 @endforeach
                                             </div>
-                                            <button type="button" class="btn btn-secondary btn-sm btn-add-option">Add Option</button>
+                                            <button type="button" class="btn btn-secondary btn-sm btn-add-option">Add
+                                                Option</button>
                                         </div>
 
                                         <div class="mb-3">
                                             <label class="required fs-6 fw-semibold mb-1">Answer</label>
-                                            <input type="text"
-                                                name="questions[{{ $index }}][answer]"
+                                            <input type="text" name="questions[{{ $index }}][answer]"
                                                 class="form-control form-control-solid"
                                                 value="{{ $question['answer'] ?? '' }}" required>
                                         </div>
 
-                                        <button type="button" class="btn btn-danger btn-sm btn-remove-question">Remove Question</button>
+                                        <button type="button" class="btn btn-danger btn-sm btn-remove-question">Remove
+                                            Question</button>
                                     </div>
                                     @endforeach
                                 </div>
 
-                                <button type="button" class="btn btn-primary mb-5" id="btn-add-question">Add New Question</button>
+                                <button type="button" class="btn btn-primary mb-5" id="btn-add-question">Add New
+                                    Question</button>
 
                                 <div class="d-flex justify-content-end">
                                     <button type="submit" class="btn btn-primary">
@@ -124,7 +124,7 @@
                 </div>
             </div>
 
-            @include('template.admin-footer')
+            @include('template.footer')
         </div>
     </div>
 </div>
@@ -188,7 +188,7 @@
             // Event add option
             card.querySelector('.btn-add-option').addEventListener('click', () => {
                 const currentOptions = optionsContainer.querySelectorAll('input').length;
-                if(currentOptions < 6) {
+                if (currentOptions < 6) {
                     optionsContainer.appendChild(createOptionInput(index, currentOptions));
                 } else {
                     alert('Maximum 6 options allowed');
@@ -229,7 +229,7 @@
 
         addQuestionBtn.addEventListener('click', () => {
             const newIndex = questionsContainer.querySelectorAll('.question-item').length;
-            if(newIndex < 5) {
+            if (newIndex < 5) {
                 const newQuestion = createQuestionItem(newIndex);
                 questionsContainer.appendChild(newQuestion);
             } else {
@@ -250,7 +250,7 @@
 
             card.querySelector('.btn-add-option').addEventListener('click', () => {
                 const currentOptions = optionsContainer.querySelectorAll('input').length;
-                if(currentOptions < 6) {
+                if (currentOptions < 6) {
                     const questionIndex = parseInt(card.dataset.index);
                     optionsContainer.appendChild(createOptionInput(questionIndex, currentOptions));
                 } else {

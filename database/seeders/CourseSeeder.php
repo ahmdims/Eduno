@@ -39,7 +39,6 @@ class CourseSeeder extends Seeder
                 'description' => "This is a detailed description for Course $i. Learn essential concepts and techniques.",
                 'level' => $levels[array_rand($levels)],
                 'language' => $languages[array_rand($languages)],
-                'video' => "https://www.youtube.com/watch?v=T1TR-RGf2Pw",
             ]);
         }
     }
