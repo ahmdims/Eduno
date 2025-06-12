@@ -30,8 +30,6 @@ use App\Http\Controllers\App\WebsiteAppController;
 */
 
 Route::middleware('auth')->group(function () {
-    //Dashboard
-    Route::get('/profile/{username}', [ProfileAppController::class, 'index'])->name('profile.index');
 
     //Home
     Route::get('/', [CourseAppController::class, 'index'])->name('home');
@@ -62,7 +60,10 @@ Route::middleware('auth')->group(function () {
     //Profile
     Route::get('/profile/setting', [ProfileAppController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile/update', [ProfileAppController::class, 'update'])->name('profile.update');
+    Route::get('/profile/change-password', [ProfileAppController::class, 'password'])->name('profile.password');
     Route::delete('/profile/delete', [ProfileAppController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/profile/{username}', [ProfileAppController::class, 'index'])->name('profile.index');
 });
 
 // Admin

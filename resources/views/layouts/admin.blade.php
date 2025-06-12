@@ -190,13 +190,14 @@
                                     <div class="separator my-2"></div>
 
                                     <div class="menu-item px-5">
-                                        <a href="profil.html" class="menu-link px-5">
+                                        <a href="{{ route('profile.index', ['username' => Auth::user()->username]) }}"
+                                            class="menu-link px-5">
                                             My Profile
                                         </a>
                                     </div>
 
                                     <div class="menu-item px-5">
-                                        <a href="setting.html" class="menu-link px-5">
+                                        <a href="{{ route('profile.edit') }}" class="menu-link px-5">
                                             Setting
                                         </a>
                                     </div>
