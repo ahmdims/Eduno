@@ -32,8 +32,6 @@ class CourseAdminController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'category_id' => 'required|exists:categories,id',
-            'level' => 'required|string',
-            'language' => 'required|string',
             'thumbnail' => 'nullable|image|mimes:jpg,jpeg,png,webp',
             'video' => 'nullable|string',
         ]);
@@ -60,8 +58,6 @@ class CourseAdminController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'category_id' => $request->category_id,
-            'level' => $request->level,
-            'language' => $request->language,
             'thumbnail' => $thumbnailPath,
             'video' => $request->video,
         ]);

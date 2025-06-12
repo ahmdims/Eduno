@@ -160,44 +160,12 @@
                                                 </div>
 
                                                 <div class="mb-10 fv-row">
-                                                    <label class="form-label">Course Description</label>
+                                                    <label class="required form-label">Course Description</label>
                                                     <div id="kt_course_add_description" class="min-h-200px mb-2"></div>
                                                     <textarea name="description" id="description_hidden" class="d-none" placeholder="Enter course description">{{ old('description', $course->description) }}</textarea>
                                                     <div class="text-muted fs-7">
                                                         Write a detailed description of the course to help learners
                                                         understand what they will gain.
-                                                    </div>
-                                                </div>
-
-                                                <div class="mb-10 fv-row">
-                                                    <label class="required form-label">Course Level</label>
-                                                    <select name="level" class="form-select" data-control="select2"
-                                                        data-hide-search="true">
-                                                        <option value="" disabled selected>Select Level</option>
-                                                        <option value="beginner"
-                                                            {{ $course->level == 'beginner' ? 'selected' : '' }}>Beginner
-                                                        </option>
-                                                        <option value="intermediate"
-                                                            {{ $course->level == 'intermediate' ? 'selected' : '' }}>
-                                                            Intermediate</option>
-                                                        <option value="advanced"
-                                                            {{ $course->level == 'advanced' ? 'selected' : '' }}>Advanced
-                                                        </option>
-                                                    </select>
-                                                    <div class="text-muted fs-7">
-                                                        Choose the difficulty level of the course to guide learners
-                                                        appropriately.
-                                                    </div>
-                                                </div>
-
-                                                <div class="mb-10 fv-row">
-                                                    <label class="required form-label">Language</label>
-                                                    <input type="text" name="language" class="form-control mb-2"
-                                                        placeholder="e.g. English, Indonesian, PHP"
-                                                        value="<?= htmlspecialchars(old('language') ?? ($course->language ?? '')) ?>" />
-                                                    <div class="text-muted fs-7">
-                                                        Specify the language used in the course, either spoken or
-                                                        programming language.
                                                     </div>
                                                 </div>
 

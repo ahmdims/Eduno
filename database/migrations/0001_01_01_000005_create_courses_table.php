@@ -22,8 +22,6 @@ class CreateCoursesTable extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->longText('description');
-            $table->string('level');
-            $table->string('language');
             $table->string('thumbnail')->nullable();
 
             $table->tinyInteger('status')->default(0);

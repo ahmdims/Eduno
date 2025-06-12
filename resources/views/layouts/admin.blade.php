@@ -328,8 +328,8 @@
         <script src="{{ asset('assets/js/custom/utilities/modals/create-app.js') }}"></script>
         <script src="{{ asset('assets/js/custom/utilities/modals/users-search.js') }}"></script>
 
-        <script src="{{ asset('assets/js/custom/apps/assets/course/course.js') }}"></script>
-        <script src="{{ asset('assets/js/custom/apps/assets/course/edit-course.js') }}"></script>
+        <script src="{{ asset('assets/js/custom/apps/admin/course/course.js') }}"></script>
+        <script src="{{ asset('assets/js/custom/apps/admin/course/edit-course.js') }}"></script>
 </body>
 
 </html>

@@ -92,8 +92,6 @@
                                         <option value="0" {{ old('status') == '0' ? 'selected' : '' }}>Draft</option>
                                         <option value="1" {{ old('status') == '1' ? 'selected' : '' }}>Published
                                         </option>
-                                        <option value="2" {{ old('status') == '2' ? 'selected' : '' }}>Inactive
-                                        </option>
                                     </select>
 
                                     <div class="text-muted fs-7">Set the publication status of the course.</div>
@@ -166,51 +164,6 @@
                                                     <div class="text-muted fs-7">
                                                         Write a detailed description of the course to help learners
                                                         understand what they will gain.
-                                                    </div>
-                                                </div>
-
-                                                <!-- Video -->
-                                                <div class="mb-10 fv-row">
-                                                    <label class="required form-label">Intro Video (URL)</label>
-                                                    <input type="text" name="video" class="form-control mb-2"
-                                                        placeholder="https://example.com/intro-video"
-                                                        value="{{ old('video') }}" />
-                                                    <div class="text-muted fs-7">
-                                                        Add a link to an introduction or preview video for the course.
-                                                    </div>
-                                                </div>
-
-                                                <!-- Level -->
-                                                <div class="mb-10 fv-row">
-                                                    <label class="required form-label">Course Level</label>
-                                                    <select name="level" class="form-select" data-control="select2"
-                                                        data-hide-search="true">
-                                                        <option value="" disabled selected>Select Level</option>
-                                                        <option value="beginner"
-                                                            {{ old('level') == 'beginner' ? 'selected' : '' }}>Beginner
-                                                        </option>
-                                                        <option value="intermediate"
-                                                            {{ old('level') == 'intermediate' ? 'selected' : '' }}>
-                                                            Intermediate</option>
-                                                        <option value="advanced"
-                                                            {{ old('level') == 'advanced' ? 'selected' : '' }}>Advanced
-                                                        </option>
-                                                    </select>
-                                                    <div class="text-muted fs-7">
-                                                        Choose the difficulty level of the course to guide learners
-                                                        appropriately.
-                                                    </div>
-                                                </div>
-
-                                                <!-- Language -->
-                                                <div class="mb-10 fv-row">
-                                                    <label class="required form-label">Language</label>
-                                                    <input type="text" name="language" class="form-control mb-2"
-                                                        placeholder="e.g. English, Indonesian, PHP"
-                                                        value="{{ old('language') }}" />
-                                                    <div class="text-muted fs-7">
-                                                        Specify the language used in the course, either spoken or
-                                                        programming language.
                                                     </div>
                                                 </div>
 
