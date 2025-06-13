@@ -13,7 +13,7 @@
                             <div class="row g-5 g-xl-8">
 
                                 @foreach ($courses as $course_data)
-                                    <div class="col-xl-4">
+                                    <div class="col-12 col-md-6 col-xl-4">
                                         <div class="card h-xl-100 mb-xl-8">
                                             <div class=" card-body text-center">
                                                 <div class="card overlay overflow-hidden">

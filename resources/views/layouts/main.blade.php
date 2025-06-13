@@ -101,7 +101,7 @@
                                     data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent"
                                     data-kt-menu-placement="bottom-end">
                                     <img class="symbol symbol-circle symbol-35px symbol-md-40px"
-                                        src="assets/media/avatars/300-13.jpg" alt="user" />
+                                        src="{{ Auth::user()->profile ? Storage::url(Auth::user()->profile) : asset('assets/media/avatars/null.png') }}" />
                                 </div>
 
                                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px"
@@ -109,8 +109,8 @@
                                     <div class="menu-item px-3">
                                         <div class="menu-content d-flex align-items-center px-3">
                                             <div class="symbol symbol-50px me-5">
-                                                <img alt="Eduno"
-                                                    src="{{ asset('assets/media/avatars/300-13.jpg') }}" />
+                                                <img
+                                                    src="{{ Auth::user()->profile ? Storage::url(Auth::user()->profile) : asset('assets/media/avatars/null.png') }}" />
                                             </div>
 
                                             <div class="d-flex flex-column">
@@ -118,9 +118,9 @@
                                                     {{ Auth::user()->name }}
                                                 </div>
 
-                                                <a href="#"
-                                                    class="fw-semibold text-muted text-hover-primary fs-7">
-                                                    {{ Auth::user()->email }} </a>
+                                                <span class="fw-semibold text-muted text-hover-primary fs-7">
+                                                    {{ Auth::user()->email }}
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -145,10 +145,10 @@
                                         <a href="#" class="menu-link px-5">
                                             <span class="menu-title position-relative">
                                                 Mode
-
                                                 <span class="ms-5 position-absolute translate-middle-y top-50 end-0">
-                                                    <i class="ki-outline ki-night-day theme-light-show fs-2"></i> <i
-                                                        class="ki-outline ki-moon theme-dark-show fs-2"></i> </span>
+                                                    <i class="ki-outline ki-night-day theme-light-show fs-2"></i>
+                                                    <i class="ki-outline ki-moon theme-dark-show fs-2"></i>
+                                                </span>
                                             </span>
                                         </a>
 
@@ -157,33 +157,25 @@
                                             <div class="menu-item px-3 my-0">
                                                 <a href="#" class="menu-link px-3 py-2" data-kt-element="mode"
                                                     data-kt-value="light">
-                                                    <span class="menu-icon" data-kt-element="icon">
-                                                        <i class="ki-outline ki-night-day fs-2"></i> </span>
-                                                    <span class="menu-title">
-                                                        Light
-                                                    </span>
+                                                    <span class="menu-icon"><i
+                                                            class="ki-outline ki-night-day fs-2"></i></span>
+                                                    <span class="menu-title">Light</span>
                                                 </a>
                                             </div>
-
                                             <div class="menu-item px-3 my-0">
                                                 <a href="#" class="menu-link px-3 py-2" data-kt-element="mode"
                                                     data-kt-value="dark">
-                                                    <span class="menu-icon" data-kt-element="icon">
-                                                        <i class="ki-outline ki-moon fs-2"></i> </span>
-                                                    <span class="menu-title">
-                                                        Dark
-                                                    </span>
+                                                    <span class="menu-icon"><i
+                                                            class="ki-outline ki-moon fs-2"></i></span>
+                                                    <span class="menu-title">Dark</span>
                                                 </a>
                                             </div>
-
                                             <div class="menu-item px-3 my-0">
                                                 <a href="#" class="menu-link px-3 py-2" data-kt-element="mode"
                                                     data-kt-value="system">
-                                                    <span class="menu-icon" data-kt-element="icon">
-                                                        <i class="ki-outline ki-screen fs-2"></i> </span>
-                                                    <span class="menu-title">
-                                                        System
-                                                    </span>
+                                                    <span class="menu-icon"><i
+                                                            class="ki-outline ki-screen fs-2"></i></span>
+                                                    <span class="menu-title">System</span>
                                                 </a>
                                             </div>
                                         </div>
@@ -202,6 +194,7 @@
 
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
