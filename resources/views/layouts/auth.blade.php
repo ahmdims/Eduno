@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-    <title>@yield('title') - ClassXpert</title>
+    <title>@yield('title') - Eduno</title>
     <meta charset="utf-8" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="assets/media/logos/default.svg" />
+    <link rel="icon" href="assets/media/logos/favicon.svg" />
 
-    <link rel="shortcut icon" href="{{ asset('assets/media/logos/default.svg') }}" />
+    <link rel="shortcut icon" href="{{ asset('assets/media/logos/favicon.svg') }}" />
 
     <link href="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet"
         type="text/css" />
