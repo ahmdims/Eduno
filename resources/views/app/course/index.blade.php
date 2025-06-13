@@ -40,8 +40,8 @@
                                                 <div class="d-flex align-items-center justify-content-start mt-2">
                                                     <div class="symbol symbol-circle symbol-25px me-2"
                                                         data-bs-toggle="tooltip" data-bs-boundary="window"
-                                                        data-bs-placement="top" title="Nina Nilson">
-                                                        <img src="../../assets/media/avatars/300-14.jpg" alt="img" />
+                                                        data-bs-placement="top" title="{{ $course_data->user->name }}">
+                                                        <img src="{{ $course_data->user->profile ? Storage::url($course_data->user->profile) : asset('assets/media/avatars/null.png') }}" />
                                                     </div>
                                                     <span class="text-gray-700 fw-bold me-1">
                                                         {{ $course_data->user->name }}

@@ -9,10 +9,14 @@
                 <div id="kt_app_content" class="app-content  flex-column-fluid ">
                     <div class="card bgi-position-y-bottom bgi-position-x-end bgi-no-repeat bgi-size-cover min-h-250px bg-body mb-5 mb-xl-8"
                         style="background-image: url('../assets/media/thumbnail/Materi\ 1.jpg');">
-                        <div class="card-body d-flex flex-column justify-content-center ps-lg-12">
-                            <h3 class="text-gray-900 fs-2qx fw-bold mb-7">
+                        <div
+                            class="card-body d-flex flex-column justify-content-center ps-lg-12 pe-lg-10 bg-dark bg-opacity-25 rounded-3">
+                            <h3 class="text-white fs-2qx fw-bold mb-4 text-shadow">
                                 {{ $course->title }}
                             </h3>
+                            <p class="text-white fs-5 fw-normal text-shadow mb-0">
+                                {{ strip_tags($course->description) }}
+                            </p>
                         </div>
                     </div>
 
@@ -44,11 +48,18 @@
                                                 <a href="{{ $item['type'] === 'material'
                                                     ? route('materials.show', ['slug' => $item['slug'], 'material' => $item['id']])
                                                     : route('quiz.show', ['slug' => $item['slug'], 'quiz' => $item['id']]) }}"
-                                                    class="text-gray-900 text-hover-primary fs-6 fw-bold">
+                                                    class="text-gray-800 text-hover-primary fs-5 fw-semibold mb-1">
                                                     {{ $item['title'] }}
                                                 </a>
-                                                <span
-                                                    class="text-gray-500 fw-bold">{{ $item['created_at']->format('d F Y') }}</span>
+
+                                                <div class="d-flex align-items-center">
+                                                    <span
+                                                        class="badge bg-light-{{ $item['type'] === 'material' ? 'primary' : 'info' }} text-{{ $item['type'] === 'material' ? 'primary' : 'info' }} fw-normal me-3">
+                                                        {{ ucfirst($item['type']) }}
+                                                    </span>
+                                                    <span
+                                                        class="text-muted fs-7">{{ $item['created_at']->format('d F Y') }}</span>
+                                                </div>
                                             </div>
                                         </div>
 
