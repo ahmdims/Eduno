@@ -16,9 +16,9 @@ class MaterialSeeder extends Seeder
             for ($i = 1; $i <= 5; $i++) {
                 Material::create([
                     'course_id' => $courseId,
-                    'title' => "Material $i for Course $courseId",
+                    'title' => "Material $i",
                     'video' => "https://www.youtube.com/watch?v=T1TR-RGf2Pw",
-                    'content' => "This is the content of Material $i for Course $courseId",
+                    'content' => "This is the content of Material $i",
                     'status' => 1,
                 ]);
             }

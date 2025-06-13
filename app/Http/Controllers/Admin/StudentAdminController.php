@@ -7,12 +7,12 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class UserAdminController extends Controller
+class StudentAdminController extends Controller
 {
     public function index(Request $request)
     {
-        $users = User::all();
-        return view('admin.user.index', compact('users'));
+        $users = User::where('utype', 'student')->get();
+        return view('admin.student.index', compact('users'));
     }
 
     public function show($id)
@@ -134,7 +134,7 @@ class UserAdminController extends Controller
 
         $user->save();
 
-        return redirect()->route('admin.user.index')->with('success', 'User updated successfully!');
+        return redirect()->route('admin.student.index')->with('success', 'User updated successfully!');
     }
 
     public function destroy($id)
@@ -142,6 +142,6 @@ class UserAdminController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
 
-        return redirect()->route('admin.user.index')->with('success', 'User deleted successfully!');
+        return redirect()->route('admin.student.index')->with('success', 'User deleted successfully!');
     }
 }

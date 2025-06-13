@@ -11,7 +11,7 @@ class AdminAdminController extends Controller
 {
     public function index(Request $request)
     {
-        $users = User::all();
+        $users = User::where('utype', 'admin')->get();
         return view('admin.admin.index', compact('users'));
     }
 

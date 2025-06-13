@@ -19,6 +19,7 @@ class FaqSeeder extends Seeder
             Faq::create([
                 'question' => $faker->sentence,
                 'answer' => $faker->paragraphs(3, true),
+                'status' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

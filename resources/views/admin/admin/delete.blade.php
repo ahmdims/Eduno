@@ -2,7 +2,7 @@
     aria-labelledby="deleteModal-{{ $user_data->id }}" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <form method="POST" action="{{ route('user.destroy', $user_data->id) }}">
+            <form method="POST" action="{{ route('admin.student.destroy', $user_data->id) }}">
                 @csrf
                 @method('DELETE')
                 <div class="modal-header border-0">

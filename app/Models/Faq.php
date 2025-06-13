@@ -2,26 +2,21 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Faq extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
+    protected $table = 'faqs';
+
+    public $incrementing = false;
+    protected $keyType = 'string';
 
     protected $fillable = [
         'question',
         'answer',
+        'status',
     ];
-
-    public function getCreatedAtFormattedAttribute()
-    {
-        return Carbon::parse($this->created_at)->format('d F Y, H:i');
-    }
-
-    public function getUpdatedAtFormattedAttribute()
-    {
-        return Carbon::parse($this->updated_at)->format('d F Y, H:i');
-    }
 }

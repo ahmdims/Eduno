@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Faq')
+@section('title', 'Student')
 
 @section('content')
 
@@ -13,7 +13,7 @@
                         <div class="card-header align-items-center py-5 gap-2 gap-md-5">
                             <div class="card-title">
                                 <div class="card-title">
-                                    <h2 class="fw-bold mb-0">FAQ Management</h2>
+                                    <h2 class="fw-bold mb-0">Student Management</h2>
                                 </div>
                             </div>
 
@@ -47,26 +47,38 @@
                                 <thead>
                                     <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
                                         <th class="min-w-50px text-center">No</th>
-                                        <th class="min-w-200px">Question</th>
-                                        <th class="min-w-200px">Answer Preview</th>
+                                        <th class="min-w-150px">Name</th>
+                                        <th class="min-w-120px">Username</th>
+                                        <th class="min-w-150px">Email</th>
+                                        <th class="min-w-100px">Phone</th>
+                                        <th class="min-w-80px">Gender</th>
                                         <th class="min-w-100px">Status</th>
-                                        <th class="min-w-150px">Last Updated</th>
+                                        <th class="min-w-150px">Registered At</th>
                                         <th class="text-end min-w-100px">Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody class="fw-semibold text-gray-600">
-                                    @foreach ($faqs as $faq)
+                                <tbody>
+                                    @foreach ($users as $user)
                                         <tr>
                                             <td class="text-center">{{ $loop->iteration }}</td>
-                                            <td>{{ Str::limit(strip_tags($faq->question), 50) }}</td>
-                                            <td>{{ Str::limit(strip_tags($faq->answer), 50) }}</td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="{{ $user->profile ? Storage::url($user->profile) : asset('assets/media/avatars/null.png') }}"
+                                                        class="w-40px h-40px rounded-circle me-3" />
+                                                    <span class="fw-semibold text-gray-800">{{ $user->name }}</span>
+                                                </div>
+                                            </td>
+                                            <td>{{ $user->username }}</td>
+                                            <td>{{ $user->email }}</td>
+                                            <td>{{ $user->phone_number ?? '-' }}</td>
+                                            <td>{{ ucfirst($user->gender ?? '-') }}</td>
                                             <td>
                                                 <span
-                                                    class="badge {{ $faq->status == 1 ? 'badge-light-success' : ($faq->status == 0 ? 'badge-light-primary' : 'badge-light-danger') }}">
-                                                    {{ $faq->status == 1 ? 'Publish' : ($faq->status == 0 ? 'Draft' : 'Inactive') }}
+                                                    class="badge {{ $user->email_verified_at ? 'badge-light-success' : 'badge-light-secondary' }}">
+                                                    {{ $user->email_verified_at ? 'Verified' : 'Unverified' }}
                                                 </span>
                                             </td>
-                                            <td>{{ $faq->updated_at ? $faq->updated_at->format('d M Y') : '-' }}</td>
+                                            <td>{{ $user->created_at->format('d M Y') }}</td>
                                             <td class="text-end">
                                                 <a href="#" class="btn btn-light btn-active-light-primary btn-sm"
                                                     data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
@@ -76,7 +88,7 @@
                                                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
                                                     data-kt-menu="true">
                                                     <div class="menu-item px-3">
-                                                        <a href="{{ route('admin.course.edit', $faq->id) }}"
+                                                        <a href="{{ route('admin.course.edit', $user->id) }}"
                                                             class="menu-link px-3">
                                                             Edit
                                                         </a>
@@ -84,8 +96,8 @@
                                                     <div class="menu-item px-3">
                                                         <a href="#" class="menu-link px-3"
                                                             data-kt-admin-faq-filter="delete_row"
-                                                            data-id="{{ $faq->id }}"
-                                                            data-url="{{ route('admin.course.destroy', $faq->id) }}">
+                                                            data-id="{{ $user->id }}"
+                                                            data-url="{{ route('admin.course.destroy', $user->id) }}">
                                                             Delete
                                                         </a>
                                                     </div>

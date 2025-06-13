@@ -58,7 +58,7 @@
                                             <li><a href="{{ route('admin.website.index') }}"
                                                     class="{{ Request::is('*admin/website') ? 'active' : '' }}">Manage
                                                     Website</a></li>
-                                            <li><a href="{{ route('admin.user.index') }}"
+                                            <li><a href="{{ route('admin.student.index') }}"
                                                     class="{{ Request::is('*admin/user') ? 'active' : '' }}">Manage
                                                     User</a></li>
                                             <li><a href="{{ route('admin.admin.index') }}"
@@ -221,7 +221,7 @@
                                                         class="{{ Request::is('*admin/website') ? 'active' : '' }}">Manage
                                                         Website</a>
                                                 </li>
-                                                <li><a href="{{ route('admin.user.index') }}"
+                                                <li><a href="{{ route('admin.student.index') }}"
                                                         class="{{ Request::is('*admin/user') ? 'active' : '' }}">Manage
                                                         User</a>
                                                 </li>

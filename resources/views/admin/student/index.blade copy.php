@@ -93,11 +93,11 @@
             </div>
         </div>
 
-        @include('admin.user.create')
+        @include('admin.student.create')
 
         @foreach ($users as $user_data)
-            @include('admin.user.update', ['user_data' => $user_data])
-            @include('admin.user.delete', ['user_data' => $user_data])
+            @include('admin.student.update', ['user_data' => $user_data])
+            @include('admin.student.delete', ['user_data' => $user_data])
         @endforeach
 
     </main>

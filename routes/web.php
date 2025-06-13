@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\FaqAdminController;
 use App\Http\Controllers\Admin\MailAdminController;
 use App\Http\Controllers\Admin\MaterialAdminController;
 use App\Http\Controllers\Admin\QuizAdminController;
-use App\Http\Controllers\Admin\UserAdminController;
+use App\Http\Controllers\Admin\StudentAdminController;
 use App\Http\Controllers\Admin\WebsiteAdminController;
 use App\Http\Controllers\App\ArticleAppController;
 use App\Http\Controllers\App\ContactAppController;
@@ -101,21 +101,21 @@ Route::middleware(['auth'])->group(function () {
 
     // Faq
     Route::get('/admin/faq', [FaqAdminController::class, 'index'])->name('admin.faq.index');
-    Route::post('/admin/faq', [FaqAdminController::class, 'store'])->name('faq.store');
-    Route::get('/admin/faq/{id}/edit', [FaqAdminController::class, 'edit'])->name('faq.edit');
-    Route::put('/admin/faq/{id}', [FaqAdminController::class, 'update'])->name('faq.update');
-    Route::delete('/admin/faq/{id}', [FaqAdminController::class, 'destroy'])->name('faq.destroy');
+    Route::post('/admin/faq', [FaqAdminController::class, 'store'])->name('admin.faq.store');
+    Route::get('/admin/faq/{id}/edit', [FaqAdminController::class, 'edit'])->name('admin.faq.edit');
+    Route::put('/admin/faq/{id}', [FaqAdminController::class, 'update'])->name('admin.faq.update');
+    Route::delete('/admin/faq/{id}', [FaqAdminController::class, 'destroy'])->name('admin.faq.destroy');
 
     // Website
     Route::get('/admin/website', [WebsiteAdminController::class, 'index'])->name('admin.website.index');
     Route::put('/admin/website/{id}', [WebsiteAdminController::class, 'update'])->name('website.update');
 
-    // User
-    Route::get('/admin/user', [UserAdminController::class, 'index'])->name('admin.user.index');
-    Route::post('/admin/user', [UserAdminController::class, 'store'])->name('user.store');
-    Route::get('/admin/user/{id}/get', [UserAdminController::class, 'show'])->name('user.show');
-    Route::put('/admin/user/{id}', [UserAdminController::class, 'update'])->name('user.update');
-    Route::delete('/admin/user/{id}', [UserAdminController::class, 'destroy'])->name('user.destroy');
+    // Student
+    Route::get('/admin/student', [StudentAdminController::class, 'index'])->name('admin.student.index');
+    Route::post('/admin/student', [StudentAdminController::class, 'store'])->name('admin.student.store');
+    Route::get('/admin/student/{id}/get', [StudentAdminController::class, 'show'])->name('admin.student.show');
+    Route::put('/admin/student/{id}', [StudentAdminController::class, 'update'])->name('admin.student.update');
+    Route::delete('/admin/student/{id}', [StudentAdminController::class, 'destroy'])->name('admin.student.destroy');
 
     // Admin
     Route::get('/admin/admin', [AdminAdminController::class, 'index'])->name('admin.admin.index');

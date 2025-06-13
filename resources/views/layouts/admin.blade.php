@@ -121,8 +121,8 @@
 
                                 <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
                                     data-kt-menu-placement="bottom-start" data-kt-menu-offset="-200,0"
-                                    class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
-                                    <a href="admin.html" class="menu-link">
+                                    class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2 {{ request()->routeIs('admin.faq.*') ? 'here show menu-here-bg' : '' }}">
+                                    <a href="{{ route('admin.faq.index') }}" class="menu-link">
                                         <span class="menu-title">FAQ</span>
                                         <span class="menu-arrow d-lg-none"></span>
                                     </a>
@@ -131,25 +131,58 @@
                                 <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
                                     data-kt-menu-placement="bottom-start" data-kt-menu-offset="-200,0"
                                     class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
-                                    <a href="admin.html" class="menu-link">
+                                    <a href="#" class="menu-link">
                                         <span class="menu-title">Website</span>
                                         <span class="menu-arrow d-lg-none"></span>
                                     </a>
                                 </div>
 
                                 <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
-                                    data-kt-menu-placement="bottom-start" data-kt-menu-offset="-200,0"
-                                    class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
-                                    <a href="admin.html" class="menu-link">
-                                        <span class="menu-title">User</span>
+                                    data-kt-menu-placement="bottom-start"
+                                    class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2
+        {{ request()->routeIs('admin.admin.*') || request()->routeIs('admin.student.*') || request()->routeIs('admin.teacher.*') ? 'here show menu-here-bg' : '' }}">
+
+                                    <a class="menu-link">
+                                        <span class="menu-title">Access Control</span>
                                         <span class="menu-arrow d-lg-none"></span>
                                     </a>
+
+                                    <div
+                                        class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown px-lg-2 py-lg-4 w-lg-150px">
+                                        <div class="menu-item">
+                                            <a class="menu-link {{ request()->routeIs('admin.admin.*') ? 'active' : '' }}"
+                                                href="{{ route('admin.admin.index') }}">
+                                                <span class="menu-icon">
+                                                    <i class="ki-outline ki-rocket fs-2"></i>
+                                                </span>
+                                                <span class="menu-title">Admin</span>
+                                            </a>
+                                        </div>
+                                        <div class="menu-item">
+                                            <a class="menu-link {{ request()->routeIs('admin.teacher.*') ? 'active' : '' }}"
+                                                href="#">
+                                                <span class="menu-icon">
+                                                    <i class="ki-outline ki-rocket fs-2"></i>
+                                                </span>
+                                                <span class="menu-title">Teacher</span>
+                                            </a>
+                                        </div>
+                                        <div class="menu-item">
+                                            <a class="menu-link {{ request()->routeIs('admin.student.*') ? 'active' : '' }}"
+                                                href="{{ route('admin.student.index') }}">
+                                                <span class="menu-icon">
+                                                    <i class="ki-outline ki-rocket fs-2"></i>
+                                                </span>
+                                                <span class="menu-title">Student</span>
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
                                     data-kt-menu-placement="bottom-start" data-kt-menu-offset="-200,0"
                                     class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
-                                    <a href="admin.html" class="menu-link">
+                                    <a href="#" class="menu-link">
                                         <span class="menu-title">Mail</span>
                                         <span class="menu-arrow d-lg-none"></span>
                                     </a>

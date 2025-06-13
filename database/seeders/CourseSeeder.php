@@ -12,9 +12,6 @@ class CourseSeeder extends Seeder
 {
     public function run()
     {
-        $levels = ['Beginner', 'Intermediate', 'Advanced'];
-        $languages = ['PHP', 'JavaScript', 'Python', 'Java', 'C++'];
-
         $adminIds = User::where('utype', 'admin')->pluck('id')->toArray();
         $categoryIds = DB::table('categories')->pluck('id')->toArray();
 
@@ -37,8 +34,6 @@ class CourseSeeder extends Seeder
                 'slug' => $slug,
                 'status' => 1,
                 'description' => "This is a detailed description for Course $i. Learn essential concepts and techniques.",
-                'level' => $levels[array_rand($levels)],
-                'language' => $languages[array_rand($languages)],
             ]);
         }
     }
