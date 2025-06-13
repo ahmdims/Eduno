@@ -63,9 +63,9 @@
 
                     <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0 me-lg-18">
                         <a href="index.html">
-                            <img alt="Logo"
-                                src="{{ asset('assets/media/logos/favicon.svg" class="h-25px d-sm-none') }}" />
-                            <img alt="Logo" src="{{ asset('assets/media/logos/default.svg') }}"
+                            <img alt="Eduno" src="{{ asset('assets/media/logos/favicon.svg') }}"
+                                class="h-25px d-sm-none" />
+                            <img alt="Eduno" src="{{ asset('assets/media/logos/default.svg') }}"
                                 class="h-25px d-none d-sm-block" />
                         </a>
                     </div>
@@ -171,7 +171,7 @@
                                     <div class="menu-item px-3">
                                         <div class="menu-content d-flex align-items-center px-3">
                                             <div class="symbol symbol-50px me-5">
-                                                <img alt="Logo"
+                                                <img alt="Eduno"
                                                     src="{{ asset('assets/media/avatars/300-13.jpg') }}" />
                                             </div>
 

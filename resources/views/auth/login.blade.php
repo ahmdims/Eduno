@@ -8,8 +8,8 @@
 
         <div class="d-flex flex-column flex-lg-row flex-column-fluid">
             <a href="index.html" class="d-block d-lg-none mx-auto py-20">
-                <img alt="Logo" src="assets/media/logos/default.svg" class="theme-light-show h-25px" />
-                <img alt="Logo" src="assets/media/logos/default-dark.svg" class="theme-dark-show h-25px" />
+                <img alt="Eduno" src="assets/media/logos/default.svg" class="theme-light-show h-25px" />
+                <img alt="Eduno" src="assets/media/logos/default-dark.svg" class="theme-dark-show h-25px" />
             </a>
 
             <div class="d-flex flex-column flex-column-fluid flex-center w-lg-50 p-10">
@@ -23,7 +23,8 @@
                                 Not a Member yet?
                             </span>
 
-                            <a href="{{ route('register') }}" class="link-primary fw-bold fs-5" data-kt-translate="sign-in-head-link">
+                            <a href="{{ route('register') }}" class="link-primary fw-bold fs-5"
+                                data-kt-translate="sign-in-head-link">
                                 Register
                             </a>
                         </div>
@@ -58,8 +59,7 @@
                                 <div class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-10">
                                     <div></div>
 
-                                    <a href="#" class="link-primary"
-                                        data-kt-translate="sign-in-forgot-password">
+                                    <a href="#" class="link-primary" data-kt-translate="sign-in-forgot-password">
                                         Forgot Password ?
                                     </a>
                                 </div>
