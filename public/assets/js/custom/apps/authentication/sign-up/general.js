@@ -1,1 +1,203 @@
-"use strict";var KTSignupGeneral=function(){var e,t,r,a,s=function(){return a.getScore()>50};return{init:function(){e=document.querySelector("#kt_sign_up_form"),t=document.querySelector("#kt_sign_up_submit"),a=KTPasswordMeter.getInstance(e.querySelector('[data-kt-password-meter="true"]')),!function(e){try{return new URL(e),!0}catch(e){return!1}}(t.closest("form").getAttribute("action"))?(r=FormValidation.formValidation(e,{fields:{"first-name":{validators:{notEmpty:{message:"First Name is required"}}},"last-name":{validators:{notEmpty:{message:"Last Name is required"}}},email:{validators:{regexp:{regexp:/^[^\s@]+@[^\s@]+\.[^\s@]+$/,message:"The value is not a valid email address"},notEmpty:{message:"Email address is required"}}},password:{validators:{notEmpty:{message:"The password is required"},callback:{message:"Please enter valid password",callback:function(e){if(e.value.length>0)return s()}}}},"confirm-password":{validators:{notEmpty:{message:"The password confirmation is required"},identical:{compare:function(){return e.querySelector('[name="password"]').value},message:"The password and its confirm are not the same"}}},toc:{validators:{notEmpty:{message:"You must accept the terms and conditions"}}}},plugins:{trigger:new FormValidation.plugins.Trigger({event:{password:!1}}),bootstrap:new FormValidation.plugins.Bootstrap5({rowSelector:".fv-row",eleInvalidClass:"",eleValidClass:""})}}),t.addEventListener("click",(function(s){s.preventDefault(),r.revalidateField("password"),r.validate().then((function(r){"Valid"==r?(t.setAttribute("data-kt-indicator","on"),t.disabled=!0,setTimeout((function(){t.removeAttribute("data-kt-indicator"),t.disabled=!1,Swal.fire({text:"You have successfully reset your password!",icon:"success",buttonsStyling:!1,confirmButtonText:"Ok, got it!",customClass:{confirmButton:"btn btn-primary"}}).then((function(t){if(t.isConfirmed){e.reset(),a.reset();var r=e.getAttribute("data-kt-redirect-url");r&&(location.href=r)}}))}),1500)):Swal.fire({text:"Sorry, looks like there are some errors detected, please try again.",icon:"error",buttonsStyling:!1,confirmButtonText:"Ok, got it!",customClass:{confirmButton:"btn btn-primary"}})}))})),e.querySelector('input[name="password"]').addEventListener("input",(function(){this.value.length>0&&r.updateFieldStatus("password","NotValidated")}))):(r=FormValidation.formValidation(e,{fields:{name:{validators:{notEmpty:{message:"Name is required"}}},email:{validators:{regexp:{regexp:/^[^\s@]+@[^\s@]+\.[^\s@]+$/,message:"The value is not a valid email address"},notEmpty:{message:"Email address is required"}}},password:{validators:{notEmpty:{message:"The password is required"},callback:{message:"Please enter valid password",callback:function(e){if(e.value.length>0)return s()}}}},password_confirmation:{validators:{notEmpty:{message:"The password confirmation is required"},identical:{compare:function(){return e.querySelector('[name="password"]').value},message:"The password and its confirm are not the same"}}},toc:{validators:{notEmpty:{message:"You must accept the terms and conditions"}}}},plugins:{trigger:new FormValidation.plugins.Trigger({event:{password:!1}}),bootstrap:new FormValidation.plugins.Bootstrap5({rowSelector:".fv-row",eleInvalidClass:"",eleValidClass:""})}}),t.addEventListener("click",(function(a){a.preventDefault(),r.revalidateField("password"),r.validate().then((function(r){"Valid"==r?(t.setAttribute("data-kt-indicator","on"),t.disabled=!0,axios.post(t.closest("form").getAttribute("action"),new FormData(e)).then((function(t){if(t){e.reset();const t=e.getAttribute("data-kt-redirect-url");t&&(location.href=t)}else Swal.fire({text:"Sorry, looks like there are some errors detected, please try again.",icon:"error",buttonsStyling:!1,confirmButtonText:"Ok, got it!",customClass:{confirmButton:"btn btn-primary"}})})).catch((function(e){Swal.fire({text:"Sorry, looks like there are some errors detected, please try again.",icon:"error",buttonsStyling:!1,confirmButtonText:"Ok, got it!",customClass:{confirmButton:"btn btn-primary"}})})).then((()=>{t.removeAttribute("data-kt-indicator"),t.disabled=!1}))):Swal.fire({text:"Sorry, looks like there are some errors detected, please try again.",icon:"error",buttonsStyling:!1,confirmButtonText:"Ok, got it!",customClass:{confirmButton:"btn btn-primary"}})}))})),e.querySelector('input[name="password"]').addEventListener("input",(function(){this.value.length>0&&r.updateFieldStatus("password","NotValidated")})))}}}();KTUtil.onDOMContentLoaded((function(){KTSignupGeneral.init()}));
+"use strict";
+var KTSignupGeneral = function () {
+    var e, t, i, o, a, r, s = [];
+    return {
+        init: function () {
+            (e = document.querySelector("#kt_modal_create_account")) && new bootstrap.Modal(e), (t = document.querySelector("#kt_create_account_stepper")) && (i = t.querySelector("#kt_create_account_form"), o = t.querySelector('[data-kt-stepper-action="submit"]'), a = t.querySelector('[data-kt-stepper-action="next"]'), (r = new KTStepper(t)).on("kt.stepper.changed", (function (e) {
+                4 === r.getCurrentStepIndex() ? (o.classList.remove("d-none"), o.classList.add("d-inline-block"), a.classList.add("d-none")) : 5 === r.getCurrentStepIndex() ? (o.classList.add("d-none"), a.classList.add("d-none")) : (o.classList.remove("d-inline-block"), o.classList.remove("d-none"), a.classList.remove("d-none"))
+            })), r.on("kt.stepper.next", (function (e) {
+                console.log("stepper.next");
+                var t = s[e.getCurrentStepIndex() - 1];
+                t ? t.validate().then((function (t) {
+                    console.log("validated!"), "Valid" == t ? (e.goNext(), KTUtil.scrollTop()) : Swal.fire({
+                        text: "Sorry, looks like there are some errors detected, please try again.",
+                        icon: "error",
+                        buttonsStyling: !1,
+                        confirmButtonText: "Ok, got it!",
+                        customClass: {
+                            confirmButton: "btn btn-light"
+                        }
+                    }).then((function () {
+                        KTUtil.scrollTop()
+                    }))
+                })) : (e.goNext(), KTUtil.scrollTop())
+            })), r.on("kt.stepper.previous", (function (e) {
+                console.log("stepper.previous"), e.goPrevious(), KTUtil.scrollTop()
+            })), s.push(FormValidation.formValidation(i, {
+                fields: {
+                    account_type: {
+                        validators: {
+                            notEmpty: {
+                                message: "Account type is required"
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    trigger: new FormValidation.plugins.Trigger,
+                    bootstrap: new FormValidation.plugins.Bootstrap5({
+                        rowSelector: ".fv-row",
+                        eleInvalidClass: "",
+                        eleValidClass: ""
+                    })
+                }
+            })), s.push(FormValidation.formValidation(i, {
+                fields: {
+                    account_team_size: {
+                        validators: {
+                            notEmpty: {
+                                message: "Time size is required"
+                            }
+                        }
+                    },
+                    account_name: {
+                        validators: {
+                            notEmpty: {
+                                message: "Account name is required"
+                            }
+                        }
+                    },
+                    account_plan: {
+                        validators: {
+                            notEmpty: {
+                                message: "Account plan is required"
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    trigger: new FormValidation.plugins.Trigger,
+                    bootstrap: new FormValidation.plugins.Bootstrap5({
+                        rowSelector: ".fv-row",
+                        eleInvalidClass: "",
+                        eleValidClass: ""
+                    })
+                }
+            })), s.push(FormValidation.formValidation(i, {
+                fields: {
+                    business_name: {
+                        validators: {
+                            notEmpty: {
+                                message: "Busines name is required"
+                            }
+                        }
+                    },
+                    business_descriptor: {
+                        validators: {
+                            notEmpty: {
+                                message: "Busines descriptor is required"
+                            }
+                        }
+                    },
+                    business_type: {
+                        validators: {
+                            notEmpty: {
+                                message: "Busines type is required"
+                            }
+                        }
+                    },
+                    business_email: {
+                        validators: {
+                            notEmpty: {
+                                message: "Busines email is required"
+                            },
+                            emailAddress: {
+                                message: "The value is not a valid email address"
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    trigger: new FormValidation.plugins.Trigger,
+                    bootstrap: new FormValidation.plugins.Bootstrap5({
+                        rowSelector: ".fv-row",
+                        eleInvalidClass: "",
+                        eleValidClass: ""
+                    })
+                }
+            })), s.push(FormValidation.formValidation(i, {
+                fields: {
+                    card_name: {
+                        validators: {
+                            notEmpty: {
+                                message: "Name on card is required"
+                            }
+                        }
+                    },
+                    card_number: {
+                        validators: {
+                            notEmpty: {
+                                message: "Card member is required"
+                            },
+                            creditCard: {
+                                message: "Card number is not valid"
+                            }
+                        }
+                    },
+                    card_expiry_month: {
+                        validators: {
+                            notEmpty: {
+                                message: "Month is required"
+                            }
+                        }
+                    },
+                    card_expiry_year: {
+                        validators: {
+                            notEmpty: {
+                                message: "Year is required"
+                            }
+                        }
+                    },
+                    card_cvv: {
+                        validators: {
+                            notEmpty: {
+                                message: "CVV is required"
+                            },
+                            digits: {
+                                message: "CVV must contain only digits"
+                            },
+                            stringLength: {
+                                min: 3,
+                                max: 4,
+                                message: "CVV must contain 3 to 4 digits only"
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    trigger: new FormValidation.plugins.Trigger,
+                    bootstrap: new FormValidation.plugins.Bootstrap5({
+                        rowSelector: ".fv-row",
+                        eleInvalidClass: "",
+                        eleValidClass: ""
+                    })
+                }
+            })), o.addEventListener("click", (function (e) {
+                s[3].validate().then((function (t) {
+                    console.log("validated!"), "Valid" == t ? (e.preventDefault(), o.disabled = !0, o.setAttribute("data-kt-indicator", "on"), setTimeout((function () {
+                        o.removeAttribute("data-kt-indicator"), o.disabled = !1, r.goNext()
+                    }), 2e3)) : Swal.fire({
+                        text: "Sorry, looks like there are some errors detected, please try again.",
+                        icon: "error",
+                        buttonsStyling: !1,
+                        confirmButtonText: "Ok, got it!",
+                        customClass: {
+                            confirmButton: "btn btn-light"
+                        }
+                    }).then((function () {
+                        KTUtil.scrollTop()
+                    }))
+                }))
+            })), $(i.querySelector('[name="card_expiry_month"]')).on("change", (function () {
+                s[3].revalidateField("card_expiry_month")
+            })), $(i.querySelector('[name="card_expiry_year"]')).on("change", (function () {
+                s[3].revalidateField("card_expiry_year")
+            })), $(i.querySelector('[name="business_type"]')).on("change", (function () {
+                s[2].revalidateField("business_type")
+            })))
+        }
+    }
+}();
+KTUtil.onDOMContentLoaded((function () {
+    KTSignupGeneral.init()
+}));

@@ -51,9 +51,15 @@
                                         class="form-control form-control-solid" />
                                 </div>
 
-                                <div class="fv-row mb-7">
+                                <div class="fv-row mb-8" data-kt-password-meter="true">
                                     <input type="password" placeholder="Password" name="password" autocomplete="off"
                                         class="form-control form-control-solid" />
+
+                                    <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2"
+                                        data-kt-password-meter-control="visibility">
+                                        <i class="ki-outline ki-eye-slash fs-2"></i>
+                                        <i class="ki-outline ki-eye fs-2 d-none"></i>
+                                    </span>
                                 </div>
 
                                 <div class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-10">

@@ -95,6 +95,12 @@ class ProfileAppController extends Controller
         return Redirect::route('profile.edit')->with('status', 'Profile updated successfully!');
     }
 
+    public function password(): View
+    {
+        $user = Auth::user();
+        return view('profile.password', compact('user'));
+    }
+
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [

@@ -20,11 +20,17 @@ return new class extends Migration {
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('profile')->nullable();
-            $table->string('banner')->nullable();
             $table->string('phone_number')->nullable();
             $table->date('birth_date')->nullable();
             $table->string('gender')->nullable();
             $table->text('bio')->nullable();
+
+            $table->string('nisn')->nullable()->unique();
+            $table->string('nis')->nullable()->unique();
+            $table->string('class')->nullable();
+            $table->string('religion')->nullable();
+            $table->text('address')->nullable();
+
             $table->string('password');
             $table->enum('utype', ['admin', 'student'])->default('student');
             $table->rememberToken();
