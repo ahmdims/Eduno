@@ -57,7 +57,8 @@ class QuizAdminController extends Controller
             }
         }
 
-        return redirect()->route('admin.quiz.index')->with('success', 'Quiz created successfully!');
+        return redirect()->back()->with('success', 'Quiz created successfully!');
+        // return redirect()->route('admin.quiz.index')->with('success', 'Quiz created successfully!');
     }
 
     public function edit($id)
@@ -114,7 +115,7 @@ class QuizAdminController extends Controller
         $quiz = Quiz::findOrFail($id);
         $quiz->delete();
 
-        return redirect()->route('admin.quiz.index')->with('success', 'Quiz deleted successfully!');
+        return redirect()->back()->with('success', 'Quiz deleted successfully!');
     }
 
     private function prepareQuestions(array $questions): array

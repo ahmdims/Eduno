@@ -332,10 +332,15 @@
                                                     </div>
 
                                                     <div class="menu-item px-3">
-                                                        <a href="#" class="menu-link px-3"
-                                                            data-laporgraf-filter="delete_row">
-                                                            Delete
-                                                        </a>
+                                                        <form action="{{ route('admin.quiz.destroy', $quiz->id) }}" method="POST" class="menu-link px-3">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-link p-0 text-danger w-100 text-start"
+                                                                    data-laporgraf-filter="delete_row"
+                                                                    onclick="return confirm('Are you sure you want to delete this quiz?')">
+                                                                Delete
+                                                            </button>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </td>

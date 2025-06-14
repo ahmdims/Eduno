@@ -356,6 +356,8 @@
 
         <script src="{{ asset('assets/js/custom/apps/admin/course/course.js') }}"></script>
         <script src="{{ asset('assets/js/custom/apps/admin/course/edit-course.js') }}"></script>
+        <script src="{{ asset('assets/js/custom/apps/admin/quiz/create-quiz.js') }}"></script>
+        <script src="{{ asset('assets/js/custom/apps/admin/quiz/edit-quiz.js') }}"></script>
 </body>
 
 </html>
