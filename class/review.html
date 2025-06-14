@@ -136,7 +136,7 @@
                                 <!--begin:Menu item-->
                                 <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
                                     data-kt-menu-placement="bottom-start" data-kt-menu-offset="-200,0"
-                                    class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+                                    class="menu-item menu-lg-down-accordion me-0 me-lg-2">
                                     <!--begin:Menu link-->
                                     <a href="admin.html" class="menu-link">
                                         <span class="menu-title">Admin</span>
@@ -162,7 +162,7 @@
                                 <!--begin:Menu item-->
                                 <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
                                     data-kt-menu-placement="bottom-start" data-kt-menu-offset="-200,0"
-                                    class="menu-item menu-lg-down-accordion me-0 me-lg-2">
+                                    class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                                     <!--begin:Menu link-->
                                     <a href="admin-materi.html" class="menu-link">
                                         <span class="menu-title">Admin Materi</span>
@@ -337,21 +337,52 @@
                     <div id="kt_app_toolbar_container" class="app-container  container-xxl d-flex align-items-start ">
                         <!--begin::Toolbar container-->
                         <div class="d-flex flex-column flex-row-fluid">
+                            <!--begin::Toolbar wrapper-->
+                            <div class="d-flex align-items-center pt-1">
+
+                                <!--begin::Breadcrumb-->
+                                <ul class="breadcrumb breadcrumb-separatorless fw-semibold">
+
+                                    <!--begin::Item-->
+                                    <li class="breadcrumb-item text-white fw-bold lh-1">
+                                        <a href="index.html" class="text-white text-hover-primary">
+                                            <i class="ki-outline ki-home text-gray-700 fs-6"></i> </a>
+                                    </li>
+                                    <!--end::Item-->
+
+                                    <!--begin::Item-->
+                                    <li class="breadcrumb-item">
+                                        <i class="ki-outline ki-right fs-7 text-gray-700 mx-n1"></i>
+                                    </li>
+                                    <!--end::Item-->
+
+
+                                    <!--begin::Item-->
+                                    <li class="breadcrumb-item text-white fw-bold lh-1">
+                                        Mata Pelajaran </li>
+                                    <!--end::Item-->
+
+
+                                </ul>
+                                <!--end::Breadcrumb-->
+
+                            </div>
+                            <!--end::Toolbar wrapper--->
+
                             <!--begin::Toolbar wrapper--->
                             <div class="d-flex flex-stack flex-wrap flex-lg-nowrap gap-4 gap-lg-10 pt-13 pb-6">
+
                                 <!--begin::Page title-->
                                 <div class="page-title me-5">
                                     <!--begin::Title-->
                                     <h1
                                         class="page-heading d-flex text-white fw-bold fs-2 flex-column justify-content-center my-0">
-                                        Judul/Nama Quiz
+                                        Welcome back, Admin
                                         <!--begin::Description-->
                                         <span class="page-desc text-gray-600 fw-semibold fs-6 pt-3">
-                                            Give it your best effort and stay focused on the questions. Good luck!
-                                        </span>
+                                            Ini adalah halaman review hasil tes </span>
                                         <!--end::Description-->
                                     </h1>
-
                                     <!--end::Title-->
                                 </div>
                                 <!--end::Page title-->
@@ -372,233 +403,204 @@
                         <div class="d-flex flex-column flex-column-fluid">
                             <!--begin::Content-->
                             <div id="kt_app_content" class="app-content flex-column-fluid">
-                                <!--begin::Content container-->
-                                <div class="app-container container-xxl">
-                                    <!--begin::Card-->
-                                    <div class="card">
-                                        <!--begin::Card header-->
-                                        <div class="card-header border-0 pt-6">
-                                            <div class="card-title">
-                                                <h2 class="fw-bold">Soal 1</h2>
-                                            </div>
-                                        </div>
-                                        <!--end::Card header-->
+                                <form id="kt_ecommerce_add_category_form" class="form d-flex flex-column flex-lg-row"
+                                    data-kt-redirect="categories.html">
+                                    <!--begin::Main column-->
+                                    <div class="container py-4">
+                                        <div class="row">
+                                            <div class="col-lg-9">
+                                                <div class="card card-flush py-4">
+                                                    <div class="card-header">
+                                                        <div class="card-title">
+                                                            <h2>Test Results Review</h2>
+                                                        </div>
+                                                    </div>
 
-                                        <!--begin::Card body-->
-                                        <div class="card-body pt-0">
-                                            <!--begin::Question-->
-                                            <div class="mb-10">
-                                                <h3 class="fw-bold mb-10">Apa fungsi dari sistem operasi pada komputer?
-                                                </h3>
+                                                    <div class="card-body card-scroll h-500px pt-0">
+                                                        <!-- Question 1 (Correct) -->
+                                                        <div
+                                                            class="mb-10 p-5 border rounded bg-hover-light-primary position-relative">
+                                                            <span
+                                                                class="badge badge-light-primary position-absolute top-0 end-0 m-3">20/20</span>
+                                                            <div class="d-flex align-items-center mb-3">
+                                                                <h5 class="m-0">Question 1</h5>
+                                                                <span
+                                                                    class="badge badge-light-primary mx-5">Correct</span>
+                                                            </div>
+                                                            <p class="mb-3">What is the
+                                                                capital city of Indonesia?</p>
+                                                            <div class="mb-2">
+                                                                <span class="text-muted">Student's Answer:</span>
+                                                                <span class="fw-bold text-primary">Jakarta</span>
+                                                            </div>
+                                                            <div>
+                                                                <span class="text-muted">Correct Answer:</span>
+                                                                <span>Jakarta</span>
+                                                            </div>
+                                                        </div>
 
-                                                <div data-kt-buttons="true">
-                                                <!--begin::Options-->
-                                                <div class="mb-10">
-                                                    <!--begin::Option-->
-                                                    <label
-                                                        class="btn btn-outline btn-outline-dashed btn-active-light-primary d-flex align-items-center justify-content-between mb-6 cursor-pointer">
-                                                        <span class="d-flex align-items-center me-2">
-                                                            <span class="symbol symbol-50px me-6">
-                                                                <span class="symbol-label bg-light-primary">
-                                                                    <span class="fs-4 text-primary">A</span>
-                                                                </span>
-                                                            </span>
-                                                            <span class="d-flex flex-column">
-                                                                <span class="fw-bold fs-5">Menyimpan data</span>
-                                                            </span>
-                                                        </span>
-                                                        <span class="form-check form-check-custom form-check-solid">
-                                                            <input class="form-check-input" type="radio" name="answer"
-                                                                value="1" />
-                                                        </span>
-                                                    </label>
-                                                    <!--end::Option-->
+                                                        <!-- Question 2 (Incorrect) -->
+                                                        <div
+                                                            class="mb-10 p-5 border rounded bg-hover-light-danger position-relative">
+                                                            <span
+                                                                class="badge badge-light-danger position-absolute top-0 end-0 m-3">0/20</span>
+                                                            <div class="d-flex align-items-center mb-3">
+                                                                <h5 class="m-0">Question 2</h5>
+                                                                <span
+                                                                    class="badge badge-light-danger mx-5">Incorrect</span>
+                                                            </div>
+                                                            <p class="mb-3">What is 7 × 8?
+                                                            </p>
+                                                            <div class="mb-2">
+                                                                <span class="text-muted">Student's Answer:</span>
+                                                                <span class="fw-bold text-danger">54</span>
+                                                            </div>
+                                                            <div>
+                                                                <span class="text-muted">Correct Answer:</span>
+                                                                <span>56</span>
+                                                            </div>
+                                                        </div>
 
-                                                    <!--begin::Option-->
-                                                    <label
-                                                        class="btn btn-outline btn-outline-dashed btn-active-light-primary d-flex align-items-center justify-content-between mb-6 cursor-pointer">
-                                                        <span class="d-flex align-items-center me-2">
-                                                            <span class="symbol symbol-50px me-6">
-                                                                <span class="symbol-label bg-light-primary">
-                                                                    <span class="fs-4 text-primary">B</span>
-                                                                </span>
-                                                            </span>
-                                                            <span class="d-flex flex-column">
-                                                                <span class="fw-bold fs-5">Menjalankan perangkat
-                                                                    lunak</span>
-                                                            </span>
-                                                        </span>
-                                                        <span class="form-check form-check-custom form-check-solid">
-                                                            <input class="form-check-input" type="radio" name="answer"
-                                                                value="2" />
-                                                        </span>
-                                                    </label>
-                                                    <!--end::Option-->
+                                                        <!-- Question 3 (Correct) -->
+                                                        <div
+                                                            class="mb-10 p-5 border rounded bg-hover-light-primary position-relative">
+                                                            <span
+                                                                class="badge badge-light-primary position-absolute top-0 end-0 m-3">20/20</span>
+                                                            <div class="d-flex align-items-center mb-3">
+                                                                <h5 class="m-0">Question 3</h5>
+                                                                <span
+                                                                    class="badge badge-light-primary mx-5">Correct</span>
+                                                            </div>
+                                                            <p class="mb-3">Who invented the
+                                                                light bulb?</p>
+                                                            <div class="mb-2">
+                                                                <span class="text-muted">Student's Answer:</span>
+                                                                <span class="fw-bold text-primary">Thomas Alva
+                                                                    Edison</span>
+                                                            </div>
+                                                            <div>
+                                                                <span class="text-muted">Correct Answer:</span>
+                                                                <span>Thomas Alva Edison</span>
+                                                            </div>
+                                                        </div>
 
-                                                    <!--begin::Option-->
-                                                    <label
-                                                        class="btn btn-outline btn-outline-dashed btn-active-light-primary d-flex align-items-center justify-content-between mb-6 cursor-pointer">
-                                                        <span class="d-flex align-items-center me-2">
-                                                            <span class="symbol symbol-50px me-6">
-                                                                <span class="symbol-label bg-light-primary">
-                                                                    <span class="fs-4 text-primary">C</span>
-                                                                </span>
-                                                            </span>
-                                                            <span class="d-flex flex-column">
-                                                                <span class="fw-bold fs-5">Membersihkan virus</span>
-                                                            </span>
-                                                        </span>
-                                                        <span class="form-check form-check-custom form-check-solid">
-                                                            <input class="form-check-input" type="radio" name="answer"
-                                                                value="3" />
-                                                        </span>
-                                                    </label>
-                                                    <!--end::Option-->
+                                                        <!-- Question 4 (Incorrect) -->
+                                                        <div
+                                                            class="mb-10 p-5 border rounded bg-hover-light-danger position-relative">
+                                                            <span
+                                                                class="badge badge-light-danger position-absolute top-0 end-0 m-3">0/20</span>
+                                                            <div class="d-flex align-items-center mb-3">
+                                                                <h5 class="m-0">Question 4</h5>
+                                                                <span
+                                                                    class="badge badge-light-danger mx-5">Incorrect</span>
+                                                            </div>
+                                                            <p class="mb-3">The chemical
+                                                                formula for water is...</p>
+                                                            <div class="mb-2">
+                                                                <span class="text-muted">Student's Answer:</span>
+                                                                <span class="fw-bold text-danger">HO2</span>
+                                                            </div>
+                                                            <div>
+                                                                <span class="text-muted">Correct Answer:</span>
+                                                                <span>H2O</span>
+                                                            </div>
+                                                        </div>
 
-                                                    <!--begin::Option-->
-                                                    <label
-                                                        class="btn btn-outline btn-outline-dashed btn-active-light-primary d-flex align-items-center justify-content-between mb-6 cursor-pointer">
-                                                        <span class="d-flex align-items-center me-2">
-                                                            <span class="symbol symbol-50px me-6">
-                                                                <span class="symbol-label bg-light-primary">
-                                                                    <span class="fs-4 text-primary">D</span>
-                                                                </span>
-                                                            </span>
-                                                            <span class="d-flex flex-column">
-                                                                <span class="fw-bold fs-5">Menampilkan iklan</span>
-                                                            </span>
-                                                        </span>
-                                                        <span class="form-check form-check-custom form-check-solid">
-                                                            <input class="form-check-input" type="radio" name="answer"
-                                                                value="4" />
-                                                        </span>
-                                                    </label>
-                                                    <!--end::Option-->
-                                                </div>
-                                                <!--end::Options-->
-                                                </div>
-                                                
-                                            </div>
-                                            <!--end::Question-->
-
-                                            <!--begin::Fill in the blank question (hidden by default, shown when navigating to this type)-->
-                                            <div class="mb-10 d-none">
-                                                <h3 class="fw-bold mb-5">Soal 7</h3>
-                                                <div class="text-gray-700 fs-5 fw-semibold mb-5">
-                                                    Hasil dari 3² + 4² adalah <input type="text"
-                                                        class="form-control form-control-solid w-100px d-inline-block mx-2"
-                                                        placeholder="...">.
-                                                </div>
-
-                                            </div>
-                                            <!--end::Fill in the blank question-->
-                                            <div class="d-flex justify-content-between align-items-center flex-wrap pt-5">
-                                                <!-- Tombol Soal Sebelumnya -->
-                                                <button type="button" class="btn btn-md btn-light-primary mb-3 mb-md-0">
-                                                    <i class="ki-duotone ki-left fs-3 me-2"></i>Previous
-                                                </button>
-
-                                                <!-- Pagination di tengah -->
-                                                <div class="d-flex flex-wrap justify-content-center gap-2 mb-3 mb-md-0">
-                                                    <a href="quiz.html"
-                                                        class="btn btn-icon btn-active-primary btn-custom w-40px h-40px">1</a>
-                                                    <a href="quiz-image.html" class="btn btn-icon btn-light w-40px h-40px">2</a>
-                                                    <a href="#" class="btn btn-icon btn-light w-40px h-40px">3</a>
-                                                    <a href="#" class="btn btn-icon btn-light w-40px h-40px">4</a>
-                                                    <a href="#" class="btn btn-icon btn-light w-40px h-40px">5</a>
-                                                    <a href="#" class="btn btn-icon btn-light w-40px h-40px">6</a>
-                                                    <a href="#" class="btn btn-icon btn-light w-40px h-40px">7</a>
-                                                    <a href="#" class="btn btn-icon btn-light w-40px h-40px">8</a>
-                                                    <a href="#" class="btn btn-icon btn-light w-40px h-40px">9</a>
-                                                    <a href="#" class="btn btn-icon btn-light w-40px h-40px">10</a>
-                                                </div>
-
-                                                <!-- Tombol Soal Berikutnya -->
-                                                <button type="button" class="btn btn-md btn-light-primary mb-3 mb-md-0">
-                                                    Next<i class="ki-duotone ki-right fs-3 ms-2"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <!--end::Card body-->
-
-                                        <!--begin::Card footer-->
-                                        <div class="card-footer py-4">
-                                            <div class="d-flex justify-content-end align-items-center">
-                                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                    data-bs-target="#kt_modal_submit_quiz">
-                                                    Submit
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <!--end::Card footer-->
-                                    </div>
-                                    <!--end::Card-->
-                                </div>
-                                <!--end::Content container-->
-                            </div>
-                            <!--end::Content-->
-
-                            <!--begin::Modal - Submit Quiz-->
-                            <div class="modal fade" id="kt_modal_submit_quiz" tabindex="-1" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered mw-650px">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h2 class="fw-bold">Quiz Submitted</h2>
-                                            <div class="btn btn-icon btn-sm btn-active-icon-primary"
-                                                data-bs-dismiss="modal">
-                                                <i class="ki-outline ki-cross fs-1"></i>
-                                            </div>
-                                        </div>
-                                        <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
-                                            <div class="text-center">
-                                                <!--begin::Message-->
-                                                <h3 class="fw-bold mb-2">Thank You for Completing the Quiz!</h3>
-                                                <div class="text-muted mb-7">
-                                                    Your answers have been successfully submitted.
-                                                </div>
-                                                <!--end::Message-->
-
-                                                <!--begin::Important Note-->
-                                                <div
-                                                    class="alert alert-dismissible bg-light-warning border border-warning border-dashed d-flex flex-column flex-sm-row p-5 mb-10">
-                                                    <div class="d-flex flex-column pe-0 pe-sm-10">
-                                                        <h4 class="fw-bold text-warning">Important Note</h4>
-                                                        <span class="text-gray-700">
-                                                            This quiz can only be completed once. You cannot retake or
-                                                            modify your answers after submission.
-                                                        </span>
+                                                        <!-- Question 5 (Correct) -->
+                                                        <div
+                                                            class="mb-10 p-5 border rounded bg-hover-light-primary position-relative">
+                                                            <span
+                                                                class="badge badge-light-primary position-absolute top-0 end-0 m-3">20/20</span>
+                                                            <div class="d-flex align-items-center mb-3">
+                                                                <h5 class="m-0">Question 5</h5>
+                                                                <span
+                                                                    class="badge badge-light-primary mx-5">Correct</span>
+                                                            </div>
+                                                            <p class="mb-3">Which planet is
+                                                                closest to the sun?</p>
+                                                            <div class="mb-2">
+                                                                <span class="text-muted">Student's Answer:</span>
+                                                                <span class="fw-bold text-primary">Mercury</span>
+                                                            </div>
+                                                            <div>
+                                                                <span class="text-muted">Correct Answer:</span>
+                                                                <span>Mercury</span>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <!--end::Important Note-->
+                                            </div>
+
+                                            <!-- Student Profile Summary -->
+                                            <div class="col-lg-3 mb-4">
+                                                <div class="card-body d-flex align-items-center justify-content-center">
+                                                    <div class="bg-light shadow-sm rounded p-5">
+                                                        <div class="d-flex flex-column text-center mb-9 px-9">
+                                                            <!--begin::Photo-->
+                                                            <div class="symbol symbol-80px symbol-lg-150px mb-4">
+                                                                <img src="../../assets/media/avatars/300-3.jpg"
+                                                                    alt="" />
+                                                            </div>
+                                                            <!--end::Photo-->
+
+                                                            <!--begin::Info-->
+                                                            <div class="text-center">
+                                                                <a href="../user-profile/overview.html"
+                                                                    class="text-gray-800 fw-bold text-hover-primary fs-4">Gojo
+                                                                    Satoru</a>
+                                                                <span class="text-muted d-block fw-semibold">NISN:
+                                                                    0072418680</span>
+                                                            </div>
+                                                            <!--end::Info-->
+                                                        </div>
+
+                                                        <!--begin::Row-->
+                                                        <div class="row px-9 mb-4">
+                                                            <div class="col-md-4 text-center">
+                                                                <div class="text-gray-800 fw-bold fs-3">3</div>
+                                                                <span
+                                                                    class="text-gray-500 fs-8 d-block fw-bold text-hover-primary">Correct</span>
+                                                            </div>
+                                                            <div class="col-md-4 text-center">
+                                                                <div class="text-gray-800 fw-bold fs-3">2</div>
+                                                                <span
+                                                                    class="text-gray-500 fs-8 d-block fw-bold text-hover-danger">Incorrect</span>
+                                                            </div>
+                                                            <div class="col-md-4 text-center">
+                                                                <div class="text-gray-800 fw-bold fs-3">60</div>
+                                                                <span
+                                                                    class="text-gray-500 fs-8 d-block fw-bold text-hover-primary">Score</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Row-->
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                    <!--end::Main column-->
+                                </form>
                             </div>
-                            <!--end::Modal - Submit Quiz-->
+                            <!--end::Content-->
                         </div>
                         <!--end::Content wrapper-->
 
                         <!--begin::Footer-->
                         <div id="kt_app_footer"
                             class="app-footer d-flex flex-column flex-md-row align-items-center flex-center flex-md-stack py-2 py-lg-4">
-                            <!--begin::Copyright-->
                             <div class="text-gray-900 order-2 order-md-1">
                                 <span class="text-muted fw-semibold me-1">2025&copy;</span>
-                                <a href="mailto:digitaldream@gmail.com" target="_blank"
+                                <a href="https://keenthemes.com/" target="_blank"
                                     class="text-gray-800 text-hover-primary">DigitalDream</a>
                             </div>
-                            <!--end::Copyright-->
-
-                            <!--begin::Menu-->
                             <ul class="menu menu-gray-600 menu-hover-primary fw-semibold order-1">
-                                <li class="menu-item"><a href="" target="_blank" class="menu-link px-2">About</a></li>
+                                <li class="menu-item"><a href="https://keenthemes.com/" target="_blank"
+                                        class="menu-link px-2">About</a></li>
                             </ul>
-                            <!--end::Menu-->
                         </div>
                         <!--end::Footer-->
                     </div>
-                    <!--end:::Main-->
+                    <!--end::Main-->
                 </div>
                 <!--end::Wrapper container-->
 
@@ -620,8 +622,28 @@
         var hostUrl = "../assets/index.html";
     </script>
 
-    <!--begin::Global Javascript Bundle(mandatory for all pages)-->
-    <script src="../assets/plugins/global/plugins.bundle.js"></script>
+    <script>
+        var myDropzone = new Dropzone("#kt_dropzonejs_example_1", {
+            url: "https://keenthemes.com/scripts/void.php", // Set the url for your upload script location
+            paramName: "file", // The name that will be used to transfer the file
+            maxFiles: 10,
+            maxFilesize: 10, // MB
+            addRemoveLinks: true,
+            accept: function (file, done) {
+                if (file.name == "wow.jpg") {
+                    done("Naha, you don't.");
+                } else {
+                    done();
+                }
+            }
+        }); < /script
+
+        <
+        !--begin::Global Javascript Bundle(mandatory
+                for all pages) -- >
+            <
+            script src = "../assets/plugins/global/plugins.bundle.js" >
+    </script>
     <script src="../assets/js/scripts.bundle.js"></script>
     <!--end::Global Javascript Bundle-->
 
@@ -651,53 +673,6 @@
     <script src="../assets/js/custom/utilities/modals/users-search.js"></script>
     <!--end::Custom Javascript-->
 
-    <!--begin::Javascript-->
-    <script>
-        // Initialize the courses table
-        document.addEventListener('DOMContentLoaded', function () {
-            // You would typically initialize a DataTable here
-            // For example:
-            // const table = document.getElementById('kt_courses_table');
-            // if (table) {
-            //     const datatable = $(table).DataTable({
-            //         // DataTable configuration options
-            //     });
-            // }
-
-            // Handle form submissions
-            const addForm = document.getElementById('kt_modal_add_course_form');
-            if (addForm) {
-                addForm.addEventListener('submit', function (e) {
-                    e.preventDefault();
-                    // Handle form submission logic here
-                    alert('Course added successfully!');
-                    $('#kt_modal_add_course').modal('hide');
-                });
-            }
-
-            const editForm = document.getElementById('kt_modal_edit_course_form');
-            if (editForm) {
-                editForm.addEventListener('submit', function (e) {
-                    e.preventDefault();
-                    // Handle form submission logic here
-                    alert('Course updated successfully!');
-                    $('#kt_modal_edit_course').modal('hide');
-                });
-            }
-
-            // Handle delete actions
-            document.querySelectorAll('[data-kt-courses-table-filter="delete_row"]').forEach(button => {
-                button.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    if (confirm('Are you sure you want to delete this course?')) {
-                        // Handle delete logic here
-                        alert('Course deleted successfully!');
-                    }
-                });
-            });
-        });
-    </script>
-    <!--end::Javascript-->
 
     <!--end::Javascript-->
 </body>
