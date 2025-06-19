@@ -14,12 +14,13 @@ class Quiz extends Model
     public $incrementing = false;
     protected $keyType = 'string';
 
-    protected $fillable = ['quiz_id', 'question', 'answer'];
+    protected $fillable = ['title', 'course_id', 'material_id', 'question'];
 
-    public function quiz()
-    {
-        return $this->belongsTo(Quiz::class);
-    }
+    // Remove this duplicate relationship
+    // public function quiz()
+    // {
+    //     return $this->belongsTo(Quiz::class);
+    // }
 
     public function questions()
     {
@@ -28,12 +29,17 @@ class Quiz extends Model
 
     public function options()
     {
-        return $this->hasMany(Option::class);
+        return $this->hasManyThrough(Option::class, Question::class);
     }
 
     public function course()
     {
         return $this->belongsTo(Course::class);
+    }
+
+    public function material()
+    {
+        return $this->belongsTo(Material::class);
     }
 
     public function submissions()

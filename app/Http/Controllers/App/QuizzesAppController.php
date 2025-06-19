@@ -4,8 +4,11 @@ namespace App\Http\Controllers\App;
 
 use App\Http\Controllers\Controller;
 use App\Models\Quiz;
+use App\Models\Course;
 use App\Models\Submission;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+
 
 class QuizzesAppController extends Controller
 {
@@ -17,32 +20,50 @@ class QuizzesAppController extends Controller
 
     public function show($id)
     {
-        $quiz = Quiz::with(['material.course'])->findOrFail($id);
+        $quiz = Quiz::with(['questions.options', 'course'])->findOrFail($id);
+
+        // Clear previous session data if starting fresh
+        if (!Session::has('quiz_started_'.$quiz->id)) {
+            Session::put('quiz_started_'.$quiz->id, true);
+            Session::forget('quiz_'.$quiz->id.'_answers');
+        }
 
         return view('quiz.show', compact('quiz'));
     }
-
-    public function submitQuiz(Request $request, $slug, $quizId)
+    public function saveDraft(Request $request, $quizId)
     {
-        $quiz = Quiz::whereHas('course', function ($query) use ($slug) {
-            $query->where('slug', $slug);
-        })->with('course')->findOrFail($quizId);
+        $questionId = $request->question_id;
+        $optionId = $request->option_id;
 
-        $course = $quiz->course;
+        // Simpan di session
+        Session::put("quiz_{$quizId}_question_{$questionId}", $optionId);
 
-        $questions = json_decode($quiz->question, true);
+        return response()->json(['success' => true]);
+    }
+
+ public function submitQuiz(Request $request, $quizId)
+    {
+        $quiz = Quiz::with(['course', 'questions.options'])->findOrFail($quizId);
+        $course = $quiz->course; // Get the course from quiz relationship
+
         $score = 0;
         $userAnswers = [];
 
-        foreach ($questions as $index => $question) {
-            $correctAnswer = $question['answer'];
-            $userAnswer = $request->input('question_' . $index);
-            $userAnswers[] = $userAnswer;
+        foreach ($quiz->questions as $question) {
+            $optionId = Session::get("quiz_{$quizId}_question_{$question->id}")
+                        ?? $request->input("question_{$question->id}");
 
-            if ($userAnswer == $correctAnswer) {
-                $score += 100;
+            $selectedOption = $question->options->firstWhere('id', $optionId);
+            $userAnswers[$question->id] = $selectedOption ? $selectedOption->option_text : null;
+
+            if ($selectedOption && $selectedOption->option_text == $question->answer) {
+                $score += (100 / $quiz->questions->count());
             }
+
+            Session::forget("quiz_{$quizId}_question_{$question->id}");
         }
+
+        Session::forget('quiz_started_'.$quizId);
 
         Submission::create([
             'user_id' => auth()->id(),
@@ -54,12 +75,9 @@ class QuizzesAppController extends Controller
         return view('app.quiz.result', compact('quiz', 'score', 'userAnswers', 'course'));
     }
 
-    public function result($slug, $quizId)
+    public function result($quizId)
     {
-        $quiz = Quiz::whereHas('course', function ($query) use ($slug) {
-            $query->where('slug', $slug);
-        })->findOrFail($quizId);
-
+        $quiz = Quiz::with('course')->findOrFail($quizId);
         $course = $quiz->course;
 
         $submission = Submission::where('user_id', auth()->id())
@@ -67,7 +85,7 @@ class QuizzesAppController extends Controller
             ->first();
 
         if (!$submission) {
-            return redirect()->route('quiz.show', ['slug' => $slug, 'quiz' => $quizId]);
+            return redirect()->route('quiz.show', $quizId);
         }
 
         $userAnswers = json_decode($submission->answers, true);
@@ -75,6 +93,7 @@ class QuizzesAppController extends Controller
 
         return view('app.quiz.result', compact('quiz', 'score', 'userAnswers', 'course'));
     }
+
 
     public function store(Request $request)
     {

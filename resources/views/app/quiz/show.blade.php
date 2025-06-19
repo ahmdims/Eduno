@@ -1,97 +1,208 @@
-@extends('layouts.learning')
+@extends('layouts.main')
 
 @section('title', $quiz->title)
 
 @section('content')
-
-    <div class="rbt-lesson-rightsidebar overflow-hidden">
-        <div class="lesson-top-bar">
-            <div class="lesson-top-left">
-                <div class="rbt-lesson-toggle">
-                    <button class="lesson-toggle-active btn-round-white-opacity" title="Toggle Sidebar">
-                        <i class="feather-arrow-left"></i>
-                    </button>
+    <!--begin::Toolbar-->
+    <div id="kt_app_toolbar" class="app-toolbar py-6">
+        <!--begin::Toolbar container-->
+        <div id="kt_app_toolbar_container" class="app-container container-xxl d-flex align-items-start">
+            <!--begin::Toolbar container-->
+            <div class="d-flex flex-column flex-row-fluid">
+                <!--begin::Toolbar wrapper--->
+                <div class="d-flex flex-stack flex-wrap flex-lg-nowrap gap-4 gap-lg-10 pt-13 pb-6">
+                    <!--begin::Page title-->
+                    <div class="page-title me-5">
+                        <!--begin::Title-->
+                        <h1 class="page-heading d-flex text-white fw-bold fs-2 flex-column justify-content-center my-0">
+                            {{ $quiz->title }}
+                            <!--begin::Description-->
+                            <span class="page-desc text-gray-600 fw-semibold fs-6 pt-3">
+                                {{ $quiz->course->title ?? '' }}
+                            </span>
+                            <!--end::Description-->
+                        </h1>
+                        <!--end::Title-->
+                    </div>
+                    <!--end::Page title-->
                 </div>
-                <h5>{{ $quiz->course->title }}</h5>
+                <!--end::Toolbar wrapper--->
             </div>
-            <div class="lesson-top-right">
-                <div class="rbt-btn-close">
-                    <a href="{{ route('course.show', $quiz->course->slug) }}" title="Go Back to {{ $quiz->course->title }}"
-                        class="rbt-round-btn">
-                        <i class="feather-x"></i>
-                    </a>
-                </div>
-            </div>
+            <!--end::Toolbar container--->
         </div>
+    </div>
+    <!--end::Toolbar-->
 
-        <div class="inner">
-            <div class="content">
-                <h4>{{ $quiz->title }}</h4>
-                <hr>
+    <!--begin::Wrapper container-->
+    <div class="app-container container-xxl">
+        <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+            <div class="d-flex flex-column flex-column-fluid">
+                <div id="kt_app_content" class="app-content flex-column-fluid">
+                    <div class="app-container container-xxl">
+                        <div class="card">
+                            <form id="quiz-form" action="{{ route('quiz.submit', $quiz->id) }}" method="POST">
+                                @csrf
+                                <div class="card-body pt-0">
+                                    @if($quiz->questions->count() > 0)
+                                        @foreach ($quiz->questions as $index => $question)
+                                            <div class="mb-10 question-container">
+                                                <div class="mb-10">
+                                                    <h3 class="fw-bold mb-10">{{ $index + 1 }}. {{ $question->question }}</h3>
 
-                <div class="rbt-dashboard-table table-responsive mobile-table-750 mt--30 overflow-hidden">
-                    <form action="{{ route('quiz.submit', ['slug' => $slug, 'quiz' => $quiz->id]) }}" method="POST">
-                        @csrf
-                        @foreach ($quiz->question as $index => $item)
-                            <div class="rbt-single-quiz">
-                                <h4>{{ $index + 1 }}. {{ $item['question'] }}</h4>
-                                <div class="row g-3 mb-5">
-                                    @foreach ($item['options'] as $optionIndex => $option)
-                                        <div class="col-lg-6">
-                                            <div class="rbt-form-check">
-                                                <input type="radio" name="question_{{ $index }}"
-                                                    value="{{ $option }}"
-                                                    id="option_{{ $index }}_{{ $optionIndex }}">
-                                                <label
-                                                    for="option_{{ $index }}_{{ $optionIndex }}">{{ $option }}</label>
+                                                    <div class="mb-10">
+                                                        @foreach ($question->options as $optionIndex => $option)
+                                                            @php
+                                                                $isChecked = session("quiz_{$quiz->id}_question_{$question->id}") == $option->id;
+                                                            @endphp
+                                                            <label class="d-flex align-items-center justify-content-between mb-6 cursor-pointer option-label"
+                                                                   data-question-id="{{ $question->id }}"
+                                                                   data-option-id="{{ $option->id }}">
+                                                                <span class="d-flex align-items-center me-2">
+                                                                    <span class="symbol symbol-50px me-6">
+                                                                        <span class="symbol-label bg-light-primary">
+                                                                            <span class="fs-4 text-primary">{{ chr(65 + $optionIndex) }}</span>
+                                                                        </span>
+                                                                    </span>
+                                                                    <span class="d-flex flex-column">
+                                                                        <span class="fw-bold fs-5">{{ $option->option_text }}</span>
+                                                                    </span>
+                                                                </span>
+                                                                <span class="form-check form-check-custom form-check-solid">
+                                                                    <input class="form-check-input option-radio"
+                                                                           type="radio"
+                                                                           name="question_{{ $question->id }}"
+                                                                           value="{{ $option->id }}"
+                                                                           {{ $isChecked ? 'checked' : '' }} />
+                                                                </span>
+                                                            </label>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    @endforeach
+                                        @endforeach
+                                    @else
+                                        <p class="text-danger">No questions available for this quiz.</p>
+                                    @endif
                                 </div>
-                            </div>
-                        @endforeach
 
-                        <div class="submit-btn mt--20">
-                            <button type="submit" class="rbt-btn btn-gradient hover-icon-reverse">
-                                <span class="icon-reverse-wrapper"><span class="btn-text">Submit Quiz</span><span
-                                        class="btn-icon"><i class="feather-arrow-right"></i></span><span class="btn-icon"><i
-                                            class="feather-arrow-right"></i></span></span>
-                            </button>
+                                <div class="card-footer py-4">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex align-items-center">
+                                            <button type="button" class="btn btn-light-primary me-3" id="save-draft">
+                                                <i class="ki-duotone ki-check-circle fs-2 me-2">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                                Selesai (Simpan Draft)
+                                            </button>
+                                        </div>
+
+                                        <div>
+                                            <button type="submit" class="btn btn-danger" id="submit-quiz">
+                                                Submit (Final)
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                    </form>
-                </div>
-            </div>
-
-            <div class="bg-color-extra2 ptb--15 overflow-hidden">
-                <div class="rbt-button-group">
-                    @php
-                        $previous = $quiz->course->quizzes
-                            ->where('id', '<', $quiz->id)
-                            ->sortByDesc('id')
-                            ->first();
-                        $next = $quiz->course->quizzes
-                            ->where('id', '>', $quiz->id)
-                            ->sortBy('id')
-                            ->first();
-                    @endphp
-
-                    @if ($previous)
-                        <a class="rbt-btn icon-hover icon-hover-left btn-md bg-primary-opacity"
-                            href="{{ route('quiz.show', ['slug' => $quiz->course->slug, 'quiz' => $previous->id]) }}">
-                            <span class="btn-icon"><i class="feather-arrow-left"></i></span>
-                            <span class="btn-text">Previous</span>
-                        </a>
-                    @endif
-
-                    @if ($next)
-                        <a class="rbt-btn icon-hover btn-md"
-                            href="{{ route('quiz.show', ['slug' => $quiz->course->slug, 'quiz' => $next->id]) }}">
-                            <span class="btn-text">Next</span>
-                            <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                        </a>
-                    @endif
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+@endsection
 
-    @endsection
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const quizForm = document.getElementById('quiz-form');
+        const optionRadios = document.querySelectorAll('.option-radio');
+        const saveDraftBtn = document.getElementById('save-draft');
+
+        // Save draft answer to session
+        function saveDraftAnswer(questionId, optionId) {
+            return fetch("{{ route('quiz.save-draft', $quiz->id) }}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({
+                    question_id: questionId,
+                    option_id: optionId
+                })
+            });
+        }
+
+        // Save all selected answers as draft
+        async function saveAllDrafts() {
+            const selectedOptions = document.querySelectorAll('.option-radio:checked');
+            const savePromises = [];
+
+            selectedOptions.forEach(radio => {
+                const questionId = radio.name.replace('question_', '');
+                const optionId = radio.value;
+                savePromises.push(saveDraftAnswer(questionId, optionId));
+            });
+
+            await Promise.all(savePromises);
+            return true;
+        }
+
+        // Event listeners for option selection
+        optionRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                const questionId = this.name.replace('question_', '');
+                const optionId = this.value;
+
+                // Highlight selected option
+                document.querySelectorAll(`.option-label[data-question-id="${questionId}"]`).forEach(opt => {
+                    opt.classList.remove('bg-light-success');
+                });
+                this.closest('.option-label').classList.add('bg-light-success');
+
+                // Save draft answer
+                saveDraftAnswer(questionId, optionId);
+            });
+        });
+
+        // Save draft button
+        saveDraftBtn.addEventListener('click', async function(e) {
+            e.preventDefault();
+
+            const result = await saveAllDrafts();
+
+            if (result) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Draft Disimpan',
+                    text: 'Jawaban Anda telah disimpan sebagai draft. Anda dapat kembali lagi nanti untuk menyelesaikan quiz.',
+                    confirmButtonText: 'OK'
+                });
+            }
+        });
+
+        // Highlight already selected answers from session
+        document.querySelectorAll('.option-radio:checked').forEach(radio => {
+            radio.closest('.option-label').classList.add('bg-light-success');
+        });
+    });
+</script>
+
+<style>
+    .option-label {
+        transition: all 0.3s ease;
+        border-radius: 6px;
+        padding: 8px;
+        cursor: pointer;
+    }
+    .option-label:hover {
+        background-color: #f8f9fa;
+    }
+    .option-label.bg-light-success {
+        background-color: #e8fff3;
+        border-left: 3px solid #50cd89;
+    }
+</style>
+@endsection
