@@ -90,11 +90,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/quiz/{id}/edit', [QuizAdminController::class, 'edit'])->name('admin.quiz.edit');
     Route::put('/admin/quiz/{id}', [QuizAdminController::class, 'update'])->name('admin.quiz.update');
     Route::delete('/admin/quiz/{id}', [QuizAdminController::class, 'destroy'])->name('admin.quiz.destroy');
-    // In your web.php, change these routes:
-Route::get('/course/{slug}/quiz/{quiz}', [CourseAppController::class, 'showQuiz'])->name('quiz.show');
-Route::post('/quiz/{quiz}/submit', [QuizzesAppController::class, 'submitQuiz'])->name('quiz.submit');
-Route::get('/quiz/{quiz}/result', [QuizzesAppController::class, 'result'])->name('quiz.result');
-Route::post('/quiz/{quiz}/save-draft', [QuizzesAppController::class, 'saveDraft'])->name('quiz.save-draft');
+    Route::get('/course/{slug}/quiz/{quiz}', [CourseAppController::class, 'showQuiz'])->name('quiz.show');
+    Route::post('/quiz/{quiz}/submit', [QuizzesAppController::class, 'submitQuiz'])->name('quiz.submit');
+    Route::get('/quiz/{quiz}/result', [QuizzesAppController::class, 'result'])->name('quiz.result');
+    Route::post('/quiz/{quiz}/save-draft', [QuizzesAppController::class, 'saveDraft'])->name('quiz.save-draft');
 
     // Article
     Route::get('/admin/article', [ArticleAdminController::class, 'index'])->name('admin.article.index');

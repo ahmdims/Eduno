@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 
-@section('title', 'Login')
+@section('title', 'Register')
 
 @section('content')
 
@@ -20,12 +20,12 @@
 
                         <div class="m-0">
                             <span class="text-gray-500 fw-bold fs-5 me-2" data-kt-translate="sign-in-head-desc">
-                                Already have an account?
+                                Not a Member yet?
                             </span>
 
-                            <a href="{{ route('register') }}" class="link-primary fw-bold fs-5"
+                            <a href="{{ route('login') }}" class="link-primary fw-bold fs-5"
                                 data-kt-translate="sign-in-head-link">
-                                Register
+                                Login
                             </a>
                         </div>
                     </div>
@@ -38,11 +38,11 @@
                             <div class="card-body">
                                 <div class="text-start mb-10">
                                     <h1 class="text-gray-900 mb-3 fs-3x" data-kt-translate="sign-in-title">
-                                        Login
+                                        Register
                                     </h1>
 
                                     <div class="text-gray-500 fw-semibold fs-6" data-kt-translate="general-desc">
-                                        Welcome, Student! Please log in to start your learning journey.
+                                        Welcome, Student! Register your account to start learning.
                                     </div>
                                 </div>
 
@@ -59,7 +59,8 @@
                                     <div class="position-relative">
                                         <input type="password" name="password" placeholder="Password" autocomplete="off"
                                             class="form-control form-control-solid pr-10" id="password" />
-                                        <span class="btn btn-sm btn-icon position-absolute top-50 end-0 translate-middle-y me-3"
+                                        <span
+                                            class="btn btn-sm btn-icon position-absolute top-50 end-0 translate-middle-y me-3"
                                             data-kt-password-meter-control="visibility" tabindex="-1">
                                             <i class="ki-outline ki-eye-slash fs-2"></i>
                                             <i class="ki-outline ki-eye fs-2 d-none"></i>
@@ -67,20 +68,41 @@
                                     </div>
                                 </div>
 
+                                <div class="fv-row mb-8">
+                                    <label for="option-select" class="form-label">Select registration type</label>
+                                    <select name="status" class="form-control form-control-solid" data-control="select2"
+                                        data-hide-search="true" data-placeholder="Select registration type"
+                                        id="kt_course_add_status_select" required>
+                                        <option value="" disabled selected>Select registration type</option>
+                                        <option value="Zoning">Zoning (based on domicile)</option>
+                                        <option value="Affirmation">Affirmation</option>
+                                        <option value="Achievement">Achievement</option>
+                                    </select>
+                                </div>
+
+                                <div class="fv-row mb-8">
+                                    <label for="message" class="form-label">Why did you choose RPL?</label>
+                                    <textarea id="message" class="form-control form-control-solid" rows="3" placeholder="Write your reason here..."
+                                        data-kt-translate="sign-in-textarea"></textarea>
+                                </div>
+
+                                <div class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8">
+                                    <div></div>
+                                </div>
+
                                 <div class="d-flex flex-stack">
                                     <button id="kt_sign_in_submit" class="btn btn-primary me-2 flex-shrink-0">
                                         <span class="indicator-label" data-kt-translate="sign-in-submit">
-                                            Login
+                                            Sign In
                                         </span>
-
                                         <span class="indicator-progress">
                                             <span data-kt-translate="general-progress">Please wait...</span>
                                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
                                         </span>
                                     </button>
-
                                 </div>
                             </div>
+
                         </form>
                     </div>
 

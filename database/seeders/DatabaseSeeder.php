@@ -11,17 +11,18 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            UserSeeder::class,
+            AdminSeeder::class,
+            // UserSeeder::class,
             CategorySeeder::class,
             CourseSeeder::class,
-            MaterialSeeder::class,
-            QuizSeeder::class,
-            ReviewSeeder::class,
-            PlanSeeder::class,
+            // MaterialSeeder::class,
+            // QuizSeeder::class,
+            // ReviewSeeder::class,
+            // PlanSeeder::class,
             ArticleSeeder::class,
             FaqSeeder::class,
             WebsiteSeeder::class,
-            MailSeeder::class,
+            // MailSeeder::class,
         ]);
     }
 }

@@ -23,7 +23,7 @@ class CourseSeeder extends Seeder
             throw new \Exception('No categories found. Please seed categories first.');
         }
 
-        for ($i = 1; $i <= 21; $i++) {
+        for ($i = 1; $i <= 1; $i++) {
             $title = "Course Title $i";
             $slug = Str::slug($title);
 

@@ -23,7 +23,8 @@ return new class extends Migration {
             $table->string('phone_number')->nullable();
             $table->date('birth_date')->nullable();
             $table->string('gender')->nullable();
-            $table->text('bio')->nullable();
+            $table->string('status')->nullable();
+            $table->text('reason')->nullable();
 
             $table->string('nisn')->nullable()->unique();
             $table->string('nis')->nullable()->unique();

@@ -14,18 +14,6 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('users')->insert([
-            'id' => Str::uuid(),
-            'name' => 'Admin',
-            'username' => 'admin',
-            'email' => 'admin@example.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('12345678'),
-            'utype' => 'admin',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-
         for ($i = 1; $i <= 20; $i++) {
             DB::table('users')->insert([
                 'id' => Str::uuid(),
