@@ -17,6 +17,7 @@ use App\Http\Controllers\App\HomeAppController;
 use App\Http\Controllers\App\ProfileAppController;
 use App\Http\Controllers\App\QuizzesAppController;
 use App\Http\Controllers\App\WebsiteAppController;
+use App\Http\Controllers\Admin\SubmissionAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -102,6 +103,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/article/create', [ArticleAdminController::class, 'create'])->name('admin.article.create');
     Route::put('/admin/article/{id}', [ArticleAdminController::class, 'update'])->name('admin.article.update');
     Route::delete('/admin/article/{id}', [ArticleAdminController::class, 'destroy'])->name('admin.article.destroy');
+
+    // Submission
+    Route::get('/admin/submission', [SubmissionAdminController::class, 'index'])->name('admin.submission.index');
+    Route::get('/admin/submission/{submission}', [SubmissionAdminController::class, 'show'])
+    ->name('admin.submission.show');
+
 
     // Faq
     Route::get('/admin/faq', [FaqAdminController::class, 'index'])->name('admin.faq.index');

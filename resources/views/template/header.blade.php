@@ -67,6 +67,9 @@
                                             <li><a href="{{ route('admin.mail.index') }}"
                                                     class="{{ Request::is('*admin/mail') ? 'active' : '' }}">Manage
                                                     Mail</a></li>
+                                            <li><a href="{{ route('admin.submission.index') }}"
+                                                    class="{{ Request::is('*admin/submission') ? 'active' : '' }}">Manage
+                                                    Mail</a></li>
                                         </ul>
                                     </li>
                                 @endif
